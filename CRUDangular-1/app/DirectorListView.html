@@ -1,0 +1,73 @@
+﻿<div class="col-sm-12" style="margin-top: -89px;MARGIN-LEFT: -81px">
+<h2 class="text-center col-sm-11"><img src="../../Images/Icon/logo.png" /><strong style="margin-left: 239px">REGIONAL CAMPUS RAWALPINDI </strong>
+</h2></div>
+<h2 class="text-center"><STRONG style="margin-left: 123px">TUTOR UPDATION LIST</STRONG></h2>
+
+<div class="col-lg-12">
+<br />
+<br />
+<form class="form-inline">
+        <div class="form-group">
+            <label>Search</label>
+            <input type="text" ng-model="search" class="form-control" placeholder="Search">
+        </div>
+    </form>
+<table ng-table="vm.tableParams" class="table col-lg-12 table-bordered table-sm table-striped table-condensed" style="font-size:11px" show-filter="true">
+
+<tr>
+    <th class="col-lg-1"  ng-click="sort('reg_no')">Registration No<span class="glyphicon sort-icon" ng-show="sortKey=='reg_no'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+            </th>
+    <th class="col-lg-1" ng-click="sort('name')">Name<span class="glyphicon sort-icon" ng-show="sortKey=='name'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+            </th>
+    <th class="col-lg-1" ng-click="sort('f_name')">Father Name<span class="glyphicon sort-icon" ng-show="sortKey=='f_name'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+            </th>
+    <th class="col-lg-1" ng-click="sort('designation')">Designation<span class="glyphicon sort-icon" ng-show="sortKey=='designation'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+            </th>
+    <th class="col-lg-1">BPS</th>
+    <th class="col-lg-1">Official Address</th>
+    <th class="col-lg-2">Mailing Address</th>
+    <th class="col-lg-1">Qualification</th>
+    <th class="col-lg-1">Phone</th>
+    <th class="col-lg-1">Gender</th>
+    <th class="col-lg-1" ng-click="sort('district')">Tehsil<span class="glyphicon sort-icon" ng-show="sortKey=='district'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+            </th>
+   
+</tr>
+    <tr dir-paginate="tutors in tutors|orderBy:sortKey:reverse|filter:search|
+     itemsPerPage:5">
+        <th scope="row" >{{tutors.reg_no}} </th>
+        <td>{{tutors.name}}</td>
+        <td>{{tutors.f_name}}</td>
+        <td>{{tutors.designation}}</td>
+        <td >{{tutors.basic_pay_scale}}</td>
+        <td>{{tutors.official_add}}</td>
+        <td>{{tutors.mail_add}}</td>
+        <td>{{tutors.qulification}}</td>
+        <td>{{tutors.phone}}</td>
+        <td>{{tutors.gender}}</td>
+        <td>{{tutors.district}}</td>
+        <th scope="row" ng-show="tutors.tutor_qualification.length > 0"  class="text-success">
+          Verified
+        </th>
+        <th scope="row" ng-show="tutors.tutor_qualification.length === 0" class="text-danger">
+          Unverified
+        </th>
+        <th scope="row">
+           <button class="btn btn-default btn-sm" ng-click="DetailTutor(tutors.tutor_id)">Detail</button>
+        </th>
+        
+    </tr>
+   
+</table>
+
+  <dir-pagination-controls
+       max-size="5"
+       direction-links="true"
+       boundary-links="true" >
+    </dir-pagination-controls>
+
+    </div>
+            <div class="col-sm-9">
+                <input type="button" class="btn btn-default" value="Back" ng-click="cancelForm()"/>
+           </div>
+        

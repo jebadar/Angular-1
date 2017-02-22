@@ -1,0 +1,71 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="test_Applicata_DataBaseModelStoreContainer" CdmEntityContainer="test_Applicata_DataBaseEntities">
+    <EntitySetMapping Name="tutor_experience">
+      <EntityTypeMapping TypeName="test_Applicata_DataBaseModel.tutor_experience">
+        <MappingFragment StoreEntitySet="tutor_experience">
+          <ScalarProperty Name="e_id" ColumnName="e_id" />
+          <ScalarProperty Name="institute" ColumnName="institute" />
+          <ScalarProperty Name="class_level" ColumnName="class_level" />
+          <ScalarProperty Name="subject_taught" ColumnName="subject_taught" />
+          <ScalarProperty Name="duration" ColumnName="duration" />
+          <ScalarProperty Name="if_past_at_aiou" ColumnName="if_past_at_aiou" />
+          <ScalarProperty Name="course_codes" ColumnName="course_codes" />
+          <ScalarProperty Name="tutor_id" ColumnName="tutor_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tutor_qualification">
+      <EntityTypeMapping TypeName="test_Applicata_DataBaseModel.tutor_qualification">
+        <MappingFragment StoreEntitySet="tutor_qualification">
+          <ScalarProperty Name="q_id" ColumnName="q_id" />
+          <ScalarProperty Name="degree_name" ColumnName="degree_name" />
+          <ScalarProperty Name="institute_name" ColumnName="institute_name" />
+          <ScalarProperty Name="date_of_complete" ColumnName="date_of_complete" />
+          <ScalarProperty Name="pass_division" ColumnName="pass_division" />
+          <ScalarProperty Name="is_attested" ColumnName="is_attested" />
+          <ScalarProperty Name="tutor_id" ColumnName="tutor_id" />
+          <ScalarProperty Name="image_degree" ColumnName="image_degree" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tutors">
+      <EntityTypeMapping TypeName="test_Applicata_DataBaseModel.tutor">
+        <MappingFragment StoreEntitySet="tutors">
+          <ScalarProperty Name="tutor_id" ColumnName="tutor_id" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="f_name" ColumnName="f_name" />
+          <ScalarProperty Name="reg_no" ColumnName="reg_no" />
+          <ScalarProperty Name="designation" ColumnName="designation" />
+          <ScalarProperty Name="basic_pay_scale" ColumnName="basic_pay_scale" />
+          <ScalarProperty Name="official_add" ColumnName="official_add" />
+          <ScalarProperty Name="mail_add" ColumnName="mail_add" />
+          <ScalarProperty Name="qulification" ColumnName="qulification" />
+          <ScalarProperty Name="phone" ColumnName="phone" />
+          <ScalarProperty Name="district" ColumnName="district" />
+          <ScalarProperty Name="tehsil" ColumnName="tehsil" />
+          <ScalarProperty Name="gender" ColumnName="gender" />
+          <ScalarProperty Name="image_profile" ColumnName="image_profile" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="user_roles">
+      <EntityTypeMapping TypeName="test_Applicata_DataBaseModel.user_roles">
+        <MappingFragment StoreEntitySet="user_roles">
+          <ScalarProperty Name="role_id" ColumnName="role_id" />
+          <ScalarProperty Name="role" ColumnName="role" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="users">
+      <EntityTypeMapping TypeName="test_Applicata_DataBaseModel.user">
+        <MappingFragment StoreEntitySet="users">
+          <ScalarProperty Name="user_id" ColumnName="user_id" />
+          <ScalarProperty Name="user_name" ColumnName="user_name" />
+          <ScalarProperty Name="u_password" ColumnName="u_password" />
+          <ScalarProperty Name="user_role" ColumnName="user_role" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

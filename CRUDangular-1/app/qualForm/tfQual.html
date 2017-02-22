@@ -1,0 +1,121 @@
+﻿<form class="form-horizontal" name="qualificationForm" novalidate role="form">
+    <legend>Qualification Information</legend>
+        <fieldset data-ng-repeat="choice in choices">
+        
+        <div class="form-group" show-errors>
+            <label class="col-sm-3 control-label">Degree Title</label>
+            <div class="col-sm-9">
+                <input type="text" name="degree" class="form-control" ng-model="qualification.degree_name" ng-required="true" ng-pattern="/^[a-z ,.'-]+$/i">
+                <span class="help-block " ng-if="qualificationForm.degree.$error.required">Degree is required</span>
+                <span class="help-block"  ng-if="qualificationForm.degree.$error.pattern">Enter a valid title</span>
+            </div>
+        </div>
+        <div class="form-group" show-errors>
+            <label class="col-sm-3 control-label">Institute</label>
+            <div class="col-sm-9">
+                <input class="form-control" type="text" name="institute" ng-model="qualification.institute_name" ng-required="true" ng-pattern="/^[a-z ,.'-]+$/i">
+                <span class="help-block"ng-if="qualificationForm.institute.$error.required" >Institute is required</span>
+                <span class="help-block" ng-if="qualificationForm.institute.$error.pattern">Enter valid name</span>
+            </div>
+        </div>
+
+
+        <div class="form-group" show-errors>
+            <label class="col-sm-3 control-label">Date of complete</label>
+            <div class="col-sm-9">
+                <input class="form-control" type="text" name="date" ng-model="qualification.date_of_complete" ng-required="true" >
+                <span class="help-block" ng-if="qualificationForm.date.$error.required">Date is required</span>
+                <span class="help-block" ng-if="qualificationForm.date.$error.pattern">Enter valid date</span>
+            </div>
+        </div>
+
+
+        <div class="form-group" show-errors>
+            <label class="col-sm-3 control-label">Pass Division</label>
+            <div class="col-sm-9">
+                <input class="form-control" type="text" name="division" ng-model="qualification.pass_division" ng-required="false" ng-pattern="/^[a-z ,.'-]+$/i">
+                <span class="help-block" ng-if="qualificationForm.division.$error.required">Pass division is required</span>
+            </div>
+                    </div>
+
+
+        <div class="form-group" show-errors>
+            <label class="col-sm-3 control-label">Is Attested</label>
+            <div class="col-sm-9">
+                <input class="form-control" type="text" name="BPS" ng-model="qualification.is_attested" ng-required="false" ng-pattern="/^[a-z ,.'-]+$/i">
+                <span class="help-block" ng-if="qualificationForm.BPS.$error.required">Write Yes or No</span>
+            </div>
+        </div>
+
+
+        <div class="form-group" show-errors>
+            <label class="col-sm-3 control-label">Tutor ID</label>
+            <div class="col-sm-9">
+                <input class="form-control" type="text" name="tutor_id" ng-readonly="true" ng-required="false" ng-model="qualification.tutor_id" >
+                
+            </div>
+        </div>
+
+            <div class="form-group" ng-show="qualification.image_degree.indexOf('Images/Tutor_Degree/') != -1">
+                <label class="col-sm-3 control-label">Degree Image</label>
+                <div class="col-sm-9">
+                    <a ng-click="openLightboxModal($index)">
+                    <img ng-src="{{qualification.image_degree}}" style="width:200px; height:200px" class="img-responsive" alt="Responsive image">
+                    </a>
+                </div>
+                    <input type="button" class="btn btn-success" value="Remove Image" ng-click="showConfirm($event,qualification.q_id)" />
+             </div>
+
+            <div class="form-group" ng-show="qualification.image_degree == '../../'">
+
+                    <div ng-model="file[choice.id]"> 
+                 <table class="table">
+                        <thead>
+                            <tr>
+                                <th width="50%">Name</th>
+                                <th ng-show="uploader.isHTML5">Size</th>
+                                <th ng-show="uploader.isHTML5">Progress</th>
+                                <th>Status</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="item in uploader.queue">
+                                <td><strong>{{ item.file.name }}</strong></td>
+                                <td ng-show="uploader.isHTML5" nowrap>{{ item.file.size/1024/1024|number:2 }} MB</td>
+                                <td ng-show="uploader.isHTML5">
+                                    <div class="progress" style="margin-bottom: 0;">
+                                        <div class="progress-bar" role="progressbar" ng-style="{ 'width': item.progress + '%' }"></div>
+                                    </div>
+                                </td>
+                                <td class="text-center">
+                                    <span ng-show="item.isSuccess"><i class="glyphicon glyphicon-ok"></i></span>
+                                    <span ng-show="item.isCancel"><i class="glyphicon glyphicon-ban-circle"></i></span>
+                                    <span ng-show="item.isError"><i class="glyphicon glyphicon-remove"></i></span>
+                                </td>
+                                <td nowrap>
+                                    <button type="button" class="btn btn-success btn-xs" ng-click="item.upload()" ng-disabled="item.isReady || item.isUploading || item.isSuccess">
+                                        <span class="glyphicon glyphicon-upload"></span> Upload
+                                    </button>
+                                    <button type="button" class="btn btn-warning btn-xs" ng-click="item.cancel()" ng-disabled="!item.isUploading">
+                                        <span class="glyphicon glyphicon-ban-circle"></span> Cancel
+                                    </button>
+                                    <button type="button" class="btn btn-danger btn-xs" ng-click="item.remove()">
+                                        <span class="glyphicon glyphicon-trash"></span> Remove
+                                    </button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                        <input id="source_img" class="btn btn-default" type="file"  nv-file-select="" ng-disabled="uploader.queue.length >= 1" uploader="uploader" fileread/>
+               
+            </div>
+
+            </div>
+            <div class="col-sm-9"> 
+                <input type="button" class="btn btn-default" value="Back" ng-click="cancelForm()"/>
+                <input type="submit" class="btn btn-primary" value="Submit" ng-click="submitQual()"/>
+                <input type="reset" class="btn btn-success" value="Reset" ng-click="resetForm()" />
+            </div>
+        
+    </form>

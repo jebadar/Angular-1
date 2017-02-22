@@ -1,0 +1,21 @@
+﻿@model CRUDangular_1.ViewModel.LayoutModel
+
+    <link rel="shortcut icon" href="~/Images/Icon/Picture1.ico">
+    @Scripts.Render("~/bundles/jquery")
+    @Styles.Render("~/bundles/mini-spa/style")
+    @Scripts.Render("~/bundles/mini-spa/script")
+@if (Request.IsAuthenticated)
+{
+    using (Html.BeginForm("LogOff", "Home", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+    {
+        @Html.AntiForgeryToken()
+
+        <ul class="nav navbar-nav navbar-right">
+            <li>
+                @Html.ActionLink("Home", "Index", "Home", routeValues: null, htmlAttributes: new { title = "Manage" })
+            </li>
+            <li><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
+        </ul>
+    }
+}
+@RenderBody()

@@ -1,0 +1,79 @@
+﻿<form class="form-horizontal" name="experienceForm" novalidate role="form">
+    
+        <fieldset>
+        <legend>Experience Information</legend>
+        
+            <div class="form-group" show-errors>
+            <label class="col-sm-3 control-label">Institute</label>
+            
+            
+            <div class="col-sm-9">
+                <input class="form-control" type="text" name="institute"  ng-model = "experience.institute" ng-required="true">
+                <span class="help-block " ng-if="experienceForm.institute.$error.required">Institute is required</span>
+                <span class="help-block"  ng-if="experienceForm.institute.$error.pattern">Enter a valid Institute</span>
+            </div>
+        </div>
+
+        <div class="form-group" show-errors>
+            <label class="col-sm-3 control-label">Class Level</label>
+            <div class="col-sm-9">
+                <input class="form-control" type="text" name="class_level" ng-model="experience.class_level" ng-required="true" ng-pattern="/^[a-z ,.'-]+$/i">
+                <span class="help-block" ng-if="experienceForm.class_level.$error.required" >Enter which level of class taught</span>
+                <span class="help-block" ng-if="experienceForm.class_level.$error.pattern">Enter valid class level</span>
+            </div>
+        </div>
+
+
+        <div class="form-group" show-errors>
+            <label class="col-sm-3 control-label">Subject</label>
+            <div class="col-sm-9">
+                <input class="form-control" type="text" name="subject_taught" ng-model="experience.subject_taught" ng-required="true" ng-pattern="/^[a-z ,.'-]+$/i">
+                <span class="help-block" ng-if="experienceForm.subject_taught.$error.required">Enter subject taught</span>
+                <span class="help-block" ng-if="experienceForm.subject_taught.$error.pattern">Enter valid date</span>
+            </div>
+        </div>
+
+
+        <div class="form-group" show-errors>
+            <label class="col-sm-3 control-label">Duration</label>
+            <div class="col-sm-9">
+                <input class="form-control" type="text" name="duration" ng-model="experience.duration" ng-required="false" >
+                <span class="help-block" ng-if="experienceForm.duration.$error.required">Enter duration of teaching</span>
+            </div>
+        </div>
+
+
+        <div class="form-group" show-errors>
+            <label class="col-sm-3 control-label">In past at AIOU</label>
+            <div class="col-sm-9">
+                <div class="btn-group">
+                    <label class="btn btn-primary" ng-model="experience.if_past_at_aiou" uib-btn-radio="'YES'">YES</label>
+                    <label class="btn btn-primary" ng-model="experience.if_past_at_aiou" uib-btn-radio="'NO'">NO</label>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="form-group" show-errors>
+            <label class="col-sm-3 control-label">Course codes</label>
+            <div class="col-sm-9">
+                <input class="form-control" type="text" name="course_codes" ng-readonly="experience.if_past_at_aiou === 'NO'" ng-required="false" ng-model="experience.course_codes" >
+                
+            </div>
+        </div>
+            <div class="form-group" show-errors>
+            <label class="col-sm-3 control-label">Tutor ID</label>
+            <div class="col-sm-9">
+                <input class="form-control" type="text" name="tutor_id" ng-readonly="true" ng-required="false" ng-model="experience.tutor_id "  >
+                
+            </div>
+        </div>
+            
+
+</fieldset>
+         <div class="col-sm-9">
+                <input type="button" class="btn btn-default" value="Back" ng-click="cancelForm()"/>
+                <input type="submit" class="btn btn-primary" value="Submit" ng-click="submitExpe()"/>
+                <input type="reset" class="btn btn-success" value="Reset" ng-click="resetForm()" />
+            </div>
+    

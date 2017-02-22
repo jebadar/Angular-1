@@ -1,0 +1,119 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="test_Applicata_DataBaseModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="test_Applicata_DataBaseModelStoreContainer">
+    <EntitySet Name="tutor_experience" EntityType="test_Applicata_DataBaseModel.Store.tutor_experience" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="tutor_qualification" EntityType="test_Applicata_DataBaseModel.Store.tutor_qualification" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="tutors" EntityType="test_Applicata_DataBaseModel.Store.tutors" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="user_roles" EntityType="test_Applicata_DataBaseModel.Store.user_roles" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="users" EntityType="test_Applicata_DataBaseModel.Store.users" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="FK__tutor_exp__tutor__1BFD2C07" Association="test_Applicata_DataBaseModel.Store.FK__tutor_exp__tutor__1BFD2C07">
+      <End Role="tutors" EntitySet="tutors" />
+      <End Role="tutor_experience" EntitySet="tutor_experience" />
+    </AssociationSet>
+    <AssociationSet Name="FK__tutor_qua__tutor__1920BF5C" Association="test_Applicata_DataBaseModel.Store.FK__tutor_qua__tutor__1920BF5C">
+      <End Role="tutors" EntitySet="tutors" />
+      <End Role="tutor_qualification" EntitySet="tutor_qualification" />
+    </AssociationSet>
+    <AssociationSet Name="users_user_role_FK" Association="test_Applicata_DataBaseModel.Store.users_user_role_FK">
+      <End Role="user_roles" EntitySet="user_roles" />
+      <End Role="users" EntitySet="users" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="tutor_experience">
+    <Key>
+      <PropertyRef Name="e_id" />
+    </Key>
+    <Property Name="e_id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="institute" Type="varchar" MaxLength="200" />
+    <Property Name="class_level" Type="varchar" MaxLength="100" />
+    <Property Name="subject_taught" Type="varchar" MaxLength="100" />
+    <Property Name="duration" Type="varchar" MaxLength="100" />
+    <Property Name="if_past_at_aiou" Type="varchar" MaxLength="50" />
+    <Property Name="course_codes" Type="varchar" MaxLength="100" />
+    <Property Name="tutor_id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tutor_qualification">
+    <Key>
+      <PropertyRef Name="q_id" />
+    </Key>
+    <Property Name="q_id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="degree_name" Type="varchar" Nullable="false" MaxLength="100" />
+    <Property Name="institute_name" Type="varchar" MaxLength="200" />
+    <Property Name="date_of_complete" Type="varchar" MaxLength="200" />
+    <Property Name="pass_division" Type="varchar" MaxLength="100" />
+    <Property Name="is_attested" Type="varchar" MaxLength="50" />
+    <Property Name="tutor_id" Type="int" Nullable="false" />
+    <Property Name="image_degree" Type="varchar" MaxLength="200" />
+  </EntityType>
+  <EntityType Name="tutors">
+    <Key>
+      <PropertyRef Name="tutor_id" />
+    </Key>
+    <Property Name="tutor_id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="name" Type="varchar" Nullable="false" MaxLength="300" />
+    <Property Name="f_name" Type="varchar" Nullable="false" MaxLength="300" />
+    <Property Name="reg_no" Type="varchar" Nullable="false" MaxLength="100" />
+    <Property Name="designation" Type="varchar" MaxLength="100" />
+    <Property Name="basic_pay_scale" Type="varchar" MaxLength="100" />
+    <Property Name="official_add" Type="varchar" MaxLength="300" />
+    <Property Name="mail_add" Type="varchar" MaxLength="300" />
+    <Property Name="qulification" Type="varchar" MaxLength="300" />
+    <Property Name="phone" Type="varchar" MaxLength="100" />
+    <Property Name="district" Type="varchar" MaxLength="100" />
+    <Property Name="tehsil" Type="varchar" MaxLength="100" />
+    <Property Name="gender" Type="varchar" MaxLength="50" />
+    <Property Name="image_profile" Type="varchar" MaxLength="300" />
+  </EntityType>
+  <EntityType Name="user_roles">
+    <Key>
+      <PropertyRef Name="role_id" />
+    </Key>
+    <Property Name="role_id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="role" Type="varchar" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="users">
+    <Key>
+      <PropertyRef Name="user_id" />
+    </Key>
+    <Property Name="user_id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="user_name" Type="varchar" MaxLength="100" />
+    <Property Name="u_password" Type="varchar" MaxLength="100" />
+    <Property Name="user_role" Type="int" Nullable="false" />
+  </EntityType>
+  <Association Name="FK__tutor_exp__tutor__1BFD2C07">
+    <End Role="tutors" Type="test_Applicata_DataBaseModel.Store.tutors" Multiplicity="1" />
+    <End Role="tutor_experience" Type="test_Applicata_DataBaseModel.Store.tutor_experience" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tutors">
+        <PropertyRef Name="tutor_id" />
+      </Principal>
+      <Dependent Role="tutor_experience">
+        <PropertyRef Name="tutor_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__tutor_qua__tutor__1920BF5C">
+    <End Role="tutors" Type="test_Applicata_DataBaseModel.Store.tutors" Multiplicity="1" />
+    <End Role="tutor_qualification" Type="test_Applicata_DataBaseModel.Store.tutor_qualification" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tutors">
+        <PropertyRef Name="tutor_id" />
+      </Principal>
+      <Dependent Role="tutor_qualification">
+        <PropertyRef Name="tutor_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="users_user_role_FK">
+    <End Role="user_roles" Type="test_Applicata_DataBaseModel.Store.user_roles" Multiplicity="1" />
+    <End Role="users" Type="test_Applicata_DataBaseModel.Store.users" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="user_roles">
+        <PropertyRef Name="role_id" />
+      </Principal>
+      <Dependent Role="users">
+        <PropertyRef Name="user_role" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

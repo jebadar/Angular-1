@@ -1,0 +1,36 @@
+﻿@model CRUDangular_1.Models.user
+@{
+    ViewBag.Title = "Login";
+}
+
+<div class="col-lg-12">
+<h2 class="text-center col-lg-11"><strong>ALLAMA IQBAL OPEN UNIVERSITY ISLAMABAD</strong>
+<img class="col-sm-2"  src="../../Images/Icon/logo.png" /></h2></div>
+<h2 class="text-center"><STRONG style="margin-left: 123px">REGIONAL CAMPUS RAWALPINDI</STRONG></h2>
+<div class="container">
+    <div class="row">
+        <div class="col-md-offset-5 col-md-3">
+            <div class="form-login">
+            <h4>LOGIN</h4>
+@using (Html.BeginForm("Login", "Home", FormMethod.Post))
+{
+
+    @Html.ValidationSummary(true)
+    @Html.AntiForgeryToken()
+    @Html.EditorFor(model => model.user_name, new { htmlAttributes = new { @class = "form-control input-sm chat-input" , id="userName", placeholder = "username", required = "required" }})
+            <br /> 
+                    @Html.EditorFor(model => model.u_password,new { htmlAttributes = new { @class = "form-control input-sm chat-input", @id="userPassword" ,placeholder = "Password", required = "required",@type="password" }})
+                    @Html.ValidationMessageFor(model => model.u_password)
+            
+            <br />
+            <div class="wrapper">
+            <span class="group-btn">     
+                <input type="submit" class="btn btn-primary btn-md" value="ENTER">
+            </span>
+            </div>
+}
+            </div>
+        
+        </div>
+    </div>
+</div>

@@ -1,0 +1,159 @@
+﻿<form class="form-horizontal" name="tutorForm" novalidate role="form">
+    <fieldset>
+        <legend class="text-center"><strong>NEW TUTOR INFORMATION</strong></legend>
+        
+        
+         <div class="form-group">
+            <label class="col-sm-3 control-label"><em>Profile Picture</em></label>
+            <div class="col-sm-9">
+                <input id="source_img" class="btn btn-default" type="file"  nv-file-select="" ng-disabled="uploader.queue.length >= 1" uploader="uploader" fileread/>
+                
+          <div ng-model="file"> 
+                 <table class="table">
+                        <thead>
+                            <tr>
+                                <th width="50%">Name</th>
+                                <th ng-show="uploader.isHTML5">Size</th>
+                                <th ng-show="uploader.isHTML5">Progress</th>
+                                <th>Status</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="item in uploader.queue">
+                                <td><strong>{{ item.file.name }}</strong></td>
+                                <td ng-show="uploader.isHTML5" nowrap>{{ item.file.size/1024/1024|number:2 }} MB</td>
+                                <td ng-show="uploader.isHTML5">
+                                    <div class="progress" style="margin-bottom: 0;">
+                                        <div class="progress-bar" role="progressbar" ng-style="{ 'width': item.progress + '%' }"></div>
+                                    </div>
+                                </td>
+                                <td class="text-center">
+                                    <span ng-show="item.isSuccess"><i class="glyphicon glyphicon-ok"></i></span>
+                                    <span ng-show="item.isCancel"><i class="glyphicon glyphicon-ban-circle"></i></span>
+                                    <span ng-show="item.isError"><i class="glyphicon glyphicon-remove"></i></span>
+                                </td>
+                                <td nowrap>
+                                    <button type="button" class="btn btn-warning btn-xs" ng-click="item.cancel()" ng-disabled="!item.isUploading">
+                                        <span class="glyphicon glyphicon-ban-circle"></span> Cancel
+                                    </button>
+                                    <button type="button" class="btn btn-danger btn-xs" ng-click="item.remove()">
+                                        <span class="glyphicon glyphicon-trash"></span> Remove
+                                    </button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+            </div>
+            Queue progress:
+                            <div class="progress" style="">
+                                <div class="progress-bar" role="progressbar" ng-style="{ 'width': uploader.progress + '%' }"></div>
+                            </div>
+                       
+                        <button type="button" class="btn btn-success btn-s" ng-click="profile_image(); uploader.uploadAll()" ng-disabled="!uploader.getNotUploadedItems().length">
+                            <span class="glyphicon glyphicon-upload"></span> Upload
+                        </button>
+        
+          </div>
+        </div>
+        
+        <div class="form-group" show-errors>
+            <label class="col-sm-3 control-label"><em>Registration No</em></label>
+            <div class="col-sm-9">
+                <input type="text" name="reg_no" class="form-control" ng-model="tutors.reg_no" capitalize ng-required="true" ng-pattern="/([0-9])\w+([-])\w+([A-])\w+/i">
+                <span class="help-block " ng-if="tutorForm.reg_no.$error.required">Registration number is required</span>
+                <span class="help-block"  ng-if="tutorForm.reg_no.$error.pattern">Enter a valid Registration</span>
+            </div>
+        </div>
+        <div class="form-group" show-errors>
+            <label class="col-sm-3 control-label"><em>Name</em></label>
+            <div class="col-sm-9">
+                <input class="form-control" type="text" name="name" capitalize ng-model="tutors.name" ng-required="true" ng-pattern="/^[a-z ,.'-]+$/i">
+                <span class="help-block"ng-if="tutorForm.name.$error.required" >Name is required</span>
+                <span class="help-block" ng-if="tutorForm.name.$error.pattern">Enter valid Name</span>
+            </div>
+        </div>
+
+
+        <div class="form-group" show-errors>
+            <label class="col-sm-3 control-label"><em>Father Name</em></label>
+            <div class="col-sm-9">
+                <input class="form-control" type="text" name="FatherName" capitalize ng-model="tutors.f_name" ng-required="true" ng-pattern="/^[a-z ,.'-]+$/i">
+                <span class="help-block" ng-if="tutorForm.FatherName.$error.required">Father Name is required</span>
+                <span class="help-block" ng-if="tutorForm.FatherName.$error.pattern">Enter valid Name</span>
+            </div>
+        </div>
+
+        <div class="form-group" show-errors>
+            <label class="col-sm-3 control-label"><em>Gender</em></label>
+            <div class="col-sm-9">
+                <select class="form-control" type="text" name="gender" ng-required="true" ng-model="tutors.gender" ng-options="gender for gender in gender"></select>
+                
+                <span class="help-block" ng-if="tutorForm.gender.$error.required">Gender is Required</span>
+            </div>
+        </div>
+
+        <div class="form-group" show-errors>
+            <label class="col-sm-3 control-label"><em>Designation</em></label>
+            <div class="col-sm-9">
+                <input class="form-control" type="text" capitalize name="design" ng-model="tutors.designation" ng-required="false" >
+                <span class="help-block" ng-if="tutorForm.design.$error.required">Designation is required</span>
+            </div>
+        </div>
+
+        <div class="form-group" show-errors>
+            <label class="col-sm-3 control-label"><em>BPS</em></label>
+            <div class="col-sm-9">
+                <input class="form-control" type="text" capitalize name="BPS" ng-model="tutors.basic_pay_scale" ng-required="false" ng-pattern="/^[a-z ,.'-]+$/i">
+                <span class="help-block" ng-if="tutorForm.BPS.$error.required">BPS is required</span>
+            </div>
+        </div>
+
+        <div class="form-group" show-errors>
+            <label class="col-sm-3 control-label"><em>Official Address</em></label>
+            <div class="col-sm-9">
+                <input class="form-control" type="text" capitalize name="official_add" ng-required="false" ng-model="tutors.official_add" >
+            </div>
+        </div>
+
+        <div class="form-group" show-errors>
+            <label class="col-sm-3 control-label"><em>Mailing Address</em></label>
+            <div class="col-sm-9">
+                <input class="form-control" type="text" capitalize name="mailing_add" ng-model="tutors.mail_add" ng-required="true" >
+                <span class="help-block" ng-if="tutorForm.mailing_add.$error.required">Mailing address is required</span>
+            </div>
+        </div>
+        <div class="form-group" show-errors>
+            <label class="col-sm-3 control-label"><em>Qualification</em></label>
+            <div class="col-sm-9">
+                <input class="form-control" type="text" capitalize name="qualification" ng-model="tutors.qulification" ng-required="true" >
+                <span class="help-block" ng-if="tutorForm.qualification.$error.required">Qualification is required</span>
+            </div>
+        </div>
+
+        <div class="form-group" show-errors>
+        <label class="col-sm-3 control-label"><em>Phone</em></label>
+        <div class="col-sm-9">
+            <input class="form-control" type="text" name="phone" ng-model="tutors.phone" ng-required="true" ng-pattern="">
+            <span class="help-block" ng-if="tutorForm.phone.$error.required">Phone is required</span>
+            <span class="help-block" ng-if="tutorForm.phone.$error.pattern">Enter valid Phone number</span>
+        </div>
+        </div>
+        <div class="form-group" show-errors>
+        <label class="col-sm-3 control-label"><em>District</em></label>
+        <div class="col-sm-9">
+            <input class="form-control" type="text" name="district" capitalize ng-model="tutors.district" ng-required="true" ng-pattern="/^[a-z ,.'-]+$/i" >
+            <span class="help-block" ng-if="tutorForm.district.$error.required">District is required</span>
+            <span class="help-block" ng-if="tutorForm.district.$error.pattern">Enter valid District</span>
+        </div>
+        </div>
+      <div class="col-sm-9">
+            <input type="button" class="btn btn-default" value="Back" ng-click="cancelForm()"/>
+            <input type="submit" class="btn btn-primary" value="Submit" ng-click="submitForm()" ng-disabled="tutorForm.$invalid"/>
+            <input type="reset" class="btn btn-success" value="Reset" ng-click="resetForm()" />
+      </div>
+        
+    </fieldset>
+    
+    
+

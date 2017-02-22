@@ -1,0 +1,127 @@
+﻿<div class="col-lg-12">
+<h2 class="text-center col-lg-11"><strong>ALLAMA IQBAL OPEN UNIVERSITY ISLAMABAD</strong>
+<img class="col-sm-2"  src="../../Images/Icon/logo.png" /></h2></div>
+
+<h3 class="text-center"><strong>TUTOR DETAIL</strong></h3>
+    
+    <a ng-click="openLightboxModal($index)" ng-show="tutors.image_profile.indexOf('Images/Tutor_Profile/') != -1">
+    <img ng-src="{{tutors.image_profile}}"  class="avatar img-responsive" style="border-radius:40%;height: 196px;width: 153px;margin-left: 981px;margin-top: -120px;" alt="Responsive image">
+    </a>
+
+    <label class="col-md-3 text-muted" ng-show="qualification.image_degree == '../../'"><em>Not Uploaded</em></label>
+    <fieldset>
+        <legend class="text-center"><em>TUTOR INFORMATION</em></legend>
+        <div class="col-md-12 form-group form-inline">
+            <label class="col-md-3 control-label"><em>Registration No</em></label>
+            <label class="col-md-3 text-muted">{{tutors.reg_no}}</label>
+
+            <label class="col-md-3 control-label"><em>Name</em></label>
+            <label class="col-md-3 text-muted">{{tutors.name}}</label>
+        </div>
+       
+        <div class="col-md-12 form-group form-inline">
+            <label class="col-md-3 control-label"><em>Father Name</em></label>
+            <label class="col-md-3 text-muted">{{tutors.f_name}}</label>
+
+            <label class="col-md-3 control-label"><em>Gender</em></label>
+            <label class="col-md-3 text-muted">{{tutors.gender}}</label>
+        </div>
+       
+        <div class="col-md-12 form-group form-inline">
+            <label class="col-md-3 control-label"><em>Designation</em></label>
+            <label class="col-md-3 text-muted">{{tutors.designation}}</label>
+
+            <label class="col-md-3 control-label"><em>BPS</em></label>
+            <label class="col-md-3 text-muted">{{tutors.basic_pay_scale}}</label>
+        </div>
+        
+        <div class="col-md-12  form-group form-inline">
+            <label class="col-md-3 control-label"><em>Official Address</em></label>
+            <label class="col-md-3 text-muted">{{tutors.official_add}}</label>
+
+            <label class="col-sm-3 control-label"><em>Mailing Address</em></label>
+            <label class="col-sm-3 text-muted">{{tutors.mail_add}}</label>
+
+       </div>
+       
+        <div class="col-md-12  form-group form-inline">
+            <label class="col-md-3 control-label"><em>Qualification</em></label>
+            <label class="col-md-3 text-muted">{{tutors.qulification}}</label>
+
+            <label class="col-md-3 control-label"><em>Phone</em></label>
+            <label class="col-md-3 text-muted">{{tutors.phone}}</label>
+         </div>
+
+        <div class=" col-md-12 form-group form-inline">
+            <label class="col-md-3 control-label"><em>District</em></label>
+            <label class="col-md-3 text-muted">{{tutors.district}}</label>
+        </div>
+    </fieldset>
+ 
+    <fieldset>
+        <legend class="text-center"><em>TUTOR CREDENTIALS</em></legend>
+        <div ng-repeat="qualification in qualification" ng-init="outerIndex = $index">
+            <legend class="text-center"><em> Degree {{outerIndex + 1}}</em></legend>
+         <div class="col-md-12  form-group form-inline">
+            <label class="col-md-3 control-label"><em>Degree Title</em></label>
+            <label class="col-md-3 text-muted">{{qualification.degree_name}}</label>
+
+            <label class="col-md-3 control-label"><em>Institute</em></label>
+            <label class="col-md-3 text-muted">{{qualification.institute_name}}</label>
+        </div>
+        <div class="col-md-12  form-group form-inline">
+            <label class="col-md-3 control-label"><em>Date of complete</em></label>
+            <label class="col-md-3 text-muted">{{qualification.date_of_complete}}</label>
+
+            <label class="col-md-3 control-label"><em>Pass Division</em></label>
+            <label class="col-md-3 text-muted">{{qualification.pass_division}}</label>
+        </div>
+        <div class="col-md-12  form-group form-inline" >
+            <label class="col-md-3 control-label"><em>Is Attested</em></label>
+            <label class="col-md-3 text-muted">{{qualification.is_attested}}</label>
+           
+            <label class="col-md-3 control-label"><em>Degree Image</em></label>
+            <a ng-click="openLightboxModal($index)" ng-show="qualification.image_degree.indexOf('Images/Tutor_Degree/') != -1">
+            <img ng-src="{{qualification.image_degree}}" style="width:200px; height:200px" class="img-responsive" alt="Responsive image">
+            </a>
+
+            <label class="col-md-3 text-muted" ng-show="qualification.image_degree == '../../'"><em>Not Uploaded</em></label>
+        </div>
+            
+        </div>
+    </fieldset>
+        <fieldset>
+                <legend class="text-center"><em>TUTOR EXPERIENCE</em></legend>
+            <div ng-repeat="experience in experience"  ng-init="expIndex = $index">
+                <legend class="text-center"><em>Experience {{expIndex + 1}}</em></legend>
+               <div class="col-md-12  form-group form-inline">
+                    <label class="col-md-3 control-label"><em>Institute</em></label>
+                    <label class="col-md-3 text-muted">{{experience.institute}}</label>
+
+                    <label class="col-md-3 control-label"><em>Class Level</em></label>
+                    <label class="col-md-3 text-muted">{{experience.class_level}}</label>
+                    
+                </div>
+
+                <div class="col-md-12  form-group form-inline">
+                    <label class="col-md-3 control-label"><em>Subject</em></label>
+                    <label class="col-md-3 text-muted">{{experience.subject_taught}}</label>
+
+                    <label class="col-md-3 control-label"><em>Duration</em></label>
+                    <label class="col-md-3 text-muted">{{experience.duration}}</label>
+                </div>
+
+                <div class="col-md-12  form-group form-inline">
+                    <label class="col-md-3 control-label"><em>In past at AIOU</em></label>
+                    <label class="col-md-3 text-muted">{{experience.if_past_at_aiou}}</label>
+                       
+                    <label class="col-md-3 control-label"><em>Course codes</em></label>
+                    <label class="col-md-3 text-muted">{{experience.course_codes}}</label>
+                </div>
+
+             </div>
+            <div class="col-md-9 text-center">
+                <input type="button" class="btn btn-default" value="Back" ng-click="cancelForm()"/>
+            </div>
+        
+    </fieldset>

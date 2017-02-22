@@ -1,0 +1,345 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="test_Applicata_DataBaseModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityContainer Name="test_Applicata_DataBaseModelStoreContainer">
+          <EntitySet Name="tutor_experience" EntityType="test_Applicata_DataBaseModel.Store.tutor_experience" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="tutor_qualification" EntityType="test_Applicata_DataBaseModel.Store.tutor_qualification" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="tutors" EntityType="test_Applicata_DataBaseModel.Store.tutors" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="user_roles" EntityType="test_Applicata_DataBaseModel.Store.user_roles" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="users" EntityType="test_Applicata_DataBaseModel.Store.users" store:Type="Tables" Schema="dbo" />
+          <AssociationSet Name="FK__tutor_exp__tutor__1BFD2C07" Association="test_Applicata_DataBaseModel.Store.FK__tutor_exp__tutor__1BFD2C07">
+            <End Role="tutors" EntitySet="tutors" />
+            <End Role="tutor_experience" EntitySet="tutor_experience" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tutor_qua__tutor__1920BF5C" Association="test_Applicata_DataBaseModel.Store.FK__tutor_qua__tutor__1920BF5C">
+            <End Role="tutors" EntitySet="tutors" />
+            <End Role="tutor_qualification" EntitySet="tutor_qualification" />
+          </AssociationSet>
+          <AssociationSet Name="users_user_role_FK" Association="test_Applicata_DataBaseModel.Store.users_user_role_FK">
+            <End Role="user_roles" EntitySet="user_roles" />
+            <End Role="users" EntitySet="users" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="tutor_experience">
+          <Key>
+            <PropertyRef Name="e_id" />
+          </Key>
+          <Property Name="e_id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="institute" Type="varchar" MaxLength="200" />
+          <Property Name="class_level" Type="varchar" MaxLength="100" />
+          <Property Name="subject_taught" Type="varchar" MaxLength="100" />
+          <Property Name="duration" Type="varchar" MaxLength="100" />
+          <Property Name="if_past_at_aiou" Type="varchar" MaxLength="50" />
+          <Property Name="course_codes" Type="varchar" MaxLength="100" />
+          <Property Name="tutor_id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tutor_qualification">
+          <Key>
+            <PropertyRef Name="q_id" />
+          </Key>
+          <Property Name="q_id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="degree_name" Type="varchar" Nullable="false" MaxLength="100" />
+          <Property Name="institute_name" Type="varchar" MaxLength="200" />
+          <Property Name="date_of_complete" Type="varchar" MaxLength="200" />
+          <Property Name="pass_division" Type="varchar" MaxLength="100" />
+          <Property Name="is_attested" Type="varchar" MaxLength="50" />
+          <Property Name="tutor_id" Type="int" Nullable="false" />
+          <Property Name="image_degree" Type="varchar" MaxLength="200" />
+        </EntityType>
+        <EntityType Name="tutors">
+          <Key>
+            <PropertyRef Name="tutor_id" />
+          </Key>
+          <Property Name="tutor_id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="varchar" Nullable="false" MaxLength="300" />
+          <Property Name="f_name" Type="varchar" Nullable="false" MaxLength="300" />
+          <Property Name="reg_no" Type="varchar" Nullable="false" MaxLength="100" />
+          <Property Name="designation" Type="varchar" MaxLength="100" />
+          <Property Name="basic_pay_scale" Type="varchar" MaxLength="100" />
+          <Property Name="official_add" Type="varchar" MaxLength="300" />
+          <Property Name="mail_add" Type="varchar" MaxLength="300" />
+          <Property Name="qulification" Type="varchar" MaxLength="300" />
+          <Property Name="phone" Type="varchar" MaxLength="100" />
+          <Property Name="district" Type="varchar" MaxLength="100" />
+          <Property Name="tehsil" Type="varchar" MaxLength="100" />
+          <Property Name="gender" Type="varchar" MaxLength="50" />
+          <Property Name="image_profile" Type="varchar" MaxLength="300" />
+        </EntityType>
+        <EntityType Name="user_roles">
+          <Key>
+            <PropertyRef Name="role_id" />
+          </Key>
+          <Property Name="role_id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="role" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="users">
+          <Key>
+            <PropertyRef Name="user_id" />
+          </Key>
+          <Property Name="user_id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="user_name" Type="varchar" MaxLength="100" />
+          <Property Name="u_password" Type="varchar" MaxLength="100" />
+          <Property Name="user_role" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="FK__tutor_exp__tutor__1BFD2C07">
+          <End Role="tutors" Type="test_Applicata_DataBaseModel.Store.tutors" Multiplicity="1" />
+          <End Role="tutor_experience" Type="test_Applicata_DataBaseModel.Store.tutor_experience" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tutors">
+              <PropertyRef Name="tutor_id" />
+            </Principal>
+            <Dependent Role="tutor_experience">
+              <PropertyRef Name="tutor_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tutor_qua__tutor__1920BF5C">
+          <End Role="tutors" Type="test_Applicata_DataBaseModel.Store.tutors" Multiplicity="1" />
+          <End Role="tutor_qualification" Type="test_Applicata_DataBaseModel.Store.tutor_qualification" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tutors">
+              <PropertyRef Name="tutor_id" />
+            </Principal>
+            <Dependent Role="tutor_qualification">
+              <PropertyRef Name="tutor_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="users_user_role_FK">
+          <End Role="user_roles" Type="test_Applicata_DataBaseModel.Store.user_roles" Multiplicity="1" />
+          <End Role="users" Type="test_Applicata_DataBaseModel.Store.users" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="user_roles">
+              <PropertyRef Name="role_id" />
+            </Principal>
+            <Dependent Role="users">
+              <PropertyRef Name="user_role" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="test_Applicata_DataBaseModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="test_Applicata_DataBaseEntities" p1:LazyLoadingEnabled="true">
+          <EntitySet Name="tutor_experience" EntityType="test_Applicata_DataBaseModel.tutor_experience" />
+          <EntitySet Name="tutor_qualification" EntityType="test_Applicata_DataBaseModel.tutor_qualification" />
+          <EntitySet Name="tutors" EntityType="test_Applicata_DataBaseModel.tutor" />
+          <EntitySet Name="user_roles" EntityType="test_Applicata_DataBaseModel.user_roles" />
+          <EntitySet Name="users" EntityType="test_Applicata_DataBaseModel.user" />
+          <AssociationSet Name="FK__tutor_exp__tutor__1BFD2C07" Association="test_Applicata_DataBaseModel.FK__tutor_exp__tutor__1BFD2C07">
+            <End Role="tutors" EntitySet="tutors" />
+            <End Role="tutor_experience" EntitySet="tutor_experience" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tutor_qua__tutor__1920BF5C" Association="test_Applicata_DataBaseModel.FK__tutor_qua__tutor__1920BF5C">
+            <End Role="tutors" EntitySet="tutors" />
+            <End Role="tutor_qualification" EntitySet="tutor_qualification" />
+          </AssociationSet>
+          <AssociationSet Name="users_user_role_FK" Association="test_Applicata_DataBaseModel.users_user_role_FK">
+            <End Role="user_roles" EntitySet="user_roles" />
+            <End Role="users" EntitySet="users" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="tutor_experience">
+          <Key>
+            <PropertyRef Name="e_id" />
+          </Key>
+          <Property Name="e_id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="institute" Type="String" MaxLength="200" Unicode="false" FixedLength="false" />
+          <Property Name="class_level" Type="String" MaxLength="100" Unicode="false" FixedLength="false" />
+          <Property Name="subject_taught" Type="String" MaxLength="100" Unicode="false" FixedLength="false" />
+          <Property Name="duration" Type="String" MaxLength="100" Unicode="false" FixedLength="false" />
+          <Property Name="if_past_at_aiou" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="course_codes" Type="String" MaxLength="100" Unicode="false" FixedLength="false" />
+          <Property Name="tutor_id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="tutor" Relationship="test_Applicata_DataBaseModel.FK__tutor_exp__tutor__1BFD2C07" FromRole="tutor_experience" ToRole="tutors" />
+        </EntityType>
+        <EntityType Name="tutor_qualification">
+          <Key>
+            <PropertyRef Name="q_id" />
+          </Key>
+          <Property Name="q_id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="degree_name" Type="String" Nullable="false" MaxLength="100" Unicode="false" FixedLength="false" />
+          <Property Name="institute_name" Type="String" MaxLength="200" Unicode="false" FixedLength="false" />
+          <Property Name="date_of_complete" Type="String" MaxLength="200" Unicode="false" FixedLength="false" />
+          <Property Name="pass_division" Type="String" MaxLength="100" Unicode="false" FixedLength="false" />
+          <Property Name="is_attested" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="tutor_id" Type="Int32" Nullable="false" />
+          <Property Name="image_degree" Type="String" MaxLength="200" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="tutor" Relationship="test_Applicata_DataBaseModel.FK__tutor_qua__tutor__1920BF5C" FromRole="tutor_qualification" ToRole="tutors" />
+        </EntityType>
+        <EntityType Name="tutor">
+          <Key>
+            <PropertyRef Name="tutor_id" />
+          </Key>
+          <Property Name="tutor_id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" Nullable="false" MaxLength="300" Unicode="false" FixedLength="false" />
+          <Property Name="f_name" Type="String" Nullable="false" MaxLength="300" Unicode="false" FixedLength="false" />
+          <Property Name="reg_no" Type="String" Nullable="false" MaxLength="100" Unicode="false" FixedLength="false" />
+          <Property Name="designation" Type="String" MaxLength="100" Unicode="false" FixedLength="false" />
+          <Property Name="basic_pay_scale" Type="String" MaxLength="100" Unicode="false" FixedLength="false" />
+          <Property Name="official_add" Type="String" MaxLength="300" Unicode="false" FixedLength="false" />
+          <Property Name="mail_add" Type="String" MaxLength="300" Unicode="false" FixedLength="false" />
+          <Property Name="qulification" Type="String" MaxLength="300" Unicode="false" FixedLength="false" />
+          <Property Name="phone" Type="String" MaxLength="100" Unicode="false" FixedLength="false" />
+          <Property Name="district" Type="String" MaxLength="100" Unicode="false" FixedLength="false" />
+          <Property Name="tehsil" Type="String" MaxLength="100" Unicode="false" FixedLength="false" />
+          <Property Name="gender" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="image_profile" Type="String" MaxLength="300" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="tutor_experience" Relationship="test_Applicata_DataBaseModel.FK__tutor_exp__tutor__1BFD2C07" FromRole="tutors" ToRole="tutor_experience" />
+          <NavigationProperty Name="tutor_qualification" Relationship="test_Applicata_DataBaseModel.FK__tutor_qua__tutor__1920BF5C" FromRole="tutors" ToRole="tutor_qualification" />
+        </EntityType>
+        <EntityType Name="user_roles">
+          <Key>
+            <PropertyRef Name="role_id" />
+          </Key>
+          <Property Name="role_id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="role" Type="String" MaxLength="100" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="users" Relationship="test_Applicata_DataBaseModel.users_user_role_FK" FromRole="user_roles" ToRole="users" />
+        </EntityType>
+        <EntityType Name="user">
+          <Key>
+            <PropertyRef Name="user_id" />
+          </Key>
+          <Property Name="user_id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="user_name" Type="String" MaxLength="100" Unicode="false" FixedLength="false" />
+          <Property Name="u_password" Type="String" MaxLength="100" Unicode="false" FixedLength="false" />
+          <Property Name="user_role" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="user_roles" Relationship="test_Applicata_DataBaseModel.users_user_role_FK" FromRole="users" ToRole="user_roles" />
+        </EntityType>
+        <Association Name="FK__tutor_exp__tutor__1BFD2C07">
+          <End Role="tutors" Type="test_Applicata_DataBaseModel.tutor" Multiplicity="1" />
+          <End Role="tutor_experience" Type="test_Applicata_DataBaseModel.tutor_experience" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tutors">
+              <PropertyRef Name="tutor_id" />
+            </Principal>
+            <Dependent Role="tutor_experience">
+              <PropertyRef Name="tutor_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tutor_qua__tutor__1920BF5C">
+          <End Role="tutors" Type="test_Applicata_DataBaseModel.tutor" Multiplicity="1" />
+          <End Role="tutor_qualification" Type="test_Applicata_DataBaseModel.tutor_qualification" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tutors">
+              <PropertyRef Name="tutor_id" />
+            </Principal>
+            <Dependent Role="tutor_qualification">
+              <PropertyRef Name="tutor_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="users_user_role_FK">
+          <End Role="user_roles" Type="test_Applicata_DataBaseModel.user_roles" Multiplicity="1" />
+          <End Role="users" Type="test_Applicata_DataBaseModel.user" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="user_roles">
+              <PropertyRef Name="role_id" />
+            </Principal>
+            <Dependent Role="users">
+              <PropertyRef Name="user_role" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="test_Applicata_DataBaseModelStoreContainer" CdmEntityContainer="test_Applicata_DataBaseEntities">
+          <EntitySetMapping Name="tutor_experience">
+            <EntityTypeMapping TypeName="test_Applicata_DataBaseModel.tutor_experience">
+              <MappingFragment StoreEntitySet="tutor_experience">
+                <ScalarProperty Name="e_id" ColumnName="e_id" />
+                <ScalarProperty Name="institute" ColumnName="institute" />
+                <ScalarProperty Name="class_level" ColumnName="class_level" />
+                <ScalarProperty Name="subject_taught" ColumnName="subject_taught" />
+                <ScalarProperty Name="duration" ColumnName="duration" />
+                <ScalarProperty Name="if_past_at_aiou" ColumnName="if_past_at_aiou" />
+                <ScalarProperty Name="course_codes" ColumnName="course_codes" />
+                <ScalarProperty Name="tutor_id" ColumnName="tutor_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tutor_qualification">
+            <EntityTypeMapping TypeName="test_Applicata_DataBaseModel.tutor_qualification">
+              <MappingFragment StoreEntitySet="tutor_qualification">
+                <ScalarProperty Name="q_id" ColumnName="q_id" />
+                <ScalarProperty Name="degree_name" ColumnName="degree_name" />
+                <ScalarProperty Name="institute_name" ColumnName="institute_name" />
+                <ScalarProperty Name="date_of_complete" ColumnName="date_of_complete" />
+                <ScalarProperty Name="pass_division" ColumnName="pass_division" />
+                <ScalarProperty Name="is_attested" ColumnName="is_attested" />
+                <ScalarProperty Name="tutor_id" ColumnName="tutor_id" />
+                <ScalarProperty Name="image_degree" ColumnName="image_degree" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tutors">
+            <EntityTypeMapping TypeName="test_Applicata_DataBaseModel.tutor">
+              <MappingFragment StoreEntitySet="tutors">
+                <ScalarProperty Name="tutor_id" ColumnName="tutor_id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="f_name" ColumnName="f_name" />
+                <ScalarProperty Name="reg_no" ColumnName="reg_no" />
+                <ScalarProperty Name="designation" ColumnName="designation" />
+                <ScalarProperty Name="basic_pay_scale" ColumnName="basic_pay_scale" />
+                <ScalarProperty Name="official_add" ColumnName="official_add" />
+                <ScalarProperty Name="mail_add" ColumnName="mail_add" />
+                <ScalarProperty Name="qulification" ColumnName="qulification" />
+                <ScalarProperty Name="phone" ColumnName="phone" />
+                <ScalarProperty Name="district" ColumnName="district" />
+                <ScalarProperty Name="tehsil" ColumnName="tehsil" />
+                <ScalarProperty Name="gender" ColumnName="gender" />
+                <ScalarProperty Name="image_profile" ColumnName="image_profile" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="user_roles">
+            <EntityTypeMapping TypeName="test_Applicata_DataBaseModel.user_roles">
+              <MappingFragment StoreEntitySet="user_roles">
+                <ScalarProperty Name="role_id" ColumnName="role_id" />
+                <ScalarProperty Name="role" ColumnName="role" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="users">
+            <EntityTypeMapping TypeName="test_Applicata_DataBaseModel.user">
+              <MappingFragment StoreEntitySet="users">
+                <ScalarProperty Name="user_id" ColumnName="user_id" />
+                <ScalarProperty Name="user_name" ColumnName="user_name" />
+                <ScalarProperty Name="u_password" ColumnName="u_password" />
+                <ScalarProperty Name="user_role" ColumnName="user_role" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
