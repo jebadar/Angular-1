@@ -33,7 +33,19 @@
         $scope.submitQual = function () {
             $scope.$broadcast('has-error');
             if ($scope.qualification.q_id != 0 && $scope.qualification.q_id > 0) {
-                $scope.qualification.image_degree = imageAdd.getAdd(0);
+                var address = imageAdd.getAdd(100);
+                var counter = address.length;
+                if (counter != 0 || counter != null)
+                { 
+                    for (var i = 0; i < counter; i++)
+                    {
+                        if (address[i][i].id == 'd')
+                        {
+                            $scope.qualification.image_degree = address[i][i].value;
+                        }
+                    }
+                }
+                imageAdd.setAdd('r', -1);
                 DataService.putQual($scope.qualification).then(
                     function (result) {
                         $scope.editableQual = angular.copy($scope.qualification);
@@ -170,7 +182,7 @@
             console.info('onProgressAll', progress);
             };
         uploader.onSuccessItem = function (imgData,fileItem, response, status, headers) {
-            imageAdd.setAdd(fileItem);
+            imageAdd.setAdd('d',fileItem);
             console.info('onSuccessItem', fileItem, response, status, headers);
             };
         uploader.onErrorItem = function (fileItem, response, status, headers) {

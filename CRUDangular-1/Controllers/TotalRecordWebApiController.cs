@@ -12,6 +12,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNet.Identity;
 using Microsoft.Owin.Security;
 using Microsoft.Owin.Host.SystemWeb;
+using NinjaNye.SearchExtensions;
 namespace CRUDangular_1.Controllers
 {
     public class TotalRecordWebApiController : ApiController
@@ -19,7 +20,7 @@ namespace CRUDangular_1.Controllers
         // GET api/<controller>
         public String Get()
         {
-            test_Applicata_DataBaseEntities db = new test_Applicata_DataBaseEntities();
+            test_Applicata_DataBaseEntities1 db = new test_Applicata_DataBaseEntities1();
             var sql = "SELECT COUNT(*) FROM dbo.tutors";
             var total = db.Database.SqlQuery<int>(sql).Single();
             string value = total.ToString();
@@ -27,11 +28,64 @@ namespace CRUDangular_1.Controllers
         }
 
         // GET api/<controller>/5
-        public string Get(int id)
+        public List<tutor> Get(string id)
         {
-            return "value";
+            char[] str = id.ToCharArray();
+            int length = str.Length;
+            List<tutor> t = new List<tutor>();
+            var result = t;
+            test_Applicata_DataBaseEntities1 db = new test_Applicata_DataBaseEntities1();
+            if (str[length - 1] == 'N')
+            {
+                string b = "-N";
+                char[] n = b.ToCharArray();
+                string query = id.Trim(n);
+                t = db.tutors.Search(x => x.name).Containing(query).ToList();
+                return t;
+            }
+            if (str[length - 1] == 'R')
+            {
+                string b = "-R";
+                char[] n = b.ToCharArray();
+                string query = id.Trim(n);
+                t = db.tutors.Search(x => x.reg_no).Containing(query).ToList();
+                return t;
+            }
+            if (str[length - 1] == 'A')
+            {
+                string b = "-A";
+                char[] n = b.ToCharArray();
+                string query = id.Trim(n);
+                t = db.tutors.Search(x => x.mail_add).Containing(query).ToList();
+                return t;
+            }
+            if (str[length - 1] == 'V')
+            {
+       //         string b = "-V";
+     //           char[] n = b.ToCharArray();
+   //             string query = id.Trim(n);
+ //               t = db.tutors.Search(x => x.t_status).Containing("verified").ToList();
+
+                var sql = "SELECT * FROM dbo.tutors where t_status = 'verified'";
+                var total = db.Database.SqlQuery<tutor>(sql).ToList();
+                return total;
+            }
+            if (str[length - 1] == 'U')
+            {
+                string b = "-U";
+                char[] n = b.ToCharArray();
+                string query = id.Trim(n);
+                t = db.tutors.Search(x => x.t_status).Containing("unverified").ToList();
+                return t;
+            }
+
+            return t;
+           
         }
 
+        public string[] strToArr(string str) {
+            return new[] { str };
+        }
         // POST api/<controller>
         public void Post([FromBody]string value)
         {

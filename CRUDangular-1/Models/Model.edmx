@@ -36,6 +36,9 @@
           <Property Name="if_past_at_aiou" Type="varchar" MaxLength="50" />
           <Property Name="course_codes" Type="varchar" MaxLength="100" />
           <Property Name="tutor_id" Type="int" Nullable="false" />
+          <Property Name="update_date" Type="varchar" MaxLength="100" />
+          <Property Name="update_by" Type="varchar" MaxLength="100" />
+          <Property Name="is_deleted" Type="varchar" MaxLength="100" />
         </EntityType>
         <EntityType Name="tutor_qualification">
           <Key>
@@ -49,6 +52,9 @@
           <Property Name="is_attested" Type="varchar" MaxLength="50" />
           <Property Name="tutor_id" Type="int" Nullable="false" />
           <Property Name="image_degree" Type="varchar" MaxLength="200" />
+          <Property Name="is_deleted" Type="varchar" MaxLength="100" />
+          <Property Name="update_by" Type="varchar" MaxLength="100" />
+          <Property Name="update_date" Type="varchar" MaxLength="100" />
         </EntityType>
         <EntityType Name="tutors">
           <Key>
@@ -68,6 +74,12 @@
           <Property Name="tehsil" Type="varchar" MaxLength="100" />
           <Property Name="gender" Type="varchar" MaxLength="50" />
           <Property Name="image_profile" Type="varchar" MaxLength="300" />
+          <Property Name="image_updation_form" Type="varchar" MaxLength="400" />
+          <Property Name="t_status" Type="varchar" MaxLength="50" />
+          <Property Name="srNo" Type="varchar" MaxLength="100" />
+          <Property Name="intelCertificate" Type="varchar" MaxLength="100" />
+          <Property Name="update_by" Type="varchar" MaxLength="100" />
+          <Property Name="update_date" Type="varchar" MaxLength="100" />
         </EntityType>
         <EntityType Name="user_roles">
           <Key>
@@ -126,7 +138,7 @@
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="test_Applicata_DataBaseModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityContainer Name="test_Applicata_DataBaseEntities" p1:LazyLoadingEnabled="true">
+        <EntityContainer Name="test_Applicata_DataBaseEntities1" p1:LazyLoadingEnabled="true">
           <EntitySet Name="tutor_experience" EntityType="test_Applicata_DataBaseModel.tutor_experience" />
           <EntitySet Name="tutor_qualification" EntityType="test_Applicata_DataBaseModel.tutor_qualification" />
           <EntitySet Name="tutors" EntityType="test_Applicata_DataBaseModel.tutor" />
@@ -157,6 +169,9 @@
           <Property Name="if_past_at_aiou" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
           <Property Name="course_codes" Type="String" MaxLength="100" Unicode="false" FixedLength="false" />
           <Property Name="tutor_id" Type="Int32" Nullable="false" />
+          <Property Name="update_date" Type="String" MaxLength="100" Unicode="false" FixedLength="false" />
+          <Property Name="update_by" Type="String" MaxLength="100" Unicode="false" FixedLength="false" />
+          <Property Name="is_deleted" Type="String" MaxLength="100" Unicode="false" FixedLength="false" />
           <NavigationProperty Name="tutor" Relationship="test_Applicata_DataBaseModel.FK__tutor_exp__tutor__1BFD2C07" FromRole="tutor_experience" ToRole="tutors" />
         </EntityType>
         <EntityType Name="tutor_qualification">
@@ -171,6 +186,9 @@
           <Property Name="is_attested" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
           <Property Name="tutor_id" Type="Int32" Nullable="false" />
           <Property Name="image_degree" Type="String" MaxLength="200" Unicode="false" FixedLength="false" />
+          <Property Name="is_deleted" Type="String" MaxLength="100" Unicode="false" FixedLength="false" />
+          <Property Name="update_by" Type="String" MaxLength="100" Unicode="false" FixedLength="false" />
+          <Property Name="update_date" Type="String" MaxLength="100" Unicode="false" FixedLength="false" />
           <NavigationProperty Name="tutor" Relationship="test_Applicata_DataBaseModel.FK__tutor_qua__tutor__1920BF5C" FromRole="tutor_qualification" ToRole="tutors" />
         </EntityType>
         <EntityType Name="tutor">
@@ -191,6 +209,12 @@
           <Property Name="tehsil" Type="String" MaxLength="100" Unicode="false" FixedLength="false" />
           <Property Name="gender" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
           <Property Name="image_profile" Type="String" MaxLength="300" Unicode="false" FixedLength="false" />
+          <Property Name="image_updation_form" Type="String" MaxLength="400" Unicode="false" FixedLength="false" />
+          <Property Name="t_status" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="srNo" Type="String" MaxLength="100" Unicode="false" FixedLength="false" />
+          <Property Name="intelCertificate" Type="String" MaxLength="100" Unicode="false" FixedLength="false" />
+          <Property Name="update_by" Type="String" MaxLength="100" Unicode="false" FixedLength="false" />
+          <Property Name="update_date" Type="String" MaxLength="100" Unicode="false" FixedLength="false" />
           <NavigationProperty Name="tutor_experience" Relationship="test_Applicata_DataBaseModel.FK__tutor_exp__tutor__1BFD2C07" FromRole="tutors" ToRole="tutor_experience" />
           <NavigationProperty Name="tutor_qualification" Relationship="test_Applicata_DataBaseModel.FK__tutor_qua__tutor__1920BF5C" FromRole="tutors" ToRole="tutor_qualification" />
         </EntityType>
@@ -253,7 +277,7 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="test_Applicata_DataBaseModelStoreContainer" CdmEntityContainer="test_Applicata_DataBaseEntities">
+        <EntityContainerMapping StorageEntityContainer="test_Applicata_DataBaseModelStoreContainer" CdmEntityContainer="test_Applicata_DataBaseEntities1">
           <EntitySetMapping Name="tutor_experience">
             <EntityTypeMapping TypeName="test_Applicata_DataBaseModel.tutor_experience">
               <MappingFragment StoreEntitySet="tutor_experience">
@@ -265,6 +289,9 @@
                 <ScalarProperty Name="if_past_at_aiou" ColumnName="if_past_at_aiou" />
                 <ScalarProperty Name="course_codes" ColumnName="course_codes" />
                 <ScalarProperty Name="tutor_id" ColumnName="tutor_id" />
+                <ScalarProperty Name="update_date" ColumnName="update_date" />
+                <ScalarProperty Name="update_by" ColumnName="update_by" />
+                <ScalarProperty Name="is_deleted" ColumnName="is_deleted" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -279,6 +306,9 @@
                 <ScalarProperty Name="is_attested" ColumnName="is_attested" />
                 <ScalarProperty Name="tutor_id" ColumnName="tutor_id" />
                 <ScalarProperty Name="image_degree" ColumnName="image_degree" />
+                <ScalarProperty Name="is_deleted" ColumnName="is_deleted" />
+                <ScalarProperty Name="update_by" ColumnName="update_by" />
+                <ScalarProperty Name="update_date" ColumnName="update_date" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -299,6 +329,12 @@
                 <ScalarProperty Name="tehsil" ColumnName="tehsil" />
                 <ScalarProperty Name="gender" ColumnName="gender" />
                 <ScalarProperty Name="image_profile" ColumnName="image_profile" />
+                <ScalarProperty Name="image_updation_form" ColumnName="image_updation_form" />
+                <ScalarProperty Name="t_status" ColumnName="t_status" />
+                <ScalarProperty Name="srNo" ColumnName="srNo" />
+                <ScalarProperty Name="intelCertificate" ColumnName="intelCertificate" />
+                <ScalarProperty Name="update_by" ColumnName="update_by" />
+                <ScalarProperty Name="update_date" ColumnName="update_date" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

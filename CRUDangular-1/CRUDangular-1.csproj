@@ -53,6 +53,10 @@
       <HintPath>..\packages\ImageResizer.4.0.5\lib\net45\ImageResizer.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="LinqToExcel, Version=1.11.0.0, Culture=neutral, PublicKeyToken=9c8ea65a58f03f1f, processorArchitecture=MSIL">
+      <HintPath>..\packages\LinqToExcel.1.11.0\lib\LinqToExcel.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Microsoft.AspNet.Identity.Core, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.Identity.Core.2.2.1\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
       <Private>True</Private>
@@ -90,8 +94,24 @@
       <HintPath>..\packages\Newtonsoft.Json.9.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="NinjaNye.SearchExtensions, Version=2.0.6149.33145, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\NinjaNye.SearchExtensions.2.0.6149.33145\lib\net40\NinjaNye.SearchExtensions.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Owin, Version=1.0.0.0, Culture=neutral, PublicKeyToken=f0ebd12fd5e55cc5, processorArchitecture=MSIL">
       <HintPath>..\packages\Owin.1.0\lib\net40\Owin.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Remotion, Version=1.13.52.2, Culture=neutral, PublicKeyToken=0669cf0452175907, processorArchitecture=MSIL">
+      <HintPath>..\packages\LinqToExcel.1.11.0\lib\Remotion.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Remotion.Data.Linq, Version=1.13.52.2, Culture=neutral, PublicKeyToken=0669cf0452175907, processorArchitecture=MSIL">
+      <HintPath>..\packages\LinqToExcel.1.11.0\lib\Remotion.Data.Linq.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Remotion.Interfaces, Version=1.13.52.2, Culture=neutral, PublicKeyToken=0669cf0452175907, processorArchitecture=MSIL">
+      <HintPath>..\packages\LinqToExcel.1.11.0\lib\Remotion.Interfaces.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
@@ -178,6 +198,7 @@
     <Compile Include="camelCasePropertyNamesContractResolver.cs" />
     <Compile Include="Controllers\ExperienceWebApiController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ImportWebApiController.cs" />
     <Compile Include="Controllers\QualificationWebApiController.cs" />
     <Compile Include="Controllers\RoleWebApiController.cs" />
     <Compile Include="Controllers\TotalRecordWebApiController.cs" />
@@ -201,6 +222,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Model.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Models\S_Tutor.cs" />
     <Compile Include="Models\tutor.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
@@ -230,11 +252,15 @@
     <Content Include="app\employeeForm\efTemplate.html" />
     <Content Include="app\expeForm\expeController.js" />
     <Content Include="app\expeForm\efExpe.html" />
+    <Content Include="app\importSheetView.html" />
     <Content Include="app\loadPage.html" />
     <Content Include="app\qualForm\qfController.js" />
     <Content Include="app\qualForm\qfDirective.js" />
     <Content Include="app\qualForm\tfQual.html" />
     <Content Include="app\DirectorListView.html" />
+    <Content Include="app\searchList.html" />
+    <Content Include="app\searchListAdmin.html" />
+    <Content Include="app\tutorForm\formImage.html" />
     <Content Include="app\tutorForm\tfcontroller.js" />
     <Content Include="app\tutorForm\tfDetail.html" />
     <Content Include="app\tutorForm\tfDirective.js" />
@@ -242,12 +268,14 @@
     <Content Include="app\tutorForm\tfExper.html" />
     <Content Include="app\qualForm\tfNewQual.html" />
     <Content Include="app\tutorForm\tfTemplate.html" />
+    <Content Include="app\tutorForm\tutorCheck.html" />
     <Content Include="app\TutorList.html" />
     <Content Include="app\ValidationDirective.js" />
     <Content Include="Content\angular-bootstrap-lightbox.css" />
     <Content Include="Content\angular-bootstrap-lightbox.min.css" />
     <Content Include="Content\ng-table.css" />
     <Content Include="Content\ng-table.min.css" />
+    <Content Include="Content\site1.css" />
     <Content Include="Content\ui-grid.css" />
     <Content Include="Content\ui-grid.min.css" />
     <Content Include="Content\ui-grid.svg" />
@@ -309,9 +337,16 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Images\Icon\item_icon.png" />
+    <Content Include="Images\Icon\Picture1.png" />
+    <Content Include="Images\Icon\pp.JPG" />
+    <Content Include="Images\Icon\IMG_2529.JPG" />
     <Content Include="Images\Icon\IMG_2836.JPG" />
     <Content Include="Images\Icon\logo.png" />
-    <Content Include="Images\Icon\Picture1.ico" />
+    <Content Include="Images\Icon\rwp_region.jpg" />
+    <Content Include="Images\Icon\student_icon.png" />
+    <Content Include="Images\Icon\tutor_icon.ico" />
+    <Content Include="Images\Icon\user_icon.png" />
     <Content Include="Scripts\angular-animate.js" />
     <Content Include="Scripts\angular-animate.min.js" />
     <Content Include="Scripts\angular-animate\angular-animate.js" />
@@ -358,6 +393,7 @@
     <Content Include="Content\ng-table.less" />
     <Content Include="Scripts\angular-file-upload.js.map" />
     <Content Include="Scripts\angular-file-upload.min.js.map" />
+    <Content Include="Doc\sample.xlsx" />
     <EntityDeploy Include="Models\Model.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>Model.Designer.cs</LastGenOutput>
@@ -375,6 +411,7 @@
       <DependentUpon>Model.edmx</DependentUpon>
       <LastGenOutput>Model.cs</LastGenOutput>
     </Content>
+    <None Include="Properties\PublishProfiles\publish.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -383,6 +420,8 @@
     <Content Include="Scripts\FileAPI.flash.swf" />
     <Content Include="Scripts\FileAPI.js" />
     <Content Include="Scripts\FileAPI.min.js" />
+    <Content Include="Scripts\FileSaver.js" />
+    <Content Include="Scripts\FileSaver.min.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
@@ -441,6 +480,7 @@
     <Folder Include="App_Data\" />
     <Folder Include="Images\Tutor_Degree\" />
     <Folder Include="Images\Tutor_Profile\" />
+    <Folder Include="Images\Tutor_Updation_Form\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

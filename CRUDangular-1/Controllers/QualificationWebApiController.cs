@@ -28,7 +28,7 @@ namespace CRUDangular_1.Controllers
         // GET api/<controller>/5
         public tutor_qualification Get(int id)
         {
-            test_Applicata_DataBaseEntities db = new test_Applicata_DataBaseEntities();
+            test_Applicata_DataBaseEntities1 db = new test_Applicata_DataBaseEntities1();
             tutor_qualification qual = new tutor_qualification();
             qual = db.tutor_qualification.Find(id);
             return qual;
@@ -37,19 +37,22 @@ namespace CRUDangular_1.Controllers
         // POST api/<controller>
         public void Post(List<tutor_qualification> qualification)
         {
+
             if (ModelState.IsValid)
             {
-                test_Applicata_DataBaseEntities db = new test_Applicata_DataBaseEntities();
+                string tutorId = qualification[0].tutor_id.ToString();
+                test_Applicata_DataBaseEntities1 db = new test_Applicata_DataBaseEntities1();
                 var constr = ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
                 using (SqlConnection connection = new SqlConnection(constr))
                 {
                       connection.Open();
                         for (int i = 0; i < qualification.Count; i++)
                         {
+                            
                             if (qualification[i] != null)
                             {
 
-                                string processQuery = "INSERT INTO tutor_qualification VALUES (@degree_name, @institute_name, @date_of_complete, @pass_division,@is_attested,@tutor_id,@image_degree)";
+                                string processQuery = "INSERT INTO tutor_qualification VALUES (@degree_name, @institute_name, @date_of_complete, @pass_division,@is_attested,@tutor_id,@image_degree,@is_deleted,@update_by,@update_date)";
                                 using (SqlCommand command = new SqlCommand(processQuery, connection))
                                 {
 
@@ -62,16 +65,23 @@ namespace CRUDangular_1.Controllers
                                     command.Parameters.Add(new SqlParameter("@tutor_id", qualification[i].tutor_id));
                                     if (qualification[i].image_degree == null)
                                     {
-                                        command.Parameters.Add("@image_degree", DBNull.Value);
+                                        command.Parameters.Add("@image_degree", "../../");
                                     }
                                     else
                                     {
                                         command.Parameters.Add(new SqlParameter("@image_degree", qualification[i].image_degree));
                                     }
+                                    command.Parameters.Add("@is_deleted", DBNull.Value);
+                                    command.Parameters.Add("@update_by", "admin");
+                                    command.Parameters.Add("@update_date", DateTime.Now);
+                                    
                                     command.ExecuteNonQuery();
                                 }
+
                             }
                         }
+                        db.Database.ExecuteSqlCommand("UPDATE tutors SET tutors.t_status = 'verified' WHERE tutors.tutor_id =" + tutorId);
+                        connection.Close();
                 }
             }
 
@@ -80,7 +90,7 @@ namespace CRUDangular_1.Controllers
         // PUT api/<controller>/5
         public void Put(tutor_qualification qual)
         {
-            using (test_Applicata_DataBaseEntities db = new test_Applicata_DataBaseEntities())
+            using (test_Applicata_DataBaseEntities1 db = new test_Applicata_DataBaseEntities1())
             {
                 if (ModelState.IsValid)
                 {

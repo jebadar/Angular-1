@@ -1,0 +1,38 @@
+﻿<input type="button" class= "btn btn-primary" value="Add new" ng-click="updateEmployee(null)" />
+
+
+
+
+<br />
+<br />
+<table  class="table table-bordered table-striped table-condensed">
+
+<tr>
+    <th>First Name</th>
+    <th>Last Name</th>
+    <th>Father Name</th>
+    <th>Department</th>
+    <th>Desigation</th>
+    <th>Salary</th>
+    <th>Age</th>
+   
+</tr>
+    <tr ng-repeat="employee in employees">
+        <td >{{employee.firstName}}</td>
+        <td >{{employee.lastName}}</td>
+        <td >{{employee.fatherName}}</td>
+        <td >{{employee.department}}</td>
+        <td>{{employee.designation}}</td>
+        <td>{{employee.salary}}</td>
+        <td>{{employee.age}}</td>
+
+        <td>
+           <!--<button class="btn btn-primary btn-sm" ng-click="demo.save(row, rowForm)" ng-if="row.isEditing" ng-disabled="rowForm.$pristine || rowForm.$invalid"><span class="glyphicon glyphicon-ok"></span></button>--> 
+           <!-- <button class="btn btn-default btn-sm" ng-click="demo.cancel(row, rowForm)" ng-if="row.isEditing"><span class="glyphicon glyphicon-remove"></span></button>--> 
+            <button class="btn btn-default btn-sm" ng-click="updateEmployee(employee.employee_id)"><span class="glyphicon glyphicon-pencil"></span></button>
+            <button class="btn btn-danger btn-sm" ng-click="showConfirm($event,employee.employee_id)" ><span class="glyphicon glyphicon-trash"></span></button>
+        </td>
+        
+    </tr>
+</table>
+

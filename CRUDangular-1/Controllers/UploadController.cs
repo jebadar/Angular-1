@@ -15,7 +15,7 @@ namespace CRUDangular_1.Controllers
     public class UploadController : ApiController
     {
         [Route("user/PostUserImage")]
-        [AllowAnonymous]
+        [Authorize]
         public String PostUserImage()
         {
             Dictionary<string, object> dict = new Dictionary<string, object>();
@@ -27,10 +27,16 @@ namespace CRUDangular_1.Controllers
                     HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.Created);
                     var postedFile = httpRequest.Files[file];
                     bool profile_img = false;
+                    bool updation_img = false;
                     if (postedFile.FileName.Contains("*profile*"))
                     {
                         profile_img = true;
                     }
+                    if (postedFile.FileName.Contains("*updation*"))
+                    {
+                        updation_img = true;
+                    }
+
                     var filePath = "";
                     var imgAdd = "";
                     var UniqueFileName = Guid.NewGuid();
@@ -52,6 +58,10 @@ namespace CRUDangular_1.Controllers
                             if (profile_img)
                             {
                                 filePath = HttpContext.Current.Server.MapPath("~/Images/Tutor_Profile/" + UniqueFileName + extension);
+                            }
+                            else if (updation_img)
+                            {
+                                filePath = HttpContext.Current.Server.MapPath("~/Images/Tutor_Updation_Form/" + UniqueFileName + extension);
                             }
                             else
                             {
@@ -79,6 +89,10 @@ namespace CRUDangular_1.Controllers
                                 imgAdd = "../../Images/Tutor_Profile/" + UniqueFileName + extension;
 
                             }
+                            else if (updation_img)
+                            {
+                                filePath = HttpContext.Current.Server.MapPath("~/Images/Tutor_Updation_Form/" + UniqueFileName + extension);
+                            }
                             else
                             {
                                 imgAdd = "../../Images/Tutor_Degree/" + UniqueFileName + extension;
@@ -92,6 +106,11 @@ namespace CRUDangular_1.Controllers
                             {
                                 filePath = HttpContext.Current.Server.MapPath("~/Images/Tutor_Profile/" + UniqueFileName + extension);
                                 imgAdd = "../../Images/Tutor_Profile/" + UniqueFileName + extension;
+                            }
+                            else if (updation_img)
+                            {
+                                filePath = HttpContext.Current.Server.MapPath("~/Images/Tutor_Updation_Form/" + UniqueFileName + extension);
+                                imgAdd = "../../Images/Tutor_Updation_Form/" + UniqueFileName + extension;
                             }
                             else
                             {
@@ -139,47 +158,46 @@ namespace CRUDangular_1.Controllers
             //var address = new List<int>();
             int[] address = new int[] {};
             bool img_profile = false;
+            bool img_updation = false;
             address = digitArr(id);
             int img_id = 0;
             for (int counter = 0; counter <= 1; counter++)
             {
-                if (address[counter] == 1)
-                {
-                    if (address[counter + 1] == 0)
-                    {
-                        if (address[counter + 2] == 1)
-                        {
-                            if (address[counter + 3] == 0)
-                            {
-                                if (address[counter + 4] == 1)
+               
+                                if (address[counter] == 1)
                                 {
-                                    if (address[counter + 5] == 0)
+                                    if (address[counter + 1] == 0)
                                     {
-                                        for (int i = counter + 6; i < address.Length; i++)
+                                        for (int i = counter + 2; i < address.Length; i++)
                                         {
                                             img_profile = true;
                                             img_id += address[i] * Convert.ToInt32(Math.Pow(10, address.Length - i - 1));
                                         }
                                     }
+                                    else if (address[counter + 1] == 1)
+                                    {
+                                        for (int i = counter + 2; i < address.Length; i++)
+                                        {
+                                            img_updation = true;
+                                            img_id += address[i] * Convert.ToInt32(Math.Pow(10, address.Length - i - 1));
+                                        }
+                                    }
                                 }
-                            }
-                        }
-                    }
-                }
+                
                 else 
                     break;
             
             }
-            if (!img_profile)
+            if (!img_profile && !img_updation)
             {
-                using (test_Applicata_DataBaseEntities db = new test_Applicata_DataBaseEntities())
+                using (test_Applicata_DataBaseEntities1 db = new test_Applicata_DataBaseEntities1())
                 {
                     var httpRequest = HttpContext.Current.Request;
-                    var col = db.tutor_qualification.Where(w => w.q_id.Equals(img_id));
+                    var col = db.tutor_qualification.Where(w => w.q_id.Equals(id));
                     foreach (var item in col)
                     {
                         var filePath = HttpContext.Current.Server.MapPath("../" + item.image_degree);
-                        System.IO.File.Delete(filePath);
+                        //System.IO.File.Delete(filePath);
                         item.image_degree = "../../";
                     }
                     try
@@ -194,15 +212,37 @@ namespace CRUDangular_1.Controllers
             }
             else if (img_profile)
             {
-                using (test_Applicata_DataBaseEntities db = new test_Applicata_DataBaseEntities())
+                using (test_Applicata_DataBaseEntities1 db = new test_Applicata_DataBaseEntities1())
                 {
                     var httpRequest = HttpContext.Current.Request;
                     var col = db.tutors.Where(w => w.tutor_id.Equals(img_id));
                     foreach (var item in col)
                     {
                         var filePath = HttpContext.Current.Server.MapPath("../" + item.image_profile);
-                        System.IO.File.Delete(filePath);
+                        //System.IO.File.Delete(filePath);
                         item.image_profile = "../../";
+                    }
+                    try
+                    {
+                        db.SaveChanges();
+                    }
+                    catch (Exception ex)
+                    {
+                        //Handle ex
+                    }
+                }
+            }
+            else if (img_updation)
+            {
+                using (test_Applicata_DataBaseEntities1 db = new test_Applicata_DataBaseEntities1())
+                {
+                    var httpRequest = HttpContext.Current.Request;
+                    var col = db.tutors.Where(w => w.tutor_id.Equals(img_id));
+                    foreach (var item in col)
+                    {
+                        var filePath = HttpContext.Current.Server.MapPath("../" + item.image_updation_form);
+                        //System.IO.File.Delete(filePath);
+                        item.image_updation_form = "../../";
                     }
                     try
                     {

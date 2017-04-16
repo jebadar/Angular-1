@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Schema Namespace="test_Applicata_DataBaseModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-  <EntityContainer Name="test_Applicata_DataBaseEntities" p1:LazyLoadingEnabled="true">
+  <EntityContainer Name="test_Applicata_DataBaseEntities1" p1:LazyLoadingEnabled="true">
     <EntitySet Name="tutor_experience" EntityType="test_Applicata_DataBaseModel.tutor_experience" />
     <EntitySet Name="tutor_qualification" EntityType="test_Applicata_DataBaseModel.tutor_qualification" />
     <EntitySet Name="tutors" EntityType="test_Applicata_DataBaseModel.tutor" />
@@ -31,6 +31,9 @@
     <Property Name="if_past_at_aiou" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
     <Property Name="course_codes" Type="String" MaxLength="100" Unicode="false" FixedLength="false" />
     <Property Name="tutor_id" Type="Int32" Nullable="false" />
+    <Property Name="update_date" Type="String" MaxLength="100" Unicode="false" FixedLength="false" />
+    <Property Name="update_by" Type="String" MaxLength="100" Unicode="false" FixedLength="false" />
+    <Property Name="is_deleted" Type="String" MaxLength="100" Unicode="false" FixedLength="false" />
     <NavigationProperty Name="tutor" Relationship="test_Applicata_DataBaseModel.FK__tutor_exp__tutor__1BFD2C07" FromRole="tutor_experience" ToRole="tutors" />
   </EntityType>
   <EntityType Name="tutor_qualification">
@@ -45,6 +48,9 @@
     <Property Name="is_attested" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
     <Property Name="tutor_id" Type="Int32" Nullable="false" />
     <Property Name="image_degree" Type="String" MaxLength="200" Unicode="false" FixedLength="false" />
+    <Property Name="is_deleted" Type="String" MaxLength="100" Unicode="false" FixedLength="false" />
+    <Property Name="update_by" Type="String" MaxLength="100" Unicode="false" FixedLength="false" />
+    <Property Name="update_date" Type="String" MaxLength="100" Unicode="false" FixedLength="false" />
     <NavigationProperty Name="tutor" Relationship="test_Applicata_DataBaseModel.FK__tutor_qua__tutor__1920BF5C" FromRole="tutor_qualification" ToRole="tutors" />
   </EntityType>
   <EntityType Name="tutor">
@@ -65,6 +71,12 @@
     <Property Name="tehsil" Type="String" MaxLength="100" Unicode="false" FixedLength="false" />
     <Property Name="gender" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
     <Property Name="image_profile" Type="String" MaxLength="300" Unicode="false" FixedLength="false" />
+    <Property Name="image_updation_form" Type="String" MaxLength="400" Unicode="false" FixedLength="false" />
+    <Property Name="t_status" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="srNo" Type="String" MaxLength="100" Unicode="false" FixedLength="false" />
+    <Property Name="intelCertificate" Type="String" MaxLength="100" Unicode="false" FixedLength="false" />
+    <Property Name="update_by" Type="String" MaxLength="100" Unicode="false" FixedLength="false" />
+    <Property Name="update_date" Type="String" MaxLength="100" Unicode="false" FixedLength="false" />
     <NavigationProperty Name="tutor_experience" Relationship="test_Applicata_DataBaseModel.FK__tutor_exp__tutor__1BFD2C07" FromRole="tutors" ToRole="tutor_experience" />
     <NavigationProperty Name="tutor_qualification" Relationship="test_Applicata_DataBaseModel.FK__tutor_qua__tutor__1920BF5C" FromRole="tutors" ToRole="tutor_qualification" />
   </EntityType>

@@ -1,62 +1,11 @@
-﻿<form class="form-horizontal" name="tutorForm" novalidate role="form">
+﻿<div class="col-lg-12">
 
-     <div class="form-group" ng-show="tutors.image_profile == '../../'">
-
-                    <div ng-model="file"> 
-                 <table class="table">
-                        <thead>
-                            <tr>
-                                <th width="50%">Name</th>
-                                <th ng-show="uploader.isHTML5">Size</th>
-                                <th ng-show="uploader.isHTML5">Progress</th>
-                                <th>Status</th>
-                                <th>Actions</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr ng-repeat="item in uploader.queue">
-                                <td><strong>{{ item.file.name }}</strong></td>
-                                <td ng-show="uploader.isHTML5" nowrap>{{ item.file.size/1024/1024|number:2 }} MB</td>
-                                <td ng-show="uploader.isHTML5">
-                                    <div class="progress" style="margin-bottom: 0;">
-                                        <div class="progress-bar" role="progressbar" ng-style="{ 'width': item.progress + '%' }"></div>
-                                    </div>
-                                </td>
-                                <td class="text-center">
-                                    <span ng-show="item.isSuccess"><i class="glyphicon glyphicon-ok"></i></span>
-                                    <span ng-show="item.isCancel"><i class="glyphicon glyphicon-ban-circle"></i></span>
-                                    <span ng-show="item.isError"><i class="glyphicon glyphicon-remove"></i></span>
-                                </td>
-                                <td nowrap>
-                                    <button type="button" class="btn btn-success btn-xs" ng-click="profile_image(); item.upload()" ng-disabled="item.isReady || item.isUploading || item.isSuccess">
-                                        <span class="glyphicon glyphicon-upload"></span> Upload
-                                    </button>
-                                    <button type="button" class="btn btn-warning btn-xs" ng-click="item.cancel()" ng-disabled="!item.isUploading">
-                                        <span class="glyphicon glyphicon-ban-circle"></span> Cancel
-                                    </button>
-                                    <button type="button" class="btn btn-danger btn-xs" ng-click="item.remove()">
-                                        <span class="glyphicon glyphicon-trash"></span> Remove
-                                    </button>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                        <input id="source_img" class="btn btn-default" type="file"  nv-file-select="" ng-disabled="uploader.queue.length >= 1" uploader="uploader" fileread/>
-              </div> 
+<form class="form-horizontal" name="tutorForm" novalidate role="form">
+   
+    <div class="col-md-12">
         
-    </div>
-    
-    <legend class="text-center"><strong>TUTOR INFORMATION</strong></legend>
-       
-          <div class="form-group" ng-show="tutors.image_profile.indexOf('Images/Tutor_Profile/') != -1">
-                <div class="col-sm-9">
-                    <img ng-src="{{tutors.image_profile}}" class="avatar img-responsive" style="border-radius:40%;height: 196px;width: 153px;margin-left: 981px;margin-top: -6px;" alt="Responsive image">
-                </div>
-                    <input type="button" class="btn btn-success" value="Remove Image" ng-click="showConfirm($event,profile_image_add)" />
-     </div>  
-         
-         
-          <div class="form-group" show-errors>
+        <div class="col-md-6">
+         <div class="form-group" show-errors>
             <label class="col-sm-3 control-label"><em>Registration No</em></label>
             <div class="col-sm-9">
                 <input type="text" name="reg_no" class="form-control" ng-model="tutors.reg_no" ng-required="true" ng-pattern="/([0-9])\w+([-])\w+([A-])\w+/i">
@@ -158,11 +107,93 @@
             </div>
             <div class="col-sm-9">
                 <input type="button" class="btn btn-default" value="Back" ng-click="cancelForm()"/>
-                <input type="submit" class="btn btn-primary" value="Submit" ng-click="submitForm()" ng-disabled="employeeForm.$invalid"/>
+                <input type="submit" class="btn btn-primary" value="Submit" ng-click="submitForm()" ng-disabled="tutorForm.$invalid"/>
                 
             </div>
         </div>
-    </fieldset>
+       </div>
+
+       <div class="col-md-6">
+            <div class="col-md-12">
+                <div class="form-group" ng-show="tutors.image_profile == '../../' || tutors.image_updation_form ">
+                <div ng-model="file"> 
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th width="50%">Name</th>
+                                <th ng-show="uploader.isHTML5">Size</th>
+                                <th ng-show="uploader.isHTML5">Progress</th>
+                                <th>Status</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="item in uploader.queue">
+                                <td><strong>{{ item.file.name }}</strong></td>
+                                <td ng-show="uploader.isHTML5" nowrap>{{ item.file.size/1024/1024|number:2 }} MB</td>
+                                <td ng-show="uploader.isHTML5">
+                                    <div class="progress" style="margin-bottom: 0;">
+                                        <div class="progress-bar" role="progressbar" ng-style="{ 'width': item.progress + '%' }"></div>
+                                    </div>
+                                </td>
+                                <td class="text-center">
+                                    <span ng-show="item.isSuccess"><i class="glyphicon glyphicon-ok"></i></span>
+                                    <span ng-show="item.isCancel"><i class="glyphicon glyphicon-ban-circle"></i></span>
+                                    <span ng-show="item.isError"><i class="glyphicon glyphicon-remove"></i></span>
+                                </td>
+                                <td nowrap>
+                                    <button type="button" class="btn btn-success btn-xs" ng-click="item.upload()" ng-disabled="item.isReady || item.isUploading || item.isSuccess">
+                                        <span class="glyphicon glyphicon-upload"></span> Upload
+                                    </button>
+                                    <button type="button" class="btn btn-warning btn-xs" ng-click="item.cancel()" ng-disabled="!item.isUploading">
+                                        <span class="glyphicon glyphicon-ban-circle"></span> Cancel
+                                    </button>
+                                    <button type="button" class="btn btn-danger btn-xs" ng-click="item.remove()">
+                                        <span class="glyphicon glyphicon-trash"></span> Remove
+                                    </button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div> 
+            </div>
+        </div>
+           <div class="col-md-6">
+                  <div class="form-group" ng-show="tutors.image_profile.indexOf('Images/Tutor_Profile/') != -1">
+                     <img ng-src="{{tutors.image_profile}}" class="avatar img-responsive" style="border-radius:40%;" alt="Responsive image">
+                     <input type="button" class="btn btn-success" value="Remove Image" ng-click="showConfirm($event,profile_image_add)" />
+                 </div>
+          </div>
+           <div class="col-md-6">
+                <div class="form-group" ng-show="tutors.image_updation_form.indexOf('Images/Tutor_Updation_Form/') != -1">
+                <label class="control-label">Updation Form Image</label>
+                    <a ng-click="openLightboxModalTutor($index)">
+                    <img ng-src="{{tutors.image_updation_form}}" style="width:200px; height:200px" class="img-responsive" alt="Responsive image">
+                    </a>
+                    <input type="button" class="btn btn-success" value="Remove Image" ng-click="showConfirm($event,updation_image_add)" />
+             </div>  
+            </div>
+              <div class="col-md-12">
+                <div class="form-group" ng-show="tutors.image_profile == '../../'">
+                   <label>Profile</label>
+                    <div ng-model="file">
+                       <input i d="source_img" class="btn btn-default" type="file"  nv-file-select="" ng-disabled="uploader.queue.length >= 2" ng-click="profile_image();setFormCheck(1)" uploader="uploader" fileread/>
+                     </div>
+                </div>
+                <div class="form-group" ng-show="tutors.image_updation_form == '../../'">
+                    <div ng-model="file"> <label>Form pic</label>
+                        <input id="File1" class="btn btn-default" type="file"  nv-file-select="" ng-disabled="uploader.queue.length >= 2" ng-click="updation_image();setFormCheck(1)" uploader="uploader" fileread/>
+                     </div> 
+                </div>
+            </div>
+ 
+        </div>
+
+
+     </div>
+
+
+    <div class="col-md-12">
     <fieldset>
                 <legend class="text-center"><strong>TUTOR CREDENTIAL</strong></legend>
         <div class="col-sm-9">
@@ -197,8 +228,10 @@
         
                     </tr>
             </table>
+            </div>
+            </fieldset>
         </div>
-    </fieldset>
+    <div class="col-md-12">
         <fieldset>
                 <legend class="text-center"><strong>TUTOR EXPERIENCE</strong></legend>
             <input type="button" class= "btn btn-primary" value="Add new" ng-click="addNewExper(tutorId)" />
@@ -206,32 +239,34 @@
             <br />
         <table  class="table table-bordered table-striped table-condensed">
 
-<tr>
-    <th>Institute Name</th>
-    <th>Class level</th>
-    <th>Subjects</th>
-    <th>Duration</th>
-    <th>If past at Aiou</th>
-    <th>course codes</th>
-    <th>Tutor Id</th>
+            <tr>
+            <th>Institute Name</th>
+            <th>Class level</th>
+            <th>Subjects</th>
+            <th>Duration</th>
+            <th>If past at Aiou</th>
+            <th>course codes</th>
+            <th>Tutor Id</th>
     
    
-</tr>
-    <tr ng-repeat="experience in experience">
-        <td >{{experience.institute}}</td>
-        <td >{{experience.class_level}}</td>
-        <td>{{experience.subject_taught}}</td>
-        <td >{{experience.duration}}</td>
-        <td >{{experience.if_past_at_aiou}}</td>
-        <td>{{experience.course_codes}}</td>
-        <td>{{experience.tutor_id}}</td>
+            </tr>
+        <tr ng-repeat="experience in experience">
+            <td >{{experience.institute}}</td>
+            <td >{{experience.class_level}}</td>
+            <td>{{experience.subject_taught}}</td>
+            <td >{{experience.duration}}</td>
+            <td >{{experience.if_past_at_aiou}}</td>
+            <td>{{experience.course_codes}}</td>
+            <td>{{experience.tutor_id}}</td>
         
-        <td>
-           <button class="btn btn-default btn-sm" ng-click="editExpe(experience.e_id)"><span class="glyphicon glyphicon-pencil"></span></button>
-        </td>
+            <td>
+               <button class="btn btn-default btn-sm" ng-click="editExpe(experience.e_id)"><span class="glyphicon glyphicon-pencil"></span></button>
+            </td>
         
-    </tr>
-</table>
+        </tr>
+    </table>
 
     </fieldset>
+        </div>
 </form>
+    </div>

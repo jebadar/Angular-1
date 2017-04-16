@@ -13,10 +13,10 @@ namespace CRUDangular_1.Models
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class test_Applicata_DataBaseEntities : DbContext
+    public partial class test_Applicata_DataBaseEntities1 : DbContext
     {
-        public test_Applicata_DataBaseEntities()
-            : base("name=test_Applicata_DataBaseEntities")
+        public test_Applicata_DataBaseEntities1()
+            : base("name=test_Applicata_DataBaseEntities1")
         {
         }
     

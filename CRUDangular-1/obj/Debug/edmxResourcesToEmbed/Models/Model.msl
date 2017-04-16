@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-  <EntityContainerMapping StorageEntityContainer="test_Applicata_DataBaseModelStoreContainer" CdmEntityContainer="test_Applicata_DataBaseEntities">
+  <EntityContainerMapping StorageEntityContainer="test_Applicata_DataBaseModelStoreContainer" CdmEntityContainer="test_Applicata_DataBaseEntities1">
     <EntitySetMapping Name="tutor_experience">
       <EntityTypeMapping TypeName="test_Applicata_DataBaseModel.tutor_experience">
         <MappingFragment StoreEntitySet="tutor_experience">
@@ -12,6 +12,9 @@
           <ScalarProperty Name="if_past_at_aiou" ColumnName="if_past_at_aiou" />
           <ScalarProperty Name="course_codes" ColumnName="course_codes" />
           <ScalarProperty Name="tutor_id" ColumnName="tutor_id" />
+          <ScalarProperty Name="update_date" ColumnName="update_date" />
+          <ScalarProperty Name="update_by" ColumnName="update_by" />
+          <ScalarProperty Name="is_deleted" ColumnName="is_deleted" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -26,6 +29,9 @@
           <ScalarProperty Name="is_attested" ColumnName="is_attested" />
           <ScalarProperty Name="tutor_id" ColumnName="tutor_id" />
           <ScalarProperty Name="image_degree" ColumnName="image_degree" />
+          <ScalarProperty Name="is_deleted" ColumnName="is_deleted" />
+          <ScalarProperty Name="update_by" ColumnName="update_by" />
+          <ScalarProperty Name="update_date" ColumnName="update_date" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -46,6 +52,12 @@
           <ScalarProperty Name="tehsil" ColumnName="tehsil" />
           <ScalarProperty Name="gender" ColumnName="gender" />
           <ScalarProperty Name="image_profile" ColumnName="image_profile" />
+          <ScalarProperty Name="image_updation_form" ColumnName="image_updation_form" />
+          <ScalarProperty Name="t_status" ColumnName="t_status" />
+          <ScalarProperty Name="srNo" ColumnName="srNo" />
+          <ScalarProperty Name="intelCertificate" ColumnName="intelCertificate" />
+          <ScalarProperty Name="update_by" ColumnName="update_by" />
+          <ScalarProperty Name="update_date" ColumnName="update_date" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

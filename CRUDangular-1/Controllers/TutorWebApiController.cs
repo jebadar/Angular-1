@@ -10,19 +10,37 @@ using System.Data;
 using System.Data.SqlClient;
 using System;                     // For system functions like Console.
 using System.Collections.Generic;
-using System.Data.Entity; // For generic collections like List.
+using System.Data.Entity;
+using System.Web; // For generic collections like List.
 
 
 namespace CRUDangular_1.Controllers
 {
+    [Authorize]
     public class TutorWebApiController : ApiController
     {
         // GET api/<controller>
         public List<tutor> Get()
         {
-            test_Applicata_DataBaseEntities db = new test_Applicata_DataBaseEntities();
+            test_Applicata_DataBaseEntities1 db = new test_Applicata_DataBaseEntities1();
+            var httpRequest = HttpContext.Current.Request;
+            string page = httpRequest.QueryString["page"];
+            int num = Int32.Parse(page);
+            int limit = 10;
+            int pageSize = 0;
+            int reducePageSize = 0;
+            if (num == 1)
+            {
+                pageSize = num * limit;
+            }
+            else if (num > 1)
+            {
+                reducePageSize = (num - 1) * limit;
+                pageSize = num * limit;
+            }
             List<tutor> tutor = db.tutors.ToList();
-            return tutor;
+            var tutors = tutor.Skip(reducePageSize).Take(pageSize);
+            return tutors.ToList();
         }
         
         public tutor s_tutor {get; set;}
@@ -30,7 +48,7 @@ namespace CRUDangular_1.Controllers
         // GET api/<controller>/5
         public full_record Get(int id)
         {
-            test_Applicata_DataBaseEntities db = new test_Applicata_DataBaseEntities();
+            test_Applicata_DataBaseEntities1 db = new test_Applicata_DataBaseEntities1();
             full_record record = new full_record();
             record.i_tutor = db.tutors.Find(id);
             record.i_tutor_experience = db.tutor_experience.Where(a => a.tutor_id == id).ToList();
@@ -45,7 +63,8 @@ namespace CRUDangular_1.Controllers
         {
             if (ModelState.IsValid)
             {
-                test_Applicata_DataBaseEntities db = new test_Applicata_DataBaseEntities();
+                test_Applicata_DataBaseEntities1 db = new test_Applicata_DataBaseEntities1();
+                newTutor.t_status = "unverified";
                 db.tutors.Add(newTutor);
                 try
                 {
@@ -74,10 +93,11 @@ namespace CRUDangular_1.Controllers
         // PUT api/<controller>/5
         public void Put(tutor tutor)
         {
-            using (test_Applicata_DataBaseEntities db = new test_Applicata_DataBaseEntities())
+            using (test_Applicata_DataBaseEntities1 db = new test_Applicata_DataBaseEntities1())
             {
                 if (ModelState.IsValid)
                 {
+                    
                     db.Entry(tutor).State = System.Data.Entity.EntityState.Modified;
                         try
                         {

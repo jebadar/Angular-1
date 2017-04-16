@@ -20,12 +20,12 @@ namespace CRUDangular_1
                         "~/Scripts/modernizr-*"));
 
             bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
-                      "~/Scripts/bootstrap.js",
+                      "~/Scripts/bootstrap.min.js",
                       "~/Scripts/respond.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
-                      "~/Content/bootstrap.css",
-                      "~/Content/site.css"));
+                      "~/Content/bootstrap.min.css",
+                      "~/Content/site1.css"));
 
             bundles.Add(new ScriptBundle("~/bundles/mini-spa/script").Include("~/Scripts/jquery.min.js",
                 "~/Scripts/angular.min.js",
@@ -41,6 +41,7 @@ namespace CRUDangular_1
                 "~/Scripts/angular-file-upload.min.js",
                 "~/Scripts/angular-bootstrap-lightbox.min.js",
                 "~/Scripts/ng-table.min.js",
+                "~/Scripts/FileSaver.min.js",
                 "~/app/AngularForm.js",
                 "~/app/DataService.js",
                  "~/app/ValidationDirective.js", 

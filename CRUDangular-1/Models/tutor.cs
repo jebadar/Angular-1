@@ -34,6 +34,12 @@ namespace CRUDangular_1.Models
         public string tehsil { get; set; }
         public string gender { get; set; }
         public string image_profile { get; set; }
+        public string image_updation_form { get; set; }
+        public string t_status { get; set; }
+        public string srNo { get; set; }
+        public string intelCertificate { get; set; }
+        public string update_by { get; set; }
+        public string update_date { get; set; }
     
         public virtual ICollection<tutor_experience> tutor_experience { get; set; }
         public virtual ICollection<tutor_qualification> tutor_qualification { get; set; }

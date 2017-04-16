@@ -14,7 +14,7 @@ namespace CRUDangular_1.ViewModel
             {
                 var user = HttpContext.Current.User.Identity.Name;
 
-                using (test_Applicata_DataBaseEntities db = new test_Applicata_DataBaseEntities())
+                using (test_Applicata_DataBaseEntities1 db = new test_Applicata_DataBaseEntities1())
                 {
                     var found = db.users.Where(a => a.user_name.Equals(user)).FirstOrDefault();
                     if (found != null)

@@ -31,6 +31,9 @@
     <Property Name="if_past_at_aiou" Type="varchar" MaxLength="50" />
     <Property Name="course_codes" Type="varchar" MaxLength="100" />
     <Property Name="tutor_id" Type="int" Nullable="false" />
+    <Property Name="update_date" Type="varchar" MaxLength="100" />
+    <Property Name="update_by" Type="varchar" MaxLength="100" />
+    <Property Name="is_deleted" Type="varchar" MaxLength="100" />
   </EntityType>
   <EntityType Name="tutor_qualification">
     <Key>
@@ -44,6 +47,9 @@
     <Property Name="is_attested" Type="varchar" MaxLength="50" />
     <Property Name="tutor_id" Type="int" Nullable="false" />
     <Property Name="image_degree" Type="varchar" MaxLength="200" />
+    <Property Name="is_deleted" Type="varchar" MaxLength="100" />
+    <Property Name="update_by" Type="varchar" MaxLength="100" />
+    <Property Name="update_date" Type="varchar" MaxLength="100" />
   </EntityType>
   <EntityType Name="tutors">
     <Key>
@@ -63,6 +69,12 @@
     <Property Name="tehsil" Type="varchar" MaxLength="100" />
     <Property Name="gender" Type="varchar" MaxLength="50" />
     <Property Name="image_profile" Type="varchar" MaxLength="300" />
+    <Property Name="image_updation_form" Type="varchar" MaxLength="400" />
+    <Property Name="t_status" Type="varchar" MaxLength="50" />
+    <Property Name="srNo" Type="varchar" MaxLength="100" />
+    <Property Name="intelCertificate" Type="varchar" MaxLength="100" />
+    <Property Name="update_by" Type="varchar" MaxLength="100" />
+    <Property Name="update_date" Type="varchar" MaxLength="100" />
   </EntityType>
   <EntityType Name="user_roles">
     <Key>

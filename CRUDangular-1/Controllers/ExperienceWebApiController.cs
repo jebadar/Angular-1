@@ -26,7 +26,7 @@ namespace CRUDangular_1.Controllers
         // GET api/<controller>/5
         public tutor_experience Get(int id)
         {
-            test_Applicata_DataBaseEntities db = new test_Applicata_DataBaseEntities();
+            test_Applicata_DataBaseEntities1 db = new test_Applicata_DataBaseEntities1();
             tutor_experience expe = new tutor_experience();
             expe = db.tutor_experience.Find(id);
             return expe;
@@ -37,7 +37,7 @@ namespace CRUDangular_1.Controllers
         {
             if (ModelState.IsValid)
             {
-                test_Applicata_DataBaseEntities db = new test_Applicata_DataBaseEntities();
+                test_Applicata_DataBaseEntities1 db = new test_Applicata_DataBaseEntities1();
                 var constr = ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
                 using (SqlConnection connection = new SqlConnection(constr))
                 {
@@ -46,7 +46,7 @@ namespace CRUDangular_1.Controllers
                     {
                         if (experience[i] != null)
                         {
-                            string processQuery = "INSERT INTO tutor_experience VALUES (@institute, @class_level, @subject_taught, @duration,@if_past_at_aiou,@course_codes,@tutor_id)";
+                            string processQuery = "INSERT INTO tutor_experience VALUES (@institute, @class_level, @subject_taught, @duration,@if_past_at_aiou,@course_codes,@tutor_id,@update_date,@update_by,@is_deleted)";
                             using (SqlCommand command = new SqlCommand(processQuery, connection))
                             {
 
@@ -70,6 +70,12 @@ namespace CRUDangular_1.Controllers
                                     command.Parameters.Add(new SqlParameter("@course_codes", experience[i].course_codes));
                                 }
                                 command.Parameters.Add(new SqlParameter("@tutor_id", experience[i].tutor_id));
+                                command.Parameters.Add(new SqlParameter("@update_date", DateTime.Now));
+                                command.Parameters.Add(new SqlParameter("@update_by", "admin"));
+                                command.Parameters.Add(new SqlParameter("@is_deleted", DBNull.Value));
+
+
+
                                 command.ExecuteNonQuery();
                                 
                             }
@@ -84,7 +90,7 @@ namespace CRUDangular_1.Controllers
         // PUT api/<controller>/5
         public void Put(tutor_experience expe)
         {
-            using (test_Applicata_DataBaseEntities db = new test_Applicata_DataBaseEntities())
+            using (test_Applicata_DataBaseEntities1 db = new test_Applicata_DataBaseEntities1())
             {
                 if (ModelState.IsValid)
                 {

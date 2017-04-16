@@ -1,0 +1,29 @@
+﻿
+.form-login {
+    background-color: #edf0f3;
+    padding-top: 10px;
+    padding-bottom: 20px;
+    padding-left: 20px;
+    padding-right: 20px;
+    border-radius: 15px;
+    border-color:#d2d2d2;
+    border-width: 5px;
+    box-shadow:0 1px 0 #cfcfcf;
+}
+
+html, body {
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        -webkit-background-size: cover;
+        -moz-background-size: cover;
+        -o-background-size: cover;
+        height:100%;
+}
+
+#content, .container-fluid, .span9
+{
+    border: 1px solid #000;
+    overflow-y:auto;
+    height:100%;
+}​

@@ -1,0 +1,14 @@
+﻿<form class="form-horizontal" name="tutorForm" novalidate role="form">
+    <div class="row" >
+        <div class="col-lg-4 col-lg-offset-4">
+            <div class="input-group">
+                <input type="text" name="reg_no" class="form-control" ng-model="tutorRegNo" capitalize ng-required="true" ng-pattern="/([0-9])\w+([-])\w+([A-])\w+/i"/> 
+                    <span class="help-block " ng-if="tutorForm.reg_no.$error.required">Registration number is required</span>
+                    <span class="help-block"  ng-if="tutorForm.reg_no.$error.pattern">Enter a valid Registration</span>
+                <span class="input-group-btn">
+                    <button class="btn btn-default" type="button" ng-click="checkStart()" ng-disabled="tutorForm.$invalid">Registration No</button>
+                </span>
+            </div><!-- /input-group -->
+        </div><!-- /.col-lg-4 -->
+    </div><!-- /.row -->
+</form>

@@ -22,6 +22,9 @@ namespace CRUDangular_1.Models
         public string if_past_at_aiou { get; set; }
         public string course_codes { get; set; }
         public int tutor_id { get; set; }
+        public string update_date { get; set; }
+        public string update_by { get; set; }
+        public string is_deleted { get; set; }
     
         public virtual tutor tutor { get; set; }
     }

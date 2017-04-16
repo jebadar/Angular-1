@@ -1,25 +1,45 @@
-﻿formApp.controller('tfController', ["$scope", "DataService", "$routeParams", "$mdDialog", "$location", "imageAdd", "tutorID", "FileUploader", "Lightbox",
-    function tfController($scope, DataService, $routeParams, $mdDialog, $location, imageAdd, tutorID, FileUploader, Lightbox) {
+﻿formApp.controller('tfController', ["$scope", "DataService", "$routeParams", "$mdDialog", "$location", "imageAdd", "regNo", "tutorID", "FileUploader", "Lightbox",
+    function tfController($scope, DataService, $routeParams, $mdDialog, $location, imageAdd,regNo, tutorID, FileUploader, Lightbox) {
         $scope.qualification = [];
         $scope.experience = [];
         $scope.file = [];
         $scope.images = [];
+        $scope.imagesTutor = [];
         $scope.profile_image_check = 0;
+        $scope.updation_image_check = 0;
         $scope.Id = tutorID.getId();
-        $scope.profile_image_add = 0;
+        $scope.profile_image_add = 0;//check for profile image
+        $scope.updation_image_add = 0;// check for Updation form image
+        $scope.tutorRegNo = regNo.getNo();
+        $scope.formCheck = 0; // check for tutor form is submited after images are uploaded after edit
+        $scope.gender = [
+        "MALE",
+        "FEMALE"
+            ];
         if ($routeParams.id != "null") {
             DataService.getTutor($routeParams.id).then(
                      function (result) {
                          //on success 
                          $scope.tutors = result.data.i_tutor;
-                         $scope.profile_image_add = '101010' + $scope.tutors.tutor_id;
+                         $scope.profile_image_add = '10' + $scope.tutors.tutor_id;
+                         $scope.updation_image_add = '11' + $scope.tutors.tutor_id;
                          $scope.qualification = result.data.i_tutor_qualification;
                          $scope.experience = result.data.i_tutor_experience;
                          $scope.tutorId = result.data.i_tutor.tutor_id;
-                         for (var counter = 0; counter <= $scope.qualification.length; counter++) {
-                             $scope.images.push($scope.qualification[counter].image_degree)
-
+                         if ($scope.tutors.image_profile != '../../')
+                         {
+                             $scope.imagesTutor.push($scope.tutors.image_profile);
                          }
+                         if ($scope.tutors.image_updation_form != '../../') {
+                             $scope.imagesTutor.push($scope.tutors.image_updation_form);
+                         }
+                         for (var counter = 0; counter < $scope.qualification.length; counter++) {
+
+                             if ($scope.qualification[counter].image_degree != null || $scope.qualification[counter].image_degree != undefined)
+                             {
+                                 $scope.images.push($scope.qualification[counter].image_degree)
+                             }
+                            }
                      },
                          (function (result) {
                          //on error
@@ -122,7 +142,6 @@
                         .ariaLabel('Alert Dialog Demo')
                         .ok('Got it!')
                     );
-
                     });
         }
         $scope.submitForm = function () {
@@ -130,19 +149,39 @@
             if ($scope.tutors.tutor_id == "null" || $scope.tutors.tutor_id == 0) {
                 if (imageAdd.getAdd(0) != null || imageAdd.getAdd(0) != '') {
                     $scope.tutors.image_profile = imageAdd.getAdd(0);
-                    imageAdd.setAdd(-1);
+                    imageAdd.setAdd('r',-1);
+                    $scope.tutors.t_status = 'unverified';
+                    $scope.tutors.image_profile = '../../';
+                    $scope.tutors.image_updation_form = '../../';
             }
                 insertTutor($scope.tutors);
             }
             else if ($scope.tutors.tutor_id != 0 && $scope.tutors.tutor_id > 0) {
 
                 if (imageAdd.getAdd(0) != null || imageAdd.getAdd(0) != '') {
-                    $scope.tutors.image_profile = imageAdd.getAdd(0);
-                    imageAdd.setAdd(-1);
+                    var address = imageAdd.getAdd(100);
+                    var counter = address.length;
+                    for(var i = 0;i < counter;i++)
+                    {
+                        if (address[i][i].id == 'p')
+                        {
+                            $scope.tutors.image_profile = address[i][i].value;
+                        }
+                        else if (address[i][i].id == 'u')
+                        {
+                            $scope.tutors.image_updation_form = address[i][i].value;
+                        }
+                    }
+                    imageAdd.setAdd('r',-1);
+                }
+                else if (imageAdd.getAdd(0) == null || imageAdd.getAdd(0) == '') {
+                    $scope.tutors.image_profile = '../../';
+                    $scope.tutors.image_updation_form = '../../';
                 }
                 DataService.putTutor($scope.tutors).then(
                     function (result) {
                         $scope.editableTutor = angular.copy($scope.tutors);
+
                         $mdDialog.show(
                         $mdDialog.alert()
                         .parent(angular.element(document.querySelector('#popupContainer')))
@@ -167,15 +206,24 @@
         };
         $scope.submitQual = function () {
             $scope.$broadcast('has-error');
-            for (var counter = 1; counter < $scope.qualification.length; counter++) {
-                if (imageAdd.getAdd(counter - 1) == null && $scope.qualification[counter] != null)
-                {
-                    $scope.qualification[counter].image_degree = '../../';
+            var address = imageAdd.getAdd(100);
+            var length = address.length;
+            if (length != 0)
+            { 
+                for (var counter = 0; counter < $scope.qualification.length; counter++) {
+                    if (address[counter][0].id != 'd' && $scope.qualification[counter] != null)
+                    {
+                        $scope.qualification[counter].image_degree = '../../';
+                    }
+                    else if ($scope.qualification[counter] != null) {
+                            if (address[counter][0].id == 'd') {
+                            $scope.qualification[counter].image_degree = address[counter][0].value;
+                        }
+                    }
                 }
-                else
-                $scope.qualification[counter].image_degree = imageAdd.getAdd(counter - 1);
+                insertQualification($scope.qualification);
             }
-            insertQualification($scope.qualification);
+            imageAdd.setAdd('r', -1);
         };
 
         $scope.submitExper = function () {
@@ -191,14 +239,12 @@
             $scope.$broadcast('hide-errors-event');
         };
 
-        $scope.choices = [{ id: 1 }];
+        $scope.choices = [{ id: 0 }];
+        var check = 0;
         $scope.addNewChoice = function () {
-            if ($scope.choices.length == 0) {
-                $scope.choices.push({ 'id': $scope.choices.length });
-            }
-            
-            $scope.choices.push({ 'id':  $scope.choices.length + 1});
-        };
+            check++;
+            $scope.choices.push({ 'id': check });
+        }
         $scope.removeChoice = function () {
             
             var lastItem = $scope.choices.length;
@@ -209,7 +255,7 @@
            
         };
         $scope.addNewQual = function (id) {
-            imageAdd.setAdd(-1);
+            imageAdd.setAdd('r',-1);
             tutorID.setId(id);
             $location.path("/newQualForm/null");
         };
@@ -218,18 +264,17 @@
         };
 
         $scope.editQual = function (id) {
-            imageAdd.setAdd(-1);
+            imageAdd.setAdd('r',-1);
             $location.path("/qualForm/" + id);
         };
         $scope.addNewExper = function (id) {
             tutorID.setId(id);
             $location.path("/newExperForm/null");
         };
+        $scope.setFormCheck = function (value) {
+            $scope.formCheck = value;
+        }
 
-        $scope.gender = [
-            "MALE",
-            "FEMALE"
-        ];
 
         var uploader = $scope.uploader = new FileUploader({
             url: '/api/Upload/PostUserImage'
@@ -256,15 +301,20 @@
             console.info('onWhenAddingFileFailed', item, filter, options);
         };
         uploader.onAfterAddingFile = function (fileItem) {
-            console.info('onAfterAddingFile', fileItem);
+            if ($scope.profile_image_check == 1) {
+                fileItem.file.name = '*profile*' + fileItem.file.name;
+                $scope.profile_image_check = 0;
+            }
+           else if ($scope.updation_image_check == 1) {
+               fileItem.file.name = '*updation*' + fileItem.file.name;
+               $scope.updation_image_check = 0;
+           }
+           console.info('onAfterAddingFile', fileItem);
         };
         uploader.onAfterAddingAll = function (addedFileItems) {
             console.info('onAfterAddingAll', addedFileItems);
         };
         uploader.onBeforeUploadItem = function (item) {
-            if ($scope.profile_image_check == 1) {
-                item.file.name = '*profile*' + item.file.name;
-            }
             console.info('onBeforeUploadItem', item);
         };
         uploader.onProgressItem = function (fileItem, progress) {
@@ -274,7 +324,16 @@
             console.info('onProgressAll', progress);
         };
         uploader.onSuccessItem = function (data, fileItem, response, status, headers) {
-            imageAdd.setAdd(fileItem);
+
+            if ($scope.profile_image_check) {
+                imageAdd.setAdd('p',fileItem);
+            }
+            else if ($scope.updation_image_check) {
+                imageAdd.setAdd('u', fileItem);
+            }
+            else {
+                imageAdd.setAdd('d', fileItem);
+            }
             console.info('onSuccessItem', fileItem, response, status, headers);
         };
         uploader.onErrorItem = function (fileItem, response, status, headers) {
@@ -287,14 +346,24 @@
             console.info('onCompleteItem', fileItem, response, status, headers);
         };
         uploader.onCompleteAll = function () {
+            $scope.formCheck = 0;
             console.info('onCompleteAll');
         };
         console.info('uploader', uploader);
         $scope.openLightboxModal = function (index) {
+
             Lightbox.openModal($scope.images, index);
+        };
+        $scope.openLightboxModalTutor = function (index) {
+
+            Lightbox.openModal($scope.imagesTutor, index);
         };
         $scope.profile_image = function () {
             $scope.profile_image_check = 1;
+        }
+
+        $scope.updation_image = function () {
+            $scope.updation_image_check = 1;
         }
         $scope.showConfirm = function (ev, add) {
             var confirm = $mdDialog.confirm()
@@ -335,5 +404,37 @@
                 $mdDialog.hide(confirm);
             });
         };
+        $scope.addNewTutor = function (id) {
+            $location.path("/newTutorForm" + id);
+        };
+        $scope.checkStart = function ()
+        {
+            var aChar = 'R';
+            var query = $scope.tutorRegNo + "-" + aChar;
+            DataService.checkTutor(query)
+            .then(function (result) {
+                if (!angular.isDefined(result.data.length) || result.data.length === 0)
+                {
+
+                   regNo.setNo($scope.tutorRegNo);
+                    $scope.addNewTutor(null);
+                }
+                else if (angular.isDefined(result.data.length) || result.data.length > 0)
+                {
+                    $mdDialog.show(
+                    $mdDialog.alert()
+                    .parent(angular.element(document.querySelector('#popupContainer')))
+                    .clickOutsideToClose(true)
+                    .title('Tutor Already Exist')
+                    .ariaLabel('Alert Dialog Demo')
+                    .ok('Got it!')
+                    )
+                }
+                
+            },
+            function (result) {
+                alert(result.alert);
+            });
+        }
 
     }])

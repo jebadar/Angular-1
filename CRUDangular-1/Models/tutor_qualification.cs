@@ -22,6 +22,9 @@ namespace CRUDangular_1.Models
         public string is_attested { get; set; }
         public int tutor_id { get; set; }
         public string image_degree { get; set; }
+        public string is_deleted { get; set; }
+        public string update_by { get; set; }
+        public string update_date { get; set; }
     
         public virtual tutor tutor { get; set; }
     }
