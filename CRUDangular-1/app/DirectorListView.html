@@ -9,7 +9,7 @@
             <div class="form-group">
                 <input type="text" ng-model="search" class="form-control" placeholder="Search">
                 <select class="form-control" type="text" name="keyword" ng-required="true" ng-model="searchKeyword" ng-options="keyword for keyword in keyword"></select>
-            <button class="btn btn-default btn-md" ng-click="admin();searchField(search)"><span class="glyphicon glyphicon-search"></span></button>
+            <button class="btn btn-default btn-md" ng-click="searchField(search)"><span class="glyphicon glyphicon-search"></span></button>
 
             </div>
     </form>
@@ -42,6 +42,7 @@
             <td>{{tutors.phone}}</td>
             <td scope="row" ng-show="tutors.gender === '1'">Male</td>
             <td scope="row" ng-show="tutors.gender === '2'">Female</td>
+                <td scope="row" ng-show="tutors.gender === 'FEMALE' || tutors.gender === 'MALE' || tutors.gender === 'N/A'">{{tutors.gender}}</td>
             <td>{{tutors.tehsil}}</td>
             <td scope="row" ng-show="tutors.t_status === 'verified'"  class="text-success">
               Verified

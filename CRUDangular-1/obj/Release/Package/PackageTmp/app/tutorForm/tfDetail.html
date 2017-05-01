@@ -16,7 +16,8 @@
             <label class="col-md-3 text-muted">{{tutors.f_name}}</label>
 
             <label class="col-md-3 control-label"><em>Gender</em></label>
-            <label class="col-md-3 text-muted">{{tutors.gender}}</label>
+            <label scope="row" ng-show="tutors.gender === '1'">Male</label>
+            <label scope="row" ng-show="tutors.gender === '2'">Female</label>
         </div>
        
         <div class="col-md-12 form-group form-inline">
@@ -45,8 +46,8 @@
          </div>
 
         <div class=" col-md-12 form-group form-inline">
-            <label class="col-md-3 control-label"><em>District</em></label>
-            <label class="col-md-3 text-muted">{{tutors.district}}</label>
+            <label class="col-md-3 control-label"><em>Tehsil</em></label>
+            <label class="col-md-3 text-muted">{{tutors.tehsil}}</label>
         </div>
     </fieldset>
  </div>
@@ -67,6 +68,50 @@
             </a>
             </div>
     </div>
+    <legend class="text-center"><em>TUTOR EXPERIENCE</em></legend>
+        <div class="col-md-12">
+            <table ng-table="vm.tableParams" class="table col-lg-12 table-bordered table-lg table-striped table-condensed" style="font-size:11px;background-color:white" show-filter="true">
+
+            <thead>
+                <th class="col-lg-1">Semester</th>
+                <th class="col-lg-1">Year</th>
+                <th class="col-lg-1">Section</th>
+                <th class="col-lg-1">Total Students</th>
+                <th class="col-lg-1">Course Code</th>
+                <th class="col-lg-1">Meetings</th>
+                <th class="col-lg-2">Assignments</th>
+                <th class="col-lg-1">Gross AMount</th>
+                <th class="col-lg-1">Tax Deduc.</th>
+                <th class="col-lg-1">Net Amount</th>
+                <th class="col-lg-1">Group Noti.</th>
+                <th class="col-lg-1">Diary No.</th>
+            </thead>
+
+            <tr ng-repeat="experience in experience">
+                    <td>{{experience.semester}}</td>
+
+                    <td>{{experience.year}}</td>
+                    
+                    <td>{{experience.section}}</td>
+
+                    <td>{{experience.no_of_stds}}</td>
+                
+                    <td >{{experience.course_code}}</td>
+                    <td>{{experience.meetings_total}}</td>
+                
+                    <td>{{experience.assignment_total}}</td>
+                       
+                    <td>{{experience.gross_amount}}</td>
+                    <td>{{experience.incomTax}}</td>
+                       
+                    <td>{{experience.net_amount}}</td>
+                    <td>{{experience.group_notification}}</td>
+                       
+                    <td>{{experience.diaryNo_date}}</td>
+                
+             </tr>
+                </table>
+        </div>
     <div class="col-md-12">
     <fieldset>
         <legend class="text-center"><em>TUTOR CREDENTIALS</em></legend>
@@ -100,42 +145,8 @@
             
         </div>
     </fieldset>
-        </div>
-    <div class="col-md-12">
-        <fieldset>
-                <legend class="text-center"><em>TUTOR EXPERIENCE</em></legend>
-            <div ng-repeat="experience in experience"  ng-init="expIndex = $index">
-                <legend class="text-center"><em>Experience {{expIndex + 1}}</em></legend>
-               <div class="col-md-12  form-group form-inline">
-                    <label class="col-md-3 control-label"><em>Institute</em></label>
-                    <label class="col-md-3 text-muted">{{experience.institute}}</label>
-
-                    <label class="col-md-3 control-label"><em>Class Level</em></label>
-                    <label class="col-md-3 text-muted">{{experience.class_level}}</label>
-                    
-                </div>
-
-                <div class="col-md-12  form-group form-inline">
-                    <label class="col-md-3 control-label"><em>Subject</em></label>
-                    <label class="col-md-3 text-muted">{{experience.subject_taught}}</label>
-
-                    <label class="col-md-3 control-label"><em>Duration</em></label>
-                    <label class="col-md-3 text-muted">{{experience.duration}}</label>
-                </div>
-
-                <div class="col-md-12  form-group form-inline">
-                    <label class="col-md-3 control-label"><em>In past at AIOU</em></label>
-                    <label class="col-md-3 text-muted">{{experience.if_past_at_aiou}}</label>
-                       
-                    <label class="col-md-3 control-label"><em>Course codes</em></label>
-                    <label class="col-md-3 text-muted">{{experience.course_codes}}</label>
-                </div>
-
-             </div>
-            <div class="col-md-9 text-center">
+                    <div class="col-md-9 text-center">
                 <input type="button" class="btn btn-default" value="Back" ng-click="cancelForm()"/>
             </div>
-        
-    </fieldset>
         </div>
     </div>

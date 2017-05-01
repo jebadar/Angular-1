@@ -57,11 +57,9 @@
                 
             </div>
         </div>
-            
+           <input type="button" ng-show="$last" class="btn btn-default" ng-click="removeChoice()" value="Remove Field">    
+</fieldset>
 
-            <input type="button" class="btn btn-default" ng-show="choice.id  > 1" ng-click="removeChoice()" value="Remove Field">
-    </fieldset>
-        
     <div ng-model="file[choice.id]"> 
                  <table class="table">
                         <thead>
@@ -104,7 +102,7 @@
                                 <div class="progress-bar" role="progressbar" ng-style="{ 'width': uploader.progress + '%' }"></div>
                             </div>
                         </div>
-                        <button type="button" class="btn btn-success btn-s" ng-click="uploader.uploadAll()" ng-disabled="!uploader.getNotUploadedItems().length">
+                        <button type="button" class="btn btn-success btn-s" ng-click="degree_image();uploader.uploadAll()" ng-disabled="!uploader.getNotUploadedItems().length">
                             <span class="glyphicon glyphicon-upload"></span> Upload all
                         </button>
 

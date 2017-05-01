@@ -57,15 +57,15 @@ namespace CRUDangular_1.Controllers
                             versions.Add("_small", "maxwidth=600&maxheight=600");
                             if (profile_img)
                             {
-                                filePath = HttpContext.Current.Server.MapPath("~/Images/Tutor_Profile/" + UniqueFileName + extension);
+                                filePath = HttpContext.Current.Server.MapPath("~/Images/Tutor_Profile/" + UniqueFileName );
                             }
                             else if (updation_img)
                             {
-                                filePath = HttpContext.Current.Server.MapPath("~/Images/Tutor_Updation_Form/" + UniqueFileName + extension);
+                                filePath = HttpContext.Current.Server.MapPath("~/Images/Tutor_Updation_Form/" + UniqueFileName);
                             }
                             else
                             {
-                                filePath = HttpContext.Current.Server.MapPath("~/Images/Tutor_Degree/" + UniqueFileName + extension);
+                                filePath = HttpContext.Current.Server.MapPath("~/Images/Tutor_Degree/" + UniqueFileName);
                             }
                             //postedFile.FileName
                             //Generate each version
@@ -74,13 +74,13 @@ namespace CRUDangular_1.Controllers
                                 postedFile.InputStream.Seek(0, SeekOrigin.Begin);
 
                                 //Let the image builder add the correct extension based on the output file type
-                                ImageBuilder.Current.Build(
+                               var imageAdd =  ImageBuilder.Current.Build(
                                     new ImageJob(
                                         postedFile.InputStream,
                                         filePath,
                                         new Instructions(versions[suffix]),
                                         false,
-                                        true));
+                                        true)).FinalPath;
                             }
 
                             var message1 = string.Format("Image Updated Successfully.");
@@ -91,7 +91,7 @@ namespace CRUDangular_1.Controllers
                             }
                             else if (updation_img)
                             {
-                                filePath = HttpContext.Current.Server.MapPath("~/Images/Tutor_Updation_Form/" + UniqueFileName + extension);
+                                imgAdd = "../../Images/Tutor_Updation_Form/" + UniqueFileName + extension;
                             }
                             else
                             {
@@ -190,7 +190,7 @@ namespace CRUDangular_1.Controllers
             }
             if (!img_profile && !img_updation)
             {
-                using (test_Applicata_DataBaseEntities1 db = new test_Applicata_DataBaseEntities1())
+                using (test_Applicata_DataBaseEntities db = new test_Applicata_DataBaseEntities())
                 {
                     var httpRequest = HttpContext.Current.Request;
                     var col = db.tutor_qualification.Where(w => w.q_id.Equals(id));
@@ -212,7 +212,7 @@ namespace CRUDangular_1.Controllers
             }
             else if (img_profile)
             {
-                using (test_Applicata_DataBaseEntities1 db = new test_Applicata_DataBaseEntities1())
+                using (test_Applicata_DataBaseEntities db = new test_Applicata_DataBaseEntities())
                 {
                     var httpRequest = HttpContext.Current.Request;
                     var col = db.tutors.Where(w => w.tutor_id.Equals(img_id));
@@ -234,7 +234,7 @@ namespace CRUDangular_1.Controllers
             }
             else if (img_updation)
             {
-                using (test_Applicata_DataBaseEntities1 db = new test_Applicata_DataBaseEntities1())
+                using (test_Applicata_DataBaseEntities db = new test_Applicata_DataBaseEntities())
                 {
                     var httpRequest = HttpContext.Current.Request;
                     var col = db.tutors.Where(w => w.tutor_id.Equals(img_id));

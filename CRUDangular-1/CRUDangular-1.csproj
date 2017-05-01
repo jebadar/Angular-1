@@ -222,6 +222,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Model.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Models\S_Notification.cs" />
     <Compile Include="Models\S_Tutor.cs" />
     <Compile Include="Models\tutor.cs">
       <DependentUpon>Model.tt</DependentUpon>

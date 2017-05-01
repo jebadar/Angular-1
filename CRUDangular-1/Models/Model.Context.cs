@@ -13,10 +13,10 @@ namespace CRUDangular_1.Models
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class test_Applicata_DataBaseEntities1 : DbContext
+    public partial class test_Applicata_DataBaseEntities : DbContext
     {
-        public test_Applicata_DataBaseEntities1()
-            : base("name=test_Applicata_DataBaseEntities1")
+        public test_Applicata_DataBaseEntities()
+            : base("name=test_Applicata_DataBaseEntities")
         {
         }
     
@@ -25,9 +25,9 @@ namespace CRUDangular_1.Models
             throw new UnintentionalCodeFirstException();
         }
     
+        public DbSet<tutor> tutors { get; set; }
         public DbSet<tutor_experience> tutor_experience { get; set; }
         public DbSet<tutor_qualification> tutor_qualification { get; set; }
-        public DbSet<tutor> tutors { get; set; }
         public DbSet<user_roles> user_roles { get; set; }
         public DbSet<user> users { get; set; }
     }

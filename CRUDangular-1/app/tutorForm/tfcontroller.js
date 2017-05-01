@@ -1,17 +1,14 @@
-﻿formApp.controller('tfController', ["$scope", "DataService", "$routeParams", "$mdDialog", "$location", "imageAdd", "regNo", "tutorID", "FileUploader", "Lightbox",
-    function tfController($scope, DataService, $routeParams, $mdDialog, $location, imageAdd,regNo, tutorID, FileUploader, Lightbox) {
+﻿formApp.controller('tfController', ["$scope", "DataService", "$routeParams", "$mdDialog", "$location", "imageAdd", "regNo", "tutorID", "imageCheck", "FileUploader", "Lightbox",
+    function tfController($scope, DataService, $routeParams, $mdDialog, $location, imageAdd, regNo, tutorID, imageCheck, FileUploader, Lightbox) {
         $scope.qualification = [];
         $scope.experience = [];
         $scope.file = [];
         $scope.images = [];
         $scope.imagesTutor = [];
-        $scope.profile_image_check = 0;
-        $scope.updation_image_check = 0;
         $scope.Id = tutorID.getId();
         $scope.profile_image_add = 0;//check for profile image
         $scope.updation_image_add = 0;// check for Updation form image
         $scope.tutorRegNo = regNo.getNo();
-        $scope.formCheck = 0; // check for tutor form is submited after images are uploaded after edit
         $scope.gender = [
         "MALE",
         "FEMALE"
@@ -160,6 +157,7 @@
 
                 if (imageAdd.getAdd(0) != null || imageAdd.getAdd(0) != '') {
                     var address = imageAdd.getAdd(100);
+                    imageAdd.setAdd('r', -1);
                     var counter = address.length;
                     for(var i = 0;i < counter;i++)
                     {
@@ -172,7 +170,6 @@
                             $scope.tutors.image_updation_form = address[i][i].value;
                         }
                     }
-                    imageAdd.setAdd('r',-1);
                 }
                 else if (imageAdd.getAdd(0) == null || imageAdd.getAdd(0) == '') {
                     $scope.tutors.image_profile = '../../';
@@ -221,9 +218,10 @@
                         }
                     }
                 }
-                insertQualification($scope.qualification);
             }
+            insertQualification($scope.qualification);
             imageAdd.setAdd('r', -1);
+            imageCheck.setType('u', false);
         };
 
         $scope.submitExper = function () {
@@ -271,9 +269,7 @@
             tutorID.setId(id);
             $location.path("/newExperForm/null");
         };
-        $scope.setFormCheck = function (value) {
-            $scope.formCheck = value;
-        }
+
 
 
         var uploader = $scope.uploader = new FileUploader({
@@ -301,13 +297,11 @@
             console.info('onWhenAddingFileFailed', item, filter, options);
         };
         uploader.onAfterAddingFile = function (fileItem) {
-            if ($scope.profile_image_check == 1) {
+            if (imageCheck.getType('p')) {
                 fileItem.file.name = '*profile*' + fileItem.file.name;
-                $scope.profile_image_check = 0;
             }
-           else if ($scope.updation_image_check == 1) {
+           else if (imageCheck.getType('u')) {
                fileItem.file.name = '*updation*' + fileItem.file.name;
-               $scope.updation_image_check = 0;
            }
            console.info('onAfterAddingFile', fileItem);
         };
@@ -325,13 +319,15 @@
         };
         uploader.onSuccessItem = function (data, fileItem, response, status, headers) {
 
-            if ($scope.profile_image_check) {
-                imageAdd.setAdd('p',fileItem);
+            if (imageCheck.getType('p')) {
+                imageAdd.setAdd('p', fileItem);
+                imageCheck.setType('p', false);
             }
-            else if ($scope.updation_image_check) {
+            else if (imageCheck.getType('u')) {
                 imageAdd.setAdd('u', fileItem);
+                imageCheck.setType('u', false);
             }
-            else {
+            else if(imageCheck.getType('d')){
                 imageAdd.setAdd('d', fileItem);
             }
             console.info('onSuccessItem', fileItem, response, status, headers);
@@ -346,7 +342,6 @@
             console.info('onCompleteItem', fileItem, response, status, headers);
         };
         uploader.onCompleteAll = function () {
-            $scope.formCheck = 0;
             console.info('onCompleteAll');
         };
         console.info('uploader', uploader);
@@ -359,11 +354,14 @@
             Lightbox.openModal($scope.imagesTutor, index);
         };
         $scope.profile_image = function () {
-            $scope.profile_image_check = 1;
+            imageCheck.setType('p',true);
         }
 
         $scope.updation_image = function () {
-            $scope.updation_image_check = 1;
+            imageCheck.setType('u', true);
+        }
+        $scope.degree_image = function () {
+            imageCheck.setType('d', true);
         }
         $scope.showConfirm = function (ev, add) {
             var confirm = $mdDialog.confirm()
@@ -435,6 +433,11 @@
             function (result) {
                 alert(result.alert);
             });
+        }
+        $scope.isDisabled = false;
+
+        $scope.disableButton = function () {
+            $scope.isDisabled = true;
         }
 
     }])

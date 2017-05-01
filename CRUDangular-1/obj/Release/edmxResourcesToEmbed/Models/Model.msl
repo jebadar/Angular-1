@@ -1,37 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
   <EntityContainerMapping StorageEntityContainer="test_Applicata_DataBaseModelStoreContainer" CdmEntityContainer="test_Applicata_DataBaseEntities">
-    <EntitySetMapping Name="tutor_experience">
-      <EntityTypeMapping TypeName="test_Applicata_DataBaseModel.tutor_experience">
-        <MappingFragment StoreEntitySet="tutor_experience">
-          <ScalarProperty Name="e_id" ColumnName="e_id" />
-          <ScalarProperty Name="institute" ColumnName="institute" />
-          <ScalarProperty Name="class_level" ColumnName="class_level" />
-          <ScalarProperty Name="subject_taught" ColumnName="subject_taught" />
-          <ScalarProperty Name="duration" ColumnName="duration" />
-          <ScalarProperty Name="if_past_at_aiou" ColumnName="if_past_at_aiou" />
-          <ScalarProperty Name="course_codes" ColumnName="course_codes" />
-          <ScalarProperty Name="tutor_id" ColumnName="tutor_id" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="tutor_qualification">
-      <EntityTypeMapping TypeName="test_Applicata_DataBaseModel.tutor_qualification">
-        <MappingFragment StoreEntitySet="tutor_qualification">
-          <ScalarProperty Name="q_id" ColumnName="q_id" />
-          <ScalarProperty Name="degree_name" ColumnName="degree_name" />
-          <ScalarProperty Name="institute_name" ColumnName="institute_name" />
-          <ScalarProperty Name="date_of_complete" ColumnName="date_of_complete" />
-          <ScalarProperty Name="pass_division" ColumnName="pass_division" />
-          <ScalarProperty Name="is_attested" ColumnName="is_attested" />
-          <ScalarProperty Name="tutor_id" ColumnName="tutor_id" />
-          <ScalarProperty Name="image_degree" ColumnName="image_degree" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="tutors">
       <EntityTypeMapping TypeName="test_Applicata_DataBaseModel.tutor">
-        <MappingFragment StoreEntitySet="tutors">
+        <MappingFragment StoreEntitySet="tutor">
           <ScalarProperty Name="tutor_id" ColumnName="tutor_id" />
           <ScalarProperty Name="name" ColumnName="name" />
           <ScalarProperty Name="f_name" ColumnName="f_name" />
@@ -50,6 +22,56 @@
           <ScalarProperty Name="t_status" ColumnName="t_status" />
           <ScalarProperty Name="srNo" ColumnName="srNo" />
           <ScalarProperty Name="intelCertificate" ColumnName="intelCertificate" />
+          <ScalarProperty Name="update_by" ColumnName="update_by" />
+          <ScalarProperty Name="update_date" ColumnName="update_date" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tutor_experience">
+      <EntityTypeMapping TypeName="test_Applicata_DataBaseModel.tutor_experience">
+        <MappingFragment StoreEntitySet="tutor_experience">
+          <ScalarProperty Name="e_id" ColumnName="e_id" />
+          <ScalarProperty Name="sr_no" ColumnName="sr_no" />
+          <ScalarProperty Name="retention" ColumnName="retention" />
+          <ScalarProperty Name="assignment_total" ColumnName="assignment_total" />
+          <ScalarProperty Name="amount_assignment" ColumnName="amount_assignment" />
+          <ScalarProperty Name="meetings_total" ColumnName="meetings_total" />
+          <ScalarProperty Name="amount_meeting" ColumnName="amount_meeting" />
+          <ScalarProperty Name="postage_total" ColumnName="postage_total" />
+          <ScalarProperty Name="bM_tutor" ColumnName="bM_tutor" />
+          <ScalarProperty Name="group_notification" ColumnName="group_notification" />
+          <ScalarProperty Name="course_code" ColumnName="course_code" />
+          <ScalarProperty Name="notification_SrNo" ColumnName="notification_SrNo" />
+          <ScalarProperty Name="incomTax" ColumnName="incomTax" />
+          <ScalarProperty Name="net_amount" ColumnName="net_amount" />
+          <ScalarProperty Name="diaryNo_date" ColumnName="diaryNo_date" />
+          <ScalarProperty Name="no_of_stds" ColumnName="no_of_stds" />
+          <ScalarProperty Name="study_center" ColumnName="study_center" />
+          <ScalarProperty Name="reference" ColumnName="reference" />
+          <ScalarProperty Name="section" ColumnName="section" />
+          <ScalarProperty Name="semester" ColumnName="semester" />
+          <ScalarProperty Name="year" ColumnName="year" />
+          <ScalarProperty Name="contigency" ColumnName="contigency" />
+          <ScalarProperty Name="registration_no" ColumnName="registration_no" />
+          <ScalarProperty Name="tutor_id" ColumnName="tutor_id" />
+          <ScalarProperty Name="gross_amount" ColumnName="gross_amount" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tutor_qualification">
+      <EntityTypeMapping TypeName="test_Applicata_DataBaseModel.tutor_qualification">
+        <MappingFragment StoreEntitySet="tutor_qualification">
+          <ScalarProperty Name="q_id" ColumnName="q_id" />
+          <ScalarProperty Name="degree_name" ColumnName="degree_name" />
+          <ScalarProperty Name="institute_name" ColumnName="institute_name" />
+          <ScalarProperty Name="date_of_complete" ColumnName="date_of_complete" />
+          <ScalarProperty Name="pass_division" ColumnName="pass_division" />
+          <ScalarProperty Name="is_attested" ColumnName="is_attested" />
+          <ScalarProperty Name="tutor_id" ColumnName="tutor_id" />
+          <ScalarProperty Name="image_degree" ColumnName="image_degree" />
+          <ScalarProperty Name="is_deleted" ColumnName="is_deleted" />
+          <ScalarProperty Name="update_by" ColumnName="update_by" />
+          <ScalarProperty Name="update_date" ColumnName="update_date" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

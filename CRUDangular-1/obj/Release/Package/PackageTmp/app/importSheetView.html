@@ -1,15 +1,16 @@
 ﻿<div class="row" >
-    <div class="col-lg-4 col-lg-offset-4">
+    <div class="col-lg-8">
         <div class="input-group">
-            <span class="input-group-btn">
                 <button class="btn btn-default" type="button" ng-click="downloadSheet()">Download Sheet</button>
                 <br />
                 <br />
-                         <div class="form-group">
-            <label class="col-sm-3 control-label"><em>Upload FIle</em></label>
-            <div class="col-sm-9">
-                <input id="source_img" class="btn btn-default" type="file"  nv-file-select="" ng-disabled="uploader.queue.length >= 1" uploader="uploader" fileread/>
-                
+               <div class="form-group">
+                    <label class="control-label"><em>Upload updation File</em></label><br /> <br />
+                    <input id="File1" class="btn btn-default" type="file" ng-click="updation_sheet()" nv-file-select="" ng-disabled="uploader.queue.length >= 1" uploader="uploader" fileread/><br /><br />
+                    <label class="control-label"><em>Upload notification File</em></label><br /><br />
+                    <input id="File2" class="btn btn-default" type="file" ng-click="notification_sheet()" nv-file-select="" ng-disabled="uploader.queue.length >= 1" uploader="uploader" fileread/>
+                </div>
+            <div class="col-md-9">
           <div ng-model="file"> 
                  <table class="table">
                         <thead>
@@ -52,13 +53,13 @@
                                 <div class="progress-bar" role="progressbar" ng-style="{ 'width': uploader.progress + '%' }"></div>
                             </div>
                        
-                        <button type="button" class="btn btn-success btn-s" ng-click="uploader.uploadAll()" ng-disabled="!uploader.getNotUploadedItems().length">
+                        <button type="button" class="btn btn-success btn-s" ng-click="disableButton();uploader.uploadAll()" ng-disabled="isDisabled">
                             <span class="glyphicon glyphicon-upload"></span> Upload
                         </button>
         
           </div>
-        </div>
-            </span>
+        
+           
         </div><!-- /input-group -->
     </div><!-- /.col-lg-4 -->
 </div><!-- /.row -->

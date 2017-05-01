@@ -1,7 +1,6 @@
 ﻿<div class="lg-col-12">
     <form class="form-inline">
             <div class="form-group">
-                <label >Search</label>
                 <input type="text" ng-model="search" class="form-control" placeholder="Search">
             </div>
         </form>
@@ -39,6 +38,7 @@
             <td>{{searchTutors.phone}}</td>
             <td scope="row" ng-show="searchTutors.gender === '1'">Male</td>
             <td scope="row" ng-show="searchTutors.gender === '2'">Female</td>
+            <td scope="row" ng-show="searchTutors.gender === 'FEMALE' || searchTutors.gender === 'MALE' || searchTutors.gender === 'N/A'|| searchTutors.gender === 'Male' || searchTutors.gender === 'Female'">{{searchTutors.gender}}</td>
             <td>{{searchTutors.tehsil}}</td>
             <td scope="row" ng-show="searchTutors.t_status === 'verified'"  class="text-success">
               Verified
@@ -53,4 +53,7 @@
         </tr>
    
     </table>
+    <div class="col-sm-9">
+                        <input type="button" class="btn btn-default" value="Back" ng-click="cancelForm()"/>
+                </div>
     </div>

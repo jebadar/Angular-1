@@ -15,16 +15,30 @@ namespace CRUDangular_1.Models
     public partial class tutor_experience
     {
         public int e_id { get; set; }
-        public string institute { get; set; }
-        public string class_level { get; set; }
-        public string subject_taught { get; set; }
-        public string duration { get; set; }
-        public string if_past_at_aiou { get; set; }
-        public string course_codes { get; set; }
-        public int tutor_id { get; set; }
-        public string update_date { get; set; }
-        public string update_by { get; set; }
-        public string is_deleted { get; set; }
+        public string sr_no { get; set; }
+        public string retention { get; set; }
+        public string assignment_total { get; set; }
+        public string amount_assignment { get; set; }
+        public string meetings_total { get; set; }
+        public string amount_meeting { get; set; }
+        public string postage_total { get; set; }
+        public string bM_tutor { get; set; }
+        public string group_notification { get; set; }
+        public string course_code { get; set; }
+        public string notification_SrNo { get; set; }
+        public string incomTax { get; set; }
+        public string net_amount { get; set; }
+        public string diaryNo_date { get; set; }
+        public string no_of_stds { get; set; }
+        public string study_center { get; set; }
+        public string reference { get; set; }
+        public string section { get; set; }
+        public string semester { get; set; }
+        public string year { get; set; }
+        public string contigency { get; set; }
+        public string registration_no { get; set; }
+        public Nullable<int> tutor_id { get; set; }
+        public string gross_amount { get; set; }
     
         public virtual tutor tutor { get; set; }
     }

@@ -28,7 +28,7 @@ namespace CRUDangular_1.Controllers
         // GET api/<controller>/5
         public tutor_qualification Get(int id)
         {
-            test_Applicata_DataBaseEntities1 db = new test_Applicata_DataBaseEntities1();
+            test_Applicata_DataBaseEntities db = new test_Applicata_DataBaseEntities();
             tutor_qualification qual = new tutor_qualification();
             qual = db.tutor_qualification.Find(id);
             return qual;
@@ -41,7 +41,7 @@ namespace CRUDangular_1.Controllers
             if (ModelState.IsValid)
             {
                 string tutorId = qualification[0].tutor_id.ToString();
-                test_Applicata_DataBaseEntities1 db = new test_Applicata_DataBaseEntities1();
+                test_Applicata_DataBaseEntities db = new test_Applicata_DataBaseEntities();
                 var constr = ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
                 using (SqlConnection connection = new SqlConnection(constr))
                 {
@@ -80,7 +80,7 @@ namespace CRUDangular_1.Controllers
 
                             }
                         }
-                        db.Database.ExecuteSqlCommand("UPDATE tutors SET tutors.t_status = 'verified' WHERE tutors.tutor_id =" + tutorId);
+                        db.Database.ExecuteSqlCommand("UPDATE tutor SET dbo.tutor.t_status = 'verified' WHERE dbo.tutor.tutor_id =" + tutorId);
                         connection.Close();
                 }
             }
@@ -90,7 +90,7 @@ namespace CRUDangular_1.Controllers
         // PUT api/<controller>/5
         public void Put(tutor_qualification qual)
         {
-            using (test_Applicata_DataBaseEntities1 db = new test_Applicata_DataBaseEntities1())
+            using (test_Applicata_DataBaseEntities db = new test_Applicata_DataBaseEntities())
             {
                 if (ModelState.IsValid)
                 {

@@ -6,7 +6,7 @@
          <div class="form-group">
             <label class="col-sm-3 control-label"><em>Profile Picture</em></label>
             <div class="col-sm-9">
-                <input id="source_img" class="btn btn-default" type="file"  nv-file-select="" ng-disabled="uploader.queue.length >= 1" uploader="uploader" fileread/>
+                <input id="source_img" class="btn btn-default" type="file" ng-click ="profileImageCheck()"  nv-file-select="" ng-disabled="uploader.queue.length >= 1" uploader="uploader" fileread/>
                 
           <div ng-model="file"> 
                  <table class="table">
@@ -50,7 +50,7 @@
                                 <div class="progress-bar" role="progressbar" ng-style="{ 'width': uploader.progress + '%' }"></div>
                             </div>
                        
-                        <button type="button" class="btn btn-success btn-s" ng-click="profile_image(); uploader.uploadAll()" ng-disabled="!uploader.getNotUploadedItems().length">
+                        <button type="button" class="btn btn-success btn-s" ng-click="uploader.uploadAll()" ng-disabled="!uploader.getNotUploadedItems().length">
                             <span class="glyphicon glyphicon-upload"></span> Upload
                         </button>
         
@@ -102,7 +102,7 @@
         <div class="form-group" show-errors>
             <label class="col-sm-3 control-label"><em>BPS</em></label>
             <div class="col-sm-9">
-                <input class="form-control" type="text" capitalize name="BPS" ng-model="tutors.basic_pay_scale" ng-required="false" ng-pattern="/^[a-z ,.'-]+$/i">
+                <input class="form-control" type="text" capitalize name="BPS" ng-model="tutors.basic_pay_scale" ng-required="false">
                 <span class="help-block" ng-if="tutorForm.BPS.$error.required">BPS is required</span>
             </div>
         </div>
@@ -138,16 +138,16 @@
         </div>
         </div>
         <div class="form-group" show-errors>
-        <label class="col-sm-3 control-label"><em>District</em></label>
+        <label class="col-sm-3 control-label"><em>Tehsil</em></label>
         <div class="col-sm-9">
-            <input class="form-control" type="text" name="district" capitalize ng-model="tutors.district" ng-required="true" ng-pattern="/^[a-z ,.'-]+$/i" >
-            <span class="help-block" ng-if="tutorForm.district.$error.required">District is required</span>
-            <span class="help-block" ng-if="tutorForm.district.$error.pattern">Enter valid District</span>
+            <input class="form-control" type="text" name="tehsil" capitalize ng-model="tutors.tehsil" ng-required="true" ng-pattern="/^[a-z ,.'-]+$/i" >
+            <span class="help-block" ng-if="tutorForm.district.$error.required">Tehsil is required</span>
+            <span class="help-block" ng-if="tutorForm.district.$error.pattern">Enter valid Tehsil</span>
         </div>
         </div>
       <div class="col-sm-9">
             <input type="button" class="btn btn-default" value="Back" ng-click="cancelForm()"/>
-            <input type="submit" class="btn btn-primary" value="Submit" ng-click="submitForm()" ng-disabled="tutorForm.$invalid"/>
+            <input type="submit" class="btn btn-primary" value="Submit" ng-click="disableButton();submitForm()" ng-disabled="tutorForm.$invalid || isDisabled"/>
             <input type="reset" class="btn btn-success" value="Reset" ng-click="resetForm()" />
       </div>
         

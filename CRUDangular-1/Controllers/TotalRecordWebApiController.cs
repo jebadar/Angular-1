@@ -20,8 +20,8 @@ namespace CRUDangular_1.Controllers
         // GET api/<controller>
         public String Get()
         {
-            test_Applicata_DataBaseEntities1 db = new test_Applicata_DataBaseEntities1();
-            var sql = "SELECT COUNT(*) FROM dbo.tutors";
+            test_Applicata_DataBaseEntities db = new test_Applicata_DataBaseEntities();
+            var sql = "SELECT COUNT(*) FROM dbo.tutor";
             var total = db.Database.SqlQuery<int>(sql).Single();
             string value = total.ToString();
             return value;
@@ -34,7 +34,7 @@ namespace CRUDangular_1.Controllers
             int length = str.Length;
             List<tutor> t = new List<tutor>();
             var result = t;
-            test_Applicata_DataBaseEntities1 db = new test_Applicata_DataBaseEntities1();
+            test_Applicata_DataBaseEntities db = new test_Applicata_DataBaseEntities();
             if (str[length - 1] == 'N')
             {
                 string b = "-N";
@@ -66,7 +66,7 @@ namespace CRUDangular_1.Controllers
    //             string query = id.Trim(n);
  //               t = db.tutors.Search(x => x.t_status).Containing("verified").ToList();
 
-                var sql = "SELECT * FROM dbo.tutors where t_status = 'verified'";
+                var sql = "SELECT * FROM dbo.tutor where t_status = 'verified'";
                 var total = db.Database.SqlQuery<tutor>(sql).ToList();
                 return total;
             }

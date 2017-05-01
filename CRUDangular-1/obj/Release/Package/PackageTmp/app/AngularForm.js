@@ -141,6 +141,42 @@ formApp.service("searchResultArray", function () {
     }
 })
 
+formApp.service("imageCheck", function ()
+{
+    var profileImage = false;
+    var formImage = false;
+    var degreeImage = false;
+    return {
+        getType: function(a)
+            {
+                if (a == 'p')
+                {
+                    return profileImage;
+                }
+                else if (a == 'u')
+                {
+                    return formImage;
+                }
+                else if (a == 'd')
+                {
+                    return degreeImage;
+                }
+        },
+        setType: function (a, value)
+        {
+            if (a == 'p') {
+                profileImage = value;
+            }
+            else if (a == 'u') {
+                formImage = value;
+            }
+            else if (a == 'd') {
+                degreeImage = value;
+            }
+        }
+    }
+})
+
 formApp.controller("HomeController", ["$scope", "$location", "DataService", "$http", "ngDialog", "$mdDialog", "NgTableParams", "FileUploader", "searchResultArray", function ($scope, $location, DataService, $http, ngDialog, $mdDialog, NgTableParams, FileUploader, searchResultArray) {
 
     $scope.verify = [{
@@ -148,6 +184,9 @@ formApp.controller("HomeController", ["$scope", "$location", "DataService", "$ht
     }];
     $scope.tutors = [];
     $scope.qualification = [];
+    $scope.updationSheetCheck = 0;
+    $scope.notificationSheetCheck = 0;
+
 
     $http.get("api/TotalRecordWebApi").then(
         //on success
@@ -314,6 +353,21 @@ formApp.controller("HomeController", ["$scope", "$location", "DataService", "$ht
     "Verified",//for Verified
     "Unverified"//for Unverified
     ];
+    $scope.profileImageCheck = function () {
+        $scope.profile_image_check = 1;
+    }
+    $scope.updation_sheet = function () {
+        $scope.updationSheetCheck = 1;
+    }
+    $scope.notification_sheet = function () {
+        $scope.notificationSheetCheck = 1;
+    }
+    $scope.isDisabled = false;
+
+    $scope.disableButton = function () {
+        $scope.isDisabled = true;
+    }
+
 
     var uploader = $scope.uploader = new FileUploader({
         url: '/api/ImportWebApi/Post'
@@ -336,22 +390,41 @@ formApp.controller("HomeController", ["$scope", "$location", "DataService", "$ht
         }
     });
     // CALLBACKS
+    $scope.image_Add_Check = 0;
     uploader.onWhenAddingFileFailed = function (item /*{File|FileLikeObject}*/, filter, options) {
         console.info('onWhenAddingFileFailed', item, filter, options);
     };
     uploader.onAfterAddingFile = function (fileItem) {
+        if ($scope.profile_image_check == 1) {
+            fileItem.file.name = '*profile*' + fileItem.file.name;
+            $scope.image_Add_Check = 1;
+            $scope.profile_image_check = 0;
+        }
+        else if ($scope.updation_image_check == 1) {
+            fileItem.file.name = '*updation*' + fileItem.file.name;
+            $scope.image_Add_Check = 1;
+            $scope.updation_image_check = 0;
+        }
+        else if ($scope.updationSheetCheck == 1)
+        {
+            fileItem.file.name = '*updation*' + fileItem.file.name;
+            $scope.image_Add_Check = 0;
+            $scope.updationSheetCheck = 0;
+        }
+        else if ($scope.notificationSheetCheck == 1)
+        {
+            fileItem.file.name = '*notification*' + fileItem.file.name;
+            $scope.image_Add_Check = 0;
+            $scope.notificationSheetCheck = 0;
+        }
+        
         console.info('onAfterAddingFile', fileItem);
     };
     uploader.onAfterAddingAll = function (addedFileItems) {
         console.info('onAfterAddingAll', addedFileItems);
     };
     uploader.onBeforeUploadItem = function (item) {
-        if ($scope.profile_image_check == 1) {
-            item.file.name = '*profile*' + item.file.name;
-        }
-        else if ($scope.updation_image_check == 1) {
-            item.file.name = '*updation*' + item.file.name;
-        }
+
         console.info('onBeforeUploadItem', item);
     };
     uploader.onProgressItem = function (fileItem, progress) {
@@ -361,11 +434,24 @@ formApp.controller("HomeController", ["$scope", "$location", "DataService", "$ht
         console.info('onProgressAll', progress);
     };
     uploader.onSuccessItem = function (data, fileItem, response, status, headers) {
-        imageAdd.setAdd(fileItem);
+        if ($scope.image_Add_Check == 1) {
+
+            imageAdd.setAdd(fileItem);
+        }
+        else {
+            $mdDialog.show(
+              $mdDialog.alert()
+                .parent(angular.element(document.querySelector('#popupContainer')))
+                .clickOutsideToClose(true)
+                .title(fileItem.data)
+                .ariaLabel('Alert Dialog Demo')
+                .ok('Got it!')
+            );
+        }
         console.info('onSuccessItem', fileItem, response, status, headers);
     };
     uploader.onErrorItem = function (fileItem, response, status, headers) {
-        console.info('onErrorItem', fileItem, response, status, headers);
+            console.info('onErrorItem', fileItem, response, status, headers);
     };
     uploader.onCancelItem = function (fileItem, response, status, headers) {
         console.info('onCancelItem', fileItem, response, status, headers);

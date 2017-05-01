@@ -24,7 +24,7 @@ namespace CRUDangular_1.Controllers
         [HttpPost]
         public ActionResult Login(user user)
         {
-            using (test_Applicata_DataBaseEntities1 db = new test_Applicata_DataBaseEntities1())
+            using (test_Applicata_DataBaseEntities db = new test_Applicata_DataBaseEntities())
             {
                 if(ModelState.IsValid)
                 {

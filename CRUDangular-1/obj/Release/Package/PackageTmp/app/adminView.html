@@ -26,81 +26,70 @@
     <div class="col-sm-12 text-center">
         <h3 class="display-4">Activities</h3>
     </div>
-        <div class="col-md-4">
-    <div class="jumbotron jumbotron-fluid"style="background-color:white">
-           <div class="row" >
-                <div class="col-md-12 text-inline">
-                    <h3><u>Tutors</u></h3>
-                </div>
-            </div>
+    
+    <div class="col-md-4">
+        <div class="jumbotron" style="background-color:white" ng-click="adminTutor()">
             <div class="row">
-                <div class="col-md-12 text-inline">
-                <h4>Total <mark><u>{{totalTutors}}</u></mark></h4>
+                <div class="col-md-12">
+                    <div class="text-inline">
+                        <img src="../Images/Icon/tutor_icon.ico" class="avatar img-responsive" style="border-radius:50%"/>
+                    </div>
                 </div>
-            </div>
-           <div class="row"> 
-               <div class="col-md-12">
-                <button class="btn btn-primary" ng-click="adminTutor()">Record</button>
-                </div>
-            </div>
-       
+            </div>   
+            <div class="row">
+               <div class="col-md-12 text-inline">
+                    <h3 class="center-block badge">{{totalTutors}}</h3>
+               </div>
+           </div>
+        </div>
     </div>
-    </div>
+   
 
     <div class="col-md-4">
-    <div class="jumbotron jumbotron-fluid"style="background-color:white">
-           <div class="row">
-                <div class="col-md-12">
-                    <h3><u>Students</u></h3>
-                </div>
-            </div>
+        <div class="jumbotron jumbotron-fluid"style="background-color:white">
             <div class="row">
-                <div class="col-md-12 text-inline">
-                <h4>Total  <u>00</u></h4>
+                <div class="col-md-12">
+                    <div class="text-inline">
+                        <img src="../Images/Icon/student_icon.png" class="avatar img-responsive" style="border-radius:50%"/>
+                    </div>
                 </div>
-            </div>
-           <div class="row"> 
-               <div class="col-md-12">
-                    <button class="btn btn-primary" ng-disabled="true">Record</button>
+            </div>  
+               <div class="row"> 
+                   <div class="col-md-12">
+                    <h3 class="center-block badge">00</h3>
+                    </div>
                 </div>
-            </div>
        
-    </div>
+        </div>
     </div>
     <div class="col-md-4">
         <div class="jumbotron jumbotron-fluid" style="background-color:white">
-                <div class="row">
-                    <div class="col-md-12">
-                        <h3><u>Users</u></h3> 
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="text-inline">
+                        <img src="../Images/Icon/user_icon.png" class="avatar img-responsive" style="border-radius:50%"/>
                     </div>
-                 </div>
-                    <div class="row">
-                        <div class="col-md-12 text-inline">
-                            <h4>Total registered  ---</h4>
-                        </div>
+                </div>
+            </div> 
+               <div class="row"> 
+                   <div class="col-md-12">
+                    <h3 class="center-block badge">00</h3>
                     </div>
-                    <div class="row">
-                        <div class="col-md-12">
-                            <button class="btn btn-primary" ng-disabled="true">Record</button>
-                        </div>
-                    </div>
+                </div>
          </div>
     </div>
         <div class="col-md-4">
         <div class="jumbotron jumbotron-fluid" style="background-color:white">
-                <div class="row">
-                    <div class="col-md-12 text-inline">
-                        <h3><u>Items in Region</u></h3> 
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="text-inline">
+                        <img src="../Images/Icon/item_icon.png" class="avatar img-responsive"/>
                     </div>
-                 </div>
+                </div>
+            </div> 
                     <div class="row">
                         <div class="col-md-12">
-                            <h4>Total Items</h4>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-12">
-                            <button class="btn btn-primary" ng-disabled="true">Record</button>
+                    <h3 class="center-block badge">00</h3>
                         </div>
                     </div>
          </div>
