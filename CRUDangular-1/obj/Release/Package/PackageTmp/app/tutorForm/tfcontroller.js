@@ -157,6 +157,7 @@
 
                 if (imageAdd.getAdd(0) != null || imageAdd.getAdd(0) != '') {
                     var address = imageAdd.getAdd(100);
+                    imageAdd.setAdd('r', -1);
                     var counter = address.length;
                     for(var i = 0;i < counter;i++)
                     {
@@ -169,7 +170,6 @@
                             $scope.tutors.image_updation_form = address[i][i].value;
                         }
                     }
-                    imageAdd.setAdd('r',-1);
                 }
                 else if (imageAdd.getAdd(0) == null || imageAdd.getAdd(0) == '') {
                     $scope.tutors.image_profile = '../../';
@@ -218,9 +218,10 @@
                         }
                     }
                 }
-                insertQualification($scope.qualification);
             }
+            insertQualification($scope.qualification);
             imageAdd.setAdd('r', -1);
+            imageCheck.setType('u', false);
         };
 
         $scope.submitExper = function () {
@@ -319,10 +320,12 @@
         uploader.onSuccessItem = function (data, fileItem, response, status, headers) {
 
             if (imageCheck.getType('p')) {
-                imageAdd.setAdd('p',fileItem);
+                imageAdd.setAdd('p', fileItem);
+                imageCheck.setType('p', false);
             }
             else if (imageCheck.getType('u')) {
                 imageAdd.setAdd('u', fileItem);
+                imageCheck.setType('u', false);
             }
             else if(imageCheck.getType('d')){
                 imageAdd.setAdd('d', fileItem);
@@ -356,6 +359,9 @@
 
         $scope.updation_image = function () {
             imageCheck.setType('u', true);
+        }
+        $scope.degree_image = function () {
+            imageCheck.setType('d', true);
         }
         $scope.showConfirm = function (ev, add) {
             var confirm = $mdDialog.confirm()

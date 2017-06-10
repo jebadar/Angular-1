@@ -4,12 +4,15 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="4dddef29f5e84721a1bfd7f0f8431b02" Name="Diagram1">
+      <Diagram DiagramId="544b4561edf8441f8af953dbc6441ab2" Name="Diagram1" ZoomLevel="72">
+        <EntityTypeShape EntityType="test_Applicata_DataBaseModel.items_region" Width="1.5" PointX="5.75" PointY="4" IsExpanded="true" />
+        <EntityTypeShape EntityType="test_Applicata_DataBaseModel.rooms_region" Width="1.5" PointX="8" PointY="4" IsExpanded="true" />
         <EntityTypeShape EntityType="test_Applicata_DataBaseModel.tutor" Width="1.5" PointX="0.75" PointY="3.75" IsExpanded="true" />
         <EntityTypeShape EntityType="test_Applicata_DataBaseModel.tutor_experience" Width="1.5" PointX="3" PointY="1.375" IsExpanded="true" />
         <EntityTypeShape EntityType="test_Applicata_DataBaseModel.tutor_qualification" Width="1.5" PointX="3" PointY="8.125" IsExpanded="true" />
         <EntityTypeShape EntityType="test_Applicata_DataBaseModel.user_roles" Width="1.5" PointX="5.75" PointY="1.125" IsExpanded="true" />
         <EntityTypeShape EntityType="test_Applicata_DataBaseModel.user" Width="1.5" PointX="8" PointY="0.875" IsExpanded="true" />
+        <AssociationConnector Association="test_Applicata_DataBaseModel.FK__rooms_reg__item___71D1E811" ManuallyRouted="false" />
         <AssociationConnector Association="test_Applicata_DataBaseModel.FK_experience_tutor" ManuallyRouted="false" />
         <AssociationConnector Association="test_Applicata_DataBaseModel.FK_qualification_tutor" ManuallyRouted="false" />
         <AssociationConnector Association="test_Applicata_DataBaseModel.users_user_role_FK" ManuallyRouted="false" />

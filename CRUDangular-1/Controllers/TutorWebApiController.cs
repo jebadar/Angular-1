@@ -8,11 +8,10 @@ using CRUDangular_1.Models;
 using System.Data.Entity.Validation;
 using System.Data;
 using System.Data.SqlClient;
-using System;                     // For system functions like Console.
-using System.Collections.Generic;
 using System.Data.Entity;
 using System.Web;
 using System.Configuration; // For generic collections like List.
+using log4net;
 
 
 namespace CRUDangular_1.Controllers
@@ -20,6 +19,8 @@ namespace CRUDangular_1.Controllers
     [Authorize]
     public class TutorWebApiController : ApiController
     {
+        private static readonly log4net.ILog log =
+        log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
         // GET api/<controller>
         public List<tutor> Get()
         {
@@ -125,17 +126,7 @@ namespace CRUDangular_1.Controllers
                 }
                 catch (DbEntityValidationException e)
                 {
-                    foreach (var eve in e.EntityValidationErrors)
-                    {
-                        Console.WriteLine("Entity of type \"{0}\" in state \"{1}\" has the following validation errors:",
-                            eve.Entry.Entity.GetType().Name, eve.Entry.State);
-                        foreach (var ve in eve.ValidationErrors)
-                        {
-                            Console.WriteLine("- Property: \"{0}\", Error: \"{1}\"",
-                                ve.PropertyName, ve.ErrorMessage);
-                        }
-                    }
-                    throw;
+                    log.Error(e);
                 }
             }
 
@@ -159,17 +150,7 @@ namespace CRUDangular_1.Controllers
                         }
                         catch (DbEntityValidationException e)
                         {
-                                foreach (var eve in e.EntityValidationErrors)
-                                {
-                                        Console.WriteLine("Entity of type \"{0}\" in state \"{1}\" has the following validation errors:",
-                                            eve.Entry.Entity.GetType().Name, eve.Entry.State);
-                                        foreach (var ve in eve.ValidationErrors)
-                                        {
-                                            Console.WriteLine("- Property: \"{0}\", Error: \"{1}\"",
-                                                ve.PropertyName, ve.ErrorMessage);
-                                        }
-                                }
-                                throw;
+                            log.Error(e);
                         }
                 }
             }

@@ -30,5 +30,6 @@ namespace CRUDangular_1.Models
         public string year { get; set; }
         public string contigency { get; set; }
         public string registration_no { get; set; }
+        public string tutor_id { get; set; }
     }
 }

@@ -1,73 +1,74 @@
 ﻿<div class="col-lg-12">
+    <div class="col-lg-12">
+            <div class="col-md-9" style="background-color:white">
+            <fieldset>
+                <legend class="text-center"><em>TUTOR INFORMATION</em></legend>
+                <div class="col-md-12 form-group form-inline">
+                    <label class="col-md-3 control-label"><em>Registration No</em></label>
+                    <label class="col-md-3 text-muted">{{tutors.reg_no}}</label>
 
-    <div class="col-md-9" style="background-color:white">
-    <fieldset>
-        <legend class="text-center"><em>TUTOR INFORMATION</em></legend>
-        <div class="col-md-12 form-group form-inline">
-            <label class="col-md-3 control-label"><em>Registration No</em></label>
-            <label class="col-md-3 text-muted">{{tutors.reg_no}}</label>
-
-            <label class="col-md-3 control-label"><em>Name</em></label>
-            <label class="col-md-3 text-muted">{{tutors.name}}</label>
-        </div>
+                    <label class="col-md-3 control-label"><em>Name</em></label>
+                    <label class="col-md-3 text-muted">{{tutors.name}}</label>
+                </div>
        
-        <div class="col-md-12 form-group form-inline">
-            <label class="col-md-3 control-label"><em>Father Name</em></label>
-            <label class="col-md-3 text-muted">{{tutors.f_name}}</label>
+                <div class="col-md-12 form-group form-inline">
+                    <label class="col-md-3 control-label"><em>Father Name</em></label>
+                    <label class="col-md-3 text-muted">{{tutors.f_name}}</label>
 
-            <label class="col-md-3 control-label"><em>Gender</em></label>
-            <label scope="row" ng-show="tutors.gender === '1'">Male</label>
-            <label scope="row" ng-show="tutors.gender === '2'">Female</label>
-        </div>
+                    <label class="col-md-3 control-label"><em>Gender</em></label>
+                    <label scope="row" ng-show="tutors.gender === '1'">Male</label>
+                    <label scope="row" ng-show="tutors.gender === '2'">Female</label>
+                </div>
        
-        <div class="col-md-12 form-group form-inline">
-            <label class="col-md-3 control-label"><em>Designation</em></label>
-            <label class="col-md-3 text-muted">{{tutors.designation}}</label>
+                <div class="col-md-12 form-group form-inline">
+                    <label class="col-md-3 control-label"><em>Designation</em></label>
+                    <label class="col-md-3 text-muted">{{tutors.designation}}</label>
 
-            <label class="col-md-3 control-label"><em>BPS</em></label>
-            <label class="col-md-3 text-muted">{{tutors.basic_pay_scale}}</label>
-        </div>
+                    <label class="col-md-3 control-label"><em>BPS</em></label>
+                    <label class="col-md-3 text-muted">{{tutors.basic_pay_scale}}</label>
+                </div>
         
-        <div class="col-md-12  form-group form-inline">
-            <label class="col-md-3 control-label"><em>Official Address</em></label>
-            <label class="col-md-3 text-muted">{{tutors.official_add}}</label>
+                <div class="col-md-12  form-group form-inline">
+                    <label class="col-md-3 control-label"><em>Official Address</em></label>
+                    <label class="col-md-3 text-muted">{{tutors.official_add}}</label>
 
-            <label class="col-sm-3 control-label"><em>Mailing Address</em></label>
-            <label class="col-sm-3 text-muted">{{tutors.mail_add}}</label>
+                    <label class="col-sm-3 control-label"><em>Mailing Address</em></label>
+                    <label class="col-sm-3 text-muted">{{tutors.mail_add}}</label>
 
-       </div>
+               </div>
        
-        <div class="col-md-12  form-group form-inline">
-            <label class="col-md-3 control-label"><em>Qualification</em></label>
-            <label class="col-md-3 text-muted">{{tutors.qulification}}</label>
+                <div class="col-md-12  form-group form-inline">
+                    <label class="col-md-3 control-label"><em>Qualification</em></label>
+                    <label class="col-md-3 text-muted">{{tutors.qulification}}</label>
 
-            <label class="col-md-3 control-label"><em>Phone</em></label>
-            <label class="col-md-3 text-muted">{{tutors.phone}}</label>
+                    <label class="col-md-3 control-label"><em>Phone</em></label>
+                    <label class="col-md-3 text-muted">{{tutors.phone}}</label>
+                 </div>
+
+                <div class=" col-md-12 form-group form-inline">
+                    <label class="col-md-3 control-label"><em>Tehsil</em></label>
+                    <label class="col-md-3 text-muted">{{tutors.tehsil}}</label>
+                </div>
+            </fieldset>
          </div>
+            <div class="col-md-3">
 
-        <div class=" col-md-12 form-group form-inline">
-            <label class="col-md-3 control-label"><em>Tehsil</em></label>
-            <label class="col-md-3 text-muted">{{tutors.tehsil}}</label>
+                <div class="col-sm-12">
+                    <blockquote class="blockquote blockquote-reverse" ng-show="tutors.image_profile == '../../'"><em>Profile Picture: Not Uploaded</em></blockquote>
+                    <label class="control-label"ng-show="tutors.image_profile.indexOf('Images/Tutor_Profile/') != -1">Profile Image</label>
+                    <a ng-click="openLightboxModalTutor(0)" ng-show="tutors.image_profile.indexOf('Images/Tutor_Profile/') != -1">
+                    <img ng-src="{{tutors.image_profile}}"  class="avatar img-responsive" alt="Responsive image">
+                    </a>
+                    </div>
+                <div class="col-sm-12">
+                    <blockquote class="blockquote blockquote-reverse" ng-show="tutors.image_updation_form == '../../'"><em>Updation Form Picture: Not Uploaded</em></blockquote>
+                    <label class="control-label" ng-show="tutors.image_updation_form.indexOf('Images/Tutor_Updation_Form/') != -1">Updation Form Image</label>
+                    <a ng-click="openLightboxModalTutor(1)" ng-show="tutors.image_updation_form.indexOf('Images/Tutor_Updation_Form/') != -1">
+                    <img ng-src="{{tutors.image_updation_form}}"  class="avatar img-responsive" alt="Responsive image">
+                    </a>
+               </div>
+            </div>
         </div>
-    </fieldset>
- </div>
-    <div class="col-md-3">
-            <blockquote class="blockquote blockquote-reverse" ng-show="tutors.image_profile == '../../'"><em>Profile Picture: Not Uploaded</em>
-            </blockquote>
-            <blockquote class="blockquote blockquote-reverse" ng-show="tutors.image_updation_form == '../../'"><em>Updation Form Picture: Not Uploaded</em>
-            </blockquote>
-            <br />
-        <div class="col-sm-7">
-            <a ng-click="openLightboxModalTutor(0)" ng-show="tutors.image_profile.indexOf('Images/Tutor_Profile/') != -1">
-            <img ng-src="{{tutors.image_profile}}"  class="avatar img-responsive" style="border-radius:40%;" alt="Responsive image">
-            </a>
-            </div>
-                <div class="col-sm-7">
-            <a ng-click="openLightboxModalTutor(1)" ng-show="tutors.image_profile.indexOf('Images/Tutor_Profile/') != -1">
-            <img ng-src="{{tutors.image_updation_form}}"  class="avatar img-responsive" style="border-radius:40%;" alt="Responsive image">
-            </a>
-            </div>
-    </div>
     <legend class="text-center"><em>TUTOR EXPERIENCE</em></legend>
         <div class="col-md-12">
             <table ng-table="vm.tableParams" class="table col-lg-12 table-bordered table-lg table-striped table-condensed" style="font-size:11px;background-color:white" show-filter="true">

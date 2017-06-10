@@ -6,11 +6,17 @@
     <edmx:StorageModels>
       <Schema Namespace="test_Applicata_DataBaseModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityContainer Name="test_Applicata_DataBaseModelStoreContainer">
+          <EntitySet Name="items_region" EntityType="test_Applicata_DataBaseModel.Store.items_region" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="rooms_region" EntityType="test_Applicata_DataBaseModel.Store.rooms_region" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="tutor" EntityType="test_Applicata_DataBaseModel.Store.tutor" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="tutor_experience" EntityType="test_Applicata_DataBaseModel.Store.tutor_experience" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="tutor_qualification" EntityType="test_Applicata_DataBaseModel.Store.tutor_qualification" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="user_roles" EntityType="test_Applicata_DataBaseModel.Store.user_roles" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="users" EntityType="test_Applicata_DataBaseModel.Store.users" store:Type="Tables" Schema="dbo" />
+          <AssociationSet Name="FK__rooms_reg__item___71D1E811" Association="test_Applicata_DataBaseModel.Store.FK__rooms_reg__item___71D1E811">
+            <End Role="items_region" EntitySet="items_region" />
+            <End Role="rooms_region" EntitySet="rooms_region" />
+          </AssociationSet>
           <AssociationSet Name="FK_experience_tutor" Association="test_Applicata_DataBaseModel.Store.FK_experience_tutor">
             <End Role="tutor" EntitySet="tutor" />
             <End Role="tutor_experience" EntitySet="tutor_experience" />
@@ -24,6 +30,31 @@
             <End Role="users" EntitySet="users" />
           </AssociationSet>
         </EntityContainer>
+        <EntityType Name="items_region">
+          <Key>
+            <PropertyRef Name="item_ID" />
+          </Key>
+          <Property Name="item_ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="item_name" Type="varchar" Nullable="false" MaxLength="100" />
+          <Property Name="item_total" Type="int" Nullable="false" />
+          <Property Name="item_remarks" Type="varchar" MaxLength="100" />
+          <Property Name="is_deleted" Type="varchar" MaxLength="50" />
+          <Property Name="updated_by" Type="varchar" MaxLength="20" />
+          <Property Name="updated_date" Type="varchar" MaxLength="100" />
+          <Property Name="district" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="rooms_region">
+          <Key>
+            <PropertyRef Name="room_ID" />
+          </Key>
+          <Property Name="room_ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="room_no" Type="int" Nullable="false" />
+          <Property Name="item_ID" Type="int" Nullable="false" />
+          <Property Name="item_amount" Type="int" Nullable="false" />
+          <Property Name="updated_by" Type="varchar" MaxLength="50" />
+          <Property Name="updated_date" Type="varchar" MaxLength="50" />
+          <Property Name="dstrict" Type="varchar" MaxLength="50" />
+        </EntityType>
         <EntityType Name="tutor">
           <Key>
             <PropertyRef Name="tutor_id" />
@@ -111,6 +142,18 @@
           <Property Name="u_password" Type="varchar" MaxLength="100" />
           <Property Name="user_role" Type="int" Nullable="false" />
         </EntityType>
+        <Association Name="FK__rooms_reg__item___71D1E811">
+          <End Role="items_region" Type="test_Applicata_DataBaseModel.Store.items_region" Multiplicity="1" />
+          <End Role="rooms_region" Type="test_Applicata_DataBaseModel.Store.rooms_region" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="items_region">
+              <PropertyRef Name="item_ID" />
+            </Principal>
+            <Dependent Role="rooms_region">
+              <PropertyRef Name="item_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_experience_tutor">
           <End Role="tutor" Type="test_Applicata_DataBaseModel.Store.tutor" Multiplicity="0..1" />
           <End Role="tutor_experience" Type="test_Applicata_DataBaseModel.Store.tutor_experience" Multiplicity="*" />
@@ -153,11 +196,17 @@
     <edmx:ConceptualModels>
       <Schema Namespace="test_Applicata_DataBaseModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityContainer Name="test_Applicata_DataBaseEntities" p1:LazyLoadingEnabled="true">
+          <EntitySet Name="items_region" EntityType="test_Applicata_DataBaseModel.items_region" />
+          <EntitySet Name="rooms_region" EntityType="test_Applicata_DataBaseModel.rooms_region" />
           <EntitySet Name="tutors" EntityType="test_Applicata_DataBaseModel.tutor" />
           <EntitySet Name="tutor_experience" EntityType="test_Applicata_DataBaseModel.tutor_experience" />
           <EntitySet Name="tutor_qualification" EntityType="test_Applicata_DataBaseModel.tutor_qualification" />
           <EntitySet Name="user_roles" EntityType="test_Applicata_DataBaseModel.user_roles" />
           <EntitySet Name="users" EntityType="test_Applicata_DataBaseModel.user" />
+          <AssociationSet Name="FK__rooms_reg__item___71D1E811" Association="test_Applicata_DataBaseModel.FK__rooms_reg__item___71D1E811">
+            <End Role="items_region" EntitySet="items_region" />
+            <End Role="rooms_region" EntitySet="rooms_region" />
+          </AssociationSet>
           <AssociationSet Name="FK_experience_tutor" Association="test_Applicata_DataBaseModel.FK_experience_tutor">
             <End Role="tutor" EntitySet="tutors" />
             <End Role="tutor_experience" EntitySet="tutor_experience" />
@@ -171,6 +220,33 @@
             <End Role="users" EntitySet="users" />
           </AssociationSet>
         </EntityContainer>
+        <EntityType Name="items_region">
+          <Key>
+            <PropertyRef Name="item_ID" />
+          </Key>
+          <Property Name="item_ID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="item_name" Type="String" Nullable="false" MaxLength="100" Unicode="false" FixedLength="false" />
+          <Property Name="item_total" Type="Int32" Nullable="false" />
+          <Property Name="item_remarks" Type="String" MaxLength="100" Unicode="false" FixedLength="false" />
+          <Property Name="is_deleted" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="updated_by" Type="String" MaxLength="20" Unicode="false" FixedLength="false" />
+          <Property Name="updated_date" Type="String" MaxLength="100" Unicode="false" FixedLength="false" />
+          <Property Name="district" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="rooms_region" Relationship="test_Applicata_DataBaseModel.FK__rooms_reg__item___71D1E811" FromRole="items_region" ToRole="rooms_region" />
+        </EntityType>
+        <EntityType Name="rooms_region">
+          <Key>
+            <PropertyRef Name="room_ID" />
+          </Key>
+          <Property Name="room_ID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="room_no" Type="Int32" Nullable="false" />
+          <Property Name="item_ID" Type="Int32" Nullable="false" />
+          <Property Name="item_amount" Type="Int32" Nullable="false" />
+          <Property Name="updated_by" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="updated_date" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="dstrict" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="items_region" Relationship="test_Applicata_DataBaseModel.FK__rooms_reg__item___71D1E811" FromRole="rooms_region" ToRole="items_region" />
+        </EntityType>
         <EntityType Name="tutor">
           <Key>
             <PropertyRef Name="tutor_id" />
@@ -264,6 +340,18 @@
           <Property Name="user_role" Type="Int32" Nullable="false" />
           <NavigationProperty Name="user_roles" Relationship="test_Applicata_DataBaseModel.users_user_role_FK" FromRole="users" ToRole="user_roles" />
         </EntityType>
+        <Association Name="FK__rooms_reg__item___71D1E811">
+          <End Role="items_region" Type="test_Applicata_DataBaseModel.items_region" Multiplicity="1" />
+          <End Role="rooms_region" Type="test_Applicata_DataBaseModel.rooms_region" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="items_region">
+              <PropertyRef Name="item_ID" />
+            </Principal>
+            <Dependent Role="rooms_region">
+              <PropertyRef Name="item_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_experience_tutor">
           <End Role="tutor" Type="test_Applicata_DataBaseModel.tutor" Multiplicity="0..1" />
           <End Role="tutor_experience" Type="test_Applicata_DataBaseModel.tutor_experience" Multiplicity="*" />
@@ -306,6 +394,33 @@
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="test_Applicata_DataBaseModelStoreContainer" CdmEntityContainer="test_Applicata_DataBaseEntities">
+          <EntitySetMapping Name="items_region">
+            <EntityTypeMapping TypeName="test_Applicata_DataBaseModel.items_region">
+              <MappingFragment StoreEntitySet="items_region">
+                <ScalarProperty Name="item_ID" ColumnName="item_ID" />
+                <ScalarProperty Name="item_name" ColumnName="item_name" />
+                <ScalarProperty Name="item_total" ColumnName="item_total" />
+                <ScalarProperty Name="item_remarks" ColumnName="item_remarks" />
+                <ScalarProperty Name="is_deleted" ColumnName="is_deleted" />
+                <ScalarProperty Name="updated_by" ColumnName="updated_by" />
+                <ScalarProperty Name="updated_date" ColumnName="updated_date" />
+                <ScalarProperty Name="district" ColumnName="district" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="rooms_region">
+            <EntityTypeMapping TypeName="test_Applicata_DataBaseModel.rooms_region">
+              <MappingFragment StoreEntitySet="rooms_region">
+                <ScalarProperty Name="room_ID" ColumnName="room_ID" />
+                <ScalarProperty Name="room_no" ColumnName="room_no" />
+                <ScalarProperty Name="item_ID" ColumnName="item_ID" />
+                <ScalarProperty Name="item_amount" ColumnName="item_amount" />
+                <ScalarProperty Name="updated_by" ColumnName="updated_by" />
+                <ScalarProperty Name="updated_date" ColumnName="updated_date" />
+                <ScalarProperty Name="dstrict" ColumnName="dstrict" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="tutors">
             <EntityTypeMapping TypeName="test_Applicata_DataBaseModel.tutor">
               <MappingFragment StoreEntitySet="tutor">

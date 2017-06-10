@@ -38,7 +38,7 @@
             <td>{{searchTutors.phone}}</td>
             <td scope="row" ng-show="searchTutors.gender === '1'">Male</td>
             <td scope="row" ng-show="searchTutors.gender === '2'">Female</td>
-            <td scope="row" ng-show="searchTutors.gender === 'FEMALE' || searchTutors.gender === 'MALE' || searchTutors.gender === 'N/A'">{{searchTutors.gender}}</td>
+            <td scope="row" ng-show="searchTutors.gender === 'FEMALE' || searchTutors.gender === 'MALE' || searchTutors.gender === 'N/A'|| searchTutors.gender === 'Male' || searchTutors.gender === 'Female'">{{searchTutors.gender}}</td>
             <td>{{searchTutors.tehsil}}</td>
             <td scope="row" ng-show="searchTutors.t_status === 'verified'"  class="text-success">
               Verified

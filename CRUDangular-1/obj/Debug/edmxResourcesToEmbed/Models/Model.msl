@@ -1,6 +1,33 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
   <EntityContainerMapping StorageEntityContainer="test_Applicata_DataBaseModelStoreContainer" CdmEntityContainer="test_Applicata_DataBaseEntities">
+    <EntitySetMapping Name="items_region">
+      <EntityTypeMapping TypeName="test_Applicata_DataBaseModel.items_region">
+        <MappingFragment StoreEntitySet="items_region">
+          <ScalarProperty Name="item_ID" ColumnName="item_ID" />
+          <ScalarProperty Name="item_name" ColumnName="item_name" />
+          <ScalarProperty Name="item_total" ColumnName="item_total" />
+          <ScalarProperty Name="item_remarks" ColumnName="item_remarks" />
+          <ScalarProperty Name="is_deleted" ColumnName="is_deleted" />
+          <ScalarProperty Name="updated_by" ColumnName="updated_by" />
+          <ScalarProperty Name="updated_date" ColumnName="updated_date" />
+          <ScalarProperty Name="district" ColumnName="district" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="rooms_region">
+      <EntityTypeMapping TypeName="test_Applicata_DataBaseModel.rooms_region">
+        <MappingFragment StoreEntitySet="rooms_region">
+          <ScalarProperty Name="room_ID" ColumnName="room_ID" />
+          <ScalarProperty Name="room_no" ColumnName="room_no" />
+          <ScalarProperty Name="item_ID" ColumnName="item_ID" />
+          <ScalarProperty Name="item_amount" ColumnName="item_amount" />
+          <ScalarProperty Name="updated_by" ColumnName="updated_by" />
+          <ScalarProperty Name="updated_date" ColumnName="updated_date" />
+          <ScalarProperty Name="dstrict" ColumnName="dstrict" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <EntitySetMapping Name="tutors">
       <EntityTypeMapping TypeName="test_Applicata_DataBaseModel.tutor">
         <MappingFragment StoreEntitySet="tutor">

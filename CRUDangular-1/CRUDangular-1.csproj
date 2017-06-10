@@ -41,6 +41,14 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="ClosedXML, Version=0.87.0.0, Culture=neutral, PublicKeyToken=fd1eb21b62ae805b, processorArchitecture=MSIL">
+      <HintPath>..\packages\ClosedXML.0.87.1\lib\net40\ClosedXML.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DocumentFormat.OpenXml, Version=2.5.5631.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\DocumentFormat.OpenXml.2.5\lib\DocumentFormat.OpenXml.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.1.0\lib\net45\EntityFramework.dll</HintPath>
       <Private>True</Private>
@@ -55,6 +63,10 @@
     </Reference>
     <Reference Include="LinqToExcel, Version=1.11.0.0, Culture=neutral, PublicKeyToken=9c8ea65a58f03f1f, processorArchitecture=MSIL">
       <HintPath>..\packages\LinqToExcel.1.11.0\lib\LinqToExcel.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="log4net, Version=1.2.10.0, Culture=neutral, PublicKeyToken=1b44e1d426115821, processorArchitecture=MSIL">
+      <HintPath>..\packages\log4net.1.2.10\lib\2.0\log4net.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.AspNet.Identity.Core, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
@@ -199,6 +211,7 @@
     <Compile Include="Controllers\ExperienceWebApiController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ImportWebApiController.cs" />
+    <Compile Include="Controllers\ItemWebApiController.cs" />
     <Compile Include="Controllers\QualificationWebApiController.cs" />
     <Compile Include="Controllers\RoleWebApiController.cs" />
     <Compile Include="Controllers\TotalRecordWebApiController.cs" />
@@ -207,6 +220,10 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\items_region.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\item_total.cs" />
     <Compile Include="Models\Model.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -222,6 +239,10 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Model.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Models\rooms_region.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\singleItem.cs" />
     <Compile Include="Models\S_Notification.cs" />
     <Compile Include="Models\S_Tutor.cs" />
     <Compile Include="Models\tutor.cs">
@@ -254,6 +275,14 @@
     <Content Include="app\expeForm\expeController.js" />
     <Content Include="app\expeForm\efExpe.html" />
     <Content Include="app\importSheetView.html" />
+    <Content Include="app\itemForm\editRoom.html" />
+    <Content Include="app\itemForm\ifController.js" />
+    <Content Include="app\itemForm\ifDirective.js" />
+    <Content Include="app\itemForm\ifMain.html" />
+    <Content Include="app\itemForm\ifMainAdmin.html" />
+    <Content Include="app\itemForm\itemDetail.html" />
+    <Content Include="app\itemForm\newItem.html" />
+    <Content Include="app\itemForm\rdItemDetail.html" />
     <Content Include="app\loadPage.html" />
     <Content Include="app\qualForm\qfController.js" />
     <Content Include="app\qualForm\qfDirective.js" />

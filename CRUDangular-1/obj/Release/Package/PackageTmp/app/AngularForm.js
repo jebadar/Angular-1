@@ -79,6 +79,37 @@ formApp.config(["$routeProvider", "$locationProvider", "LightboxProvider", funct
 
 }]);
 
+
+formApp.service("imageCheck", function () {
+    var profileImage = false;
+    var formImage = false;
+    var degreeImage = false;
+    return {
+        getType: function (a) {
+            if (a == 'p') {
+                return profileImage;
+            }
+            else if (a == 'u') {
+                return formImage;
+            }
+            else if (a == 'd') {
+                return degreeImage;
+            }
+        },
+        setType: function (a, value) {
+            if (a == 'p') {
+                profileImage = value;
+            }
+            else if (a == 'u') {
+                formImage = value;
+            }
+            else if (a == 'd') {
+                degreeImage = value;
+            }
+        }
+    }
+})
+
 formApp.service("tutorID", function TutorID() {
     var tutorId = this;
 
@@ -141,43 +172,32 @@ formApp.service("searchResultArray", function () {
     }
 })
 
-formApp.service("imageCheck", function ()
-{
-    var profileImage = false;
-    var formImage = false;
-    var degreeImage = false;
+formApp.service("userCheck", function () {
+    var adminCheck = false;
+    var directorCheck = false;
     return {
-        getType: function(a)
-            {
-                if (a == 'p')
-                {
-                    return profileImage;
-                }
-                else if (a == 'u')
-                {
-                    return formImage;
-                }
-                else if (a == 'd')
-                {
-                    return degreeImage;
-                }
+        getUser: function (a) {
+            if (a == 'admin')
+                return adminCheck;
+            else if (a == 'director')
+                return directorCheck;
         },
-        setType: function (a, value)
+        setUser: function(user,value)
         {
-            if (a == 'p') {
-                profileImage = value;
+            if (user == 'admin')
+            {
+                adminCheck = value;
             }
-            else if (a == 'u') {
-                formImage = value;
-            }
-            else if (a == 'd') {
-                degreeImage = value;
+            else if (user == 'director')
+            {
+                directorCheck = value;
             }
         }
     }
 })
 
-formApp.controller("HomeController", ["$scope", "$location", "DataService", "$http", "ngDialog", "$mdDialog", "NgTableParams", "FileUploader", "searchResultArray", function ($scope, $location, DataService, $http, ngDialog, $mdDialog, NgTableParams, FileUploader, searchResultArray) {
+
+formApp.controller("HomeController", ["$scope", "$location", "DataService", "$http", "ngDialog", "$mdDialog", "NgTableParams", "FileUploader", "searchResultArray", "userCheck", function ($scope, $location, DataService, $http, ngDialog, $mdDialog, NgTableParams, FileUploader, searchResultArray, userCheck) {
 
     $scope.verify = [{
         active: true
@@ -198,15 +218,6 @@ formApp.controller("HomeController", ["$scope", "$location", "DataService", "$ht
             alert(result.alert);
         });
 
-    /*$http.get("api/TutorWebApi").then(
-        //on success
-        function (result) {
-            $scope.tutors = result.data;
-
-        },
-        function (result) {
-            alert(result.alert);
-        });*/
     $scope.$watch('currentPage + numPerPage', function () {
         var begin = (($scope.currentPage - 1) * $scope.numPerPage)
         , end = begin + $scope.numPerPage;
@@ -307,10 +318,9 @@ formApp.controller("HomeController", ["$scope", "$location", "DataService", "$ht
     }
     $scope.search = "";
     $scope.searchKeyword = "";
-    var isAdmin = 0;
     $scope.searchTutors = searchResultArray.getArray();
     $scope.admin = function () {
-         isAdmin = 1;
+        userCheck.setUser('admin', true);
     }
     $scope.searchField = function (value) {
         var aChar;
@@ -335,10 +345,11 @@ formApp.controller("HomeController", ["$scope", "$location", "DataService", "$ht
         $http.get('api/TotalRecordWebApi/' + query )
         .then(function (result) {
             searchResultArray.setArray(result.data);
-            if (isAdmin == 1) {
+            if (userCheck.getUser('admin')) {
                 $location.path("/searchResultAdmin");
+                userCheck.setUser('admin', false);
             }
-            else 
+            else
                 $location.path("/searchResult");
         },
         function (result) {

@@ -25,6 +25,8 @@ namespace CRUDangular_1.Models
             throw new UnintentionalCodeFirstException();
         }
     
+        public DbSet<items_region> items_region { get; set; }
+        public DbSet<rooms_region> rooms_region { get; set; }
         public DbSet<tutor> tutors { get; set; }
         public DbSet<tutor_experience> tutor_experience { get; set; }
         public DbSet<tutor_qualification> tutor_qualification { get; set; }

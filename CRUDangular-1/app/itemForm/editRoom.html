@@ -1,0 +1,24 @@
+﻿<div class="col-md-12">
+        <div class="col-md-12">
+            <div class="col-md-6"><label>Room No</label></div>
+                <div class="col-md-6"> 
+                    <div class="col-md-6"><input ng-model="singleRoom.room_no" ng-disabled="true"/></div>
+             </div>  
+        </div>
+
+    <div class="col-md-12">
+        <div class="col-md-6"> <label>Item Name</label></div>
+        <div class="col-md-6"><div class="col-md-6"><input ng-model="singleRoom.items_region.item_name" ng-disabled="true"/></div></div>
+    </div>
+    <div class="col-md-12">
+            <div class="col-md-6"><label>Item Quantity</label></div>
+            <div class="col-md-6">
+                <select class="form-control" type="text" name="keyword" ng-required="true" ng-model="singleRoom.item_amount" ng-options="quantity for quantity in quantity"></select>
+            </div>
+    </div>
+    <div class="col-md-6"><label>Remarks</label></div>
+        <div class="col-md-6"><input ng-model="singleRoom.items_region.item_remarks"/></div>
+        
+    <div class="col-md-12"><input type="submit" class="btn btn-primary" value="Submit" ng-click="disableButton();submitRoom()" ng-disabled="tutorForm.$invalid || isDisabled"/></div>
+
+</div>

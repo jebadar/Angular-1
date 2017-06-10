@@ -52,7 +52,22 @@
         var checkTutor = function (query) {
             return $http.get('/api/TotalRecordWebApi/' + query);
         };
+        var getItems = function () {
+            return $http.get('/api/ItemWebApi');
 
+        };
+        var getItemsById = function (id) {
+            return $http.get('/api/ItemWebApi/' + id);
+        };
+        var postItem = function (value) {
+            return $http.post("/api/ItemWebApi/Post", value);
+        };
+        var putRoom = function (value) {
+            return $http.put("/api/ItemWebApi/Put", value);
+        };
+        var roleGet = function(){
+            return $http.get("api/RoleWebApi");
+        }
         return {
             getEmployee: getEmployee,
             updateEmployee: updateEmployee,
@@ -70,6 +85,11 @@
             putExpe: putExpe,
             removeImage: removeImage,
             checkTutor: checkTutor,
+            getItems: getItems,
+            getItemsById: getItemsById,
+            postItem:postItem,
+            putRoom: putRoom,
+            roleGet: roleGet
 
          };
     }]);

@@ -45,13 +45,13 @@ namespace CRUDangular_1
                 "~/app/AngularForm.js",
                 "~/app/DataService.js",
                  "~/app/ValidationDirective.js", 
-                "~/app/EmployeeForm/efcontroller.js",
-                "~/app/EmployeeForm/efDirective.js",
                 "~/app/TutorForm/tfcontroller.js",
                 "~/app/TutorForm/tfDirective.js",
                 "~/app/QualForm/qfcontroller.js",
                 "~/app/QualForm/qfDirective.js",
-                "~/app/ExpeForm/expeController.js"));
+                "~/app/ExpeForm/expeController.js",
+                "~/app/itemForm/ifController.js",
+                "~/app/itemForm/ifDirective.js"));
 
             bundles.Add(new StyleBundle("~/bundles/mini-spa/style").Include("~/Content/bootstrap.min.css",
                       "~/Content/app.css",

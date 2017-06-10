@@ -1,0 +1,53 @@
+﻿<div class="col-md-12">
+    <div class="col-md-8">
+        <div class="col-md-8">
+            <blockquote class="blockquote" >Select Room No: 
+            <select class="form-control" type="text" ng-change="dropdownChange(searchKeyword)" name="keyword" ng-required="true" ng-model="searchKeyword" ng-options="keyword for keyword in keyword"></select>
+            </blockquote>
+
+        </div>
+        <div class="col-md-4">
+            <input type="button" class= "btn btn-primary" value="Add new" ng-click="newItem(null)" />
+        </div>
+    </div>
+
+        
+    <div class="col-md-12" ng-show="room_selected == 0">
+    
+            <table ng-table="vm.tableParams" class="table col-lg-12 table-bordered table-lg table-striped table-condensed" style="font-size:11px;background-color:white" show-filter="true">
+
+            <thead>
+                <th class="col-lg-1">Name</th>
+                <th class="col-lg-1">Total</th>
+                <th class="col-lg-1">Remarks</th>
+                <th class="col-sm-1">Detail</th>
+            </thead>
+                <tr ng-repeat="items in items">
+                    <th scope="row" >{{items.item_name}} </th>
+                    <td >{{items.item_total}}</td>
+                    <td >{{items.item_remarks}}</td>
+                    <td ><button class="btn btn-default btn-sm" ng-click="item_click(items.item_ID);detailItem()">Detail</button> </td>
+                </tr>
+            </table>
+    </div>
+    <div class="col-md-12" ng-show="room_selected != 0">
+        <blockquote class="blockquote" >
+          <h3 class="mb-0">Room No: {{room_selected}}</h3>
+        </blockquote>
+
+    </div>
+    <div class="col-md-12" ng-show ="room_selected != 0">
+            <table ng-table="vm.tableParams" class="table col-lg-12 table-bordered table-lg table-striped table-condensed" style="font-size:11px;background-color:white" show-filter="true">
+
+            <thead>
+                <th class="col-lg-1">Name</th>
+                <th class="col-lg-1">Total</th>
+            </thead>
+                <tr ng-repeat="rooms in rooms">
+                    <th scope="row" ng-show="rooms.room_no == room_selected">{{rooms.items_region.item_name}} </th>
+                    <td scope="row"ng-show="rooms.room_no == room_selected">{{rooms.item_amount}}</td>
+                </tr>
+            </table>
+    </div>
+
+</div>

@@ -20,5 +20,10 @@ namespace CRUDangular_1.Models
         public string qualification { get; set; }
         public string tehsil { get; set; }
         public string intelCertificate { get; set; }
+        public string image_profile { get; set; }
+        public string image_updation_form { get; set; }
+        public string t_status { get; set; }
+        public DateTime update_date { get; set; }
+        public string update_by { get; set; }
     }
 }

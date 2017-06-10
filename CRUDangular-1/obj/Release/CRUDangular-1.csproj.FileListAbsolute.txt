@@ -58,3 +58,9 @@ C:\Git\Angular\CRUDangular-1\bin\Remotion.Data.Linq.dll
 C:\Git\Angular\CRUDangular-1\bin\Remotion.dll
 C:\Git\Angular\CRUDangular-1\bin\Remotion.Interfaces.dll
 C:\Git\Angular\CRUDangular-1\bin\LinqToExcel.xml
+C:\Git\Angular\CRUDangular-1\bin\log4net.dll
+C:\Git\Angular\CRUDangular-1\bin\log4net.xml
+C:\Git\Angular\CRUDangular-1\bin\ClosedXML.dll
+C:\Git\Angular\CRUDangular-1\bin\DocumentFormat.OpenXml.dll
+C:\Git\Angular\CRUDangular-1\bin\ClosedXML.pdb
+C:\Git\Angular\CRUDangular-1\bin\ClosedXML.xml

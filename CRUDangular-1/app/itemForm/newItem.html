@@ -1,0 +1,22 @@
+﻿<form class="form-horizontal" name="itemForm" novalidate role="form">
+    <div class="form-group col-md-12">
+        <div class="col-md-6"> <label>Item Name</label></div>
+        <div class="col-md-6"><select class="form-control" type="text" name="name" ng-required="true" ng-model="item.item_name" ng-options="item_names for item_names in item_names"></select>
+        </div>
+        <div class="col-md-6"><label>Item Quantity</label></div>
+        <div class="col-md-6">
+            <select class="form-control" type="text" name="keyword" ng-required="true" ng-model="item.item_total" ng-options="quantity for quantity in quantity"></select>
+        </div>
+        <div class="col-md-6"><label>Room No</label></div>
+        <div class="col-md-6"> 
+             <select class="form-control" type="text" name="keyword" ng-required="true" ng-model="item.room_no" ng-options="keyword for keyword in keyword"></select>
+       </div>  
+       
+        <div class="col-md-6"><label>Remarks</label></div>
+        <div class="col-md-6"><input ng-model="item.item_remarks"/></div>
+        
+        <div class="col-md-12"><input type="submit" class="btn btn-primary" value="Submit" ng-click="disableButton();submitItem()" ng-disabled="itemForm.$invalid || isDisabled"/></div>
+
+    </div>
+
+</form>

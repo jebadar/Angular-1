@@ -1,0 +1,25 @@
+﻿<div class="col-md-12">
+        <div class="col-md-12">
+            <table ng-table="vm.tableParams" class="table col-lg-12 table-bordered table-lg table-striped table-condensed" style="font-size:11px;background-color:white" show-filter="true">
+
+            <thead>
+                <th class="col-lg-1">Room No</th>
+                <th class="col-lg-1">Name</th>
+                <th class="col-lg-1">Total</th>
+                <th class="col-lg-1">Edit</th>
+
+            </thead>
+                <tr ng-repeat="rooms in rooms">
+                    <th scope="row" ng-show="rooms.item_ID == item_ID">{{rooms.room_no}} </th>
+                    <th scope="row" ng-show="rooms.item_ID == item_ID">{{rooms.items_region.item_name}} </th>
+                    <td scope="row" ng-show="rooms.item_ID == item_ID">{{rooms.item_amount}}</td>
+                    <td scope="row" ng-show="rooms.item_ID == item_ID">
+                        <button class="btn btn-default btn-sm" ng-click="edit_room(rooms.room_ID)"><span class="glyphicon glyphicon-pencil"></span></button>
+                    </td>
+                </tr>
+            </table>
+    </div>
+
+
+
+</div>

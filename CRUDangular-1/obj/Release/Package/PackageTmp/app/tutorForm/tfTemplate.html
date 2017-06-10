@@ -161,16 +161,16 @@
            <div class="col-md-6">
                   <div class="form-group" ng-show="tutors.image_profile.indexOf('Images/Tutor_Profile/') != -1">
                      <img ng-src="{{tutors.image_profile}}" class="avatar img-responsive" style="border-radius:40%;" alt="Responsive image">
-                     <input type="button" class="btn btn-success" value="Remove Image" ng-click="showConfirm($event,profile_image_add)" />
+                     <input type="button" class="btn btn-success" value="Remove Image" ng-click="disableButton();showConfirm($event,profile_image_add)" ng-disable="isDisabled" />
                  </div>
           </div>
            <div class="col-md-6">
                 <div class="form-group" ng-show="tutors.image_updation_form.indexOf('Images/Tutor_Updation_Form/') != -1">
-                <label class="control-label">Updation Form Image</label>
+                <label class="control-label" >Updation Form Image</label>
                     <a ng-click="openLightboxModalTutor($index)">
                     <img ng-src="{{tutors.image_updation_form}}" style="width:200px; height:200px" class="img-responsive" alt="Responsive image">
                     </a>
-                    <input type="button" class="btn btn-success" value="Remove Image" ng-click="showConfirm($event,updation_image_add)" />
+                    <input type="button" class="btn btn-success" value="Remove Image" ng-click="disableButton();showConfirm($event,updation_image_add)" ng-disabled="isDisabled"/>
              </div>  
             </div>
               <div class="col-md-12">

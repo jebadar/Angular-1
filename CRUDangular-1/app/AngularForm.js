@@ -66,6 +66,30 @@ formApp.config(["$routeProvider", "$locationProvider", "LightboxProvider", funct
             templateUrl: "app/searchListAdmin.html",
             controller: "HomeController"
         })
+        .when("/itemMainAdmin", {
+            templateUrl: "app/itemForm/ifMainAdmin.html",
+            controller: "ifController"
+        })
+        .when("/itemMain", {
+            templateUrl: "app/itemForm/ifMain.html",
+            controller: "ifController"
+        })
+        .when("/newItem:id", {
+            templateUrl: "app/itemForm/newItem.html",
+            controller: "ifController"
+        })
+        .when("/detailItem", {
+            templateUrl: "app/itemForm/itemDetail.html",
+            controller: "ifController"
+        })
+        .when("/rdDetailItem", {
+            templateUrl: "app/itemForm/rdItemDetail.html",
+            controller: "ifController"
+        })
+        .when("/EditRoomItem/:id", {
+            templateUrl: "/app/itemForm/editRoom.html",
+            controller: "ifController"
+        })
     .otherwise({
         redirectTo:"/load"
     });
@@ -195,6 +219,17 @@ formApp.service("userCheck", function () {
         }
     }
 })
+formApp.service("itemId_service", function () {
+    var itemId = this;
+    return {
+        getId: function () {
+            return itemId;
+        },
+        setId:function(value){
+            itemId = value;
+        }
+    }
+})
 
 
 formApp.controller("HomeController", ["$scope", "$location", "DataService", "$http", "ngDialog", "$mdDialog", "NgTableParams", "FileUploader", "searchResultArray", "userCheck", function ($scope, $location, DataService, $http, ngDialog, $mdDialog, NgTableParams, FileUploader, searchResultArray, userCheck) {
@@ -206,18 +241,25 @@ formApp.controller("HomeController", ["$scope", "$location", "DataService", "$ht
     $scope.qualification = [];
     $scope.updationSheetCheck = 0;
     $scope.notificationSheetCheck = 0;
+    var totalItemGetId = "10101";
+
 
 
     $http.get("api/TotalRecordWebApi").then(
         //on success
         function (result) {
             $scope.totalTutors = result.data;
-
         },
         function (result) {
             alert(result.alert);
         });
-
+    $http.get("/api/itemWebApi/" + totalItemGetId).then(
+        function (result) {
+            $scope.totalItems = result.data.item_amount;
+        }, function (result) {
+            alert(result.alert);
+        }
+        )
     $scope.$watch('currentPage + numPerPage', function () {
         var begin = (($scope.currentPage - 1) * $scope.numPerPage)
         , end = begin + $scope.numPerPage;
@@ -228,6 +270,12 @@ formApp.controller("HomeController", ["$scope", "$location", "DataService", "$ht
     }
     $scope.adminTutor = function () {
         $location.path("/home");
+    }
+    $scope.adminItem = function () {
+        $location.path("/itemMainAdmin");
+    }
+    $scope.mainItem = function () {
+        $location.path("/itemMain");
     }
     $scope.DetailTutor = function (id) {
         $location.path("/DetailTutor/" + id);
