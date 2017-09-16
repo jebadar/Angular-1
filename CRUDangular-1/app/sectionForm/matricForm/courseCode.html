@@ -1,0 +1,8 @@
+﻿    <div class="col-md-12">
+            <form class="form-inline" name="courseCodeForm" novalidate role="form">
+                    <div class="form-group">
+                        <select class="form-control" type="text" name="code" ng-required="true" ng-model="singleCourseCode" ng-options="courseCodes.courseCode for courseCodes in courseCodes"></select>
+                        <button class="btn btn-default btn-md" ng-click="studentList(singleCourseCode)"ng-disabled="courseCodeForm.$invalid || isDisabled">Select</button>
+                    </div>
+            </form>
+     </div>

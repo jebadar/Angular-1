@@ -132,7 +132,6 @@ namespace CRUDangular_1.Controllers
             {
                 enterItem(room.item_ID, room.room_ID, room.item_amount);
                 test_Applicata_DataBaseEntities db = new test_Applicata_DataBaseEntities();
-                
                 db.Entry(room).State = System.Data.Entity.EntityState.Modified;
                 try
                 {
@@ -142,9 +141,7 @@ namespace CRUDangular_1.Controllers
                 {
                     log.Error(e);
                 }
-                
             }
-           
         }
 
         public void enterItem(int item_id,int room_id,int amount)

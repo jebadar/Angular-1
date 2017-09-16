@@ -1,0 +1,75 @@
+﻿<div class="col-lg-12">
+    <div class="col-md-12"> 
+        <div class="col-md-3">
+            <input type="button" class= "btn btn-primary" value="Add Tutor" ng-click="option()" />
+        </div>
+        
+        <div class="col-md-3">
+            <input type="button" class= "btn btn-primary" value="Start New Semester" ng-click="clickSemesterNew()" />
+        </div>
+    </div>
+    <div class="col-md-12">
+        <blockquote class="blockquote blockquote-reverse"><em>Current Semester: {{user.semester_current.semester}}-{{user.semester_current.year_}}</em></blockquote>
+     </div>
+    <div class="col-md-12">
+        <form class="form-inline">
+            <div class="form-group">
+                <input type="text" ng-model="search" class="form-control" placeholder="Search">
+            </div>
+        </form>
+        <table ng-table="vm.tableParams" class="table col-lg-12 table-bordered table-lg table-striped table-condensed" style="font-size:11px;background-color:white" show-filter="true">
+          <thead>
+            <th class="col-lg-1">Registration No</th>
+            <th class="col-lg-1">Name</th>
+            <th class="col-lg-1">Father Name</th>
+            <th class="col-lg-1">Designation</th>
+            <th class="col-lg-1">Official Address</th>
+            <th class="col-lg-2">Mailing Address</th>
+            <th class="col-lg-1">Phone</th>
+            <th class="col-lg-1">Gender</th>
+            <th class="col-lg-1">Status</th>
+            <th class="col-lg-1">Students</th>
+            <th class="col-lg-1">Course Code</th>
+            <th class="col-lg-1">Appoint Status</th>
+            <th class="col-lg-1">Detail</th>
+            <th class="col-lg-1">Show Students</th>
+            <th class="col-lg-1">Appoint Students</th>
+        </thead>
+            <tr ng-repeat="secTutor in secTutor|filter:search">
+                <th scope="row" >{{secTutor.tutor.reg_no}} </th>
+                <td>{{secTutor.tutor.name}}</td>
+                <td>{{secTutor.tutor.f_name}}</td>
+                <td>{{secTutor.tutor.designation}}</td>
+                <td>{{secTutor.tutor.official_add}}</td>
+                <td>{{secTutor.tutor.mail_add}}</td>
+                <td>{{secTutor.tutor.phone}}</td>
+                <td scope="row" ng-show="secTutor.tutor.gender === '1'">Male</td>
+                <td scope="row" ng-show="secTutor.tutor.gender === '2'">Female</td>
+                <td scope="row" ng-show="secTutor.tutor.gender === 'FEMALE' || secTutor.tutor.gender === 'MALE' || secTutor.tutor.gender === 'N/A' || secTutor.tutor.gender === 'Male' || secTutor.tutor.gender === 'Female'">{{secTutor.tutor.gender}}</td>
+                <th scope="row" ng-show="secTutor.tutor.t_status === 'verified'"  class="text-success">
+                  Verified
+                </th>
+                <th scope="row" ng-show="secTutor.tutor.t_status === 'unverified'" class="text-danger">
+                  Unverified
+                </th>
+                <th scope="row">{{secTutor.students}}</th>
+                <th scope="row">{{secTutor.course_code}}</th>
+                <td scope="row"> {{secTutor.appoint_status}}</td>
+                <th scope="row">
+                   <button class="btn btn-default btn-sm" ng-click="DetailTutor(secTutor.tutor.tutor_id)">Detail</button>
+                </th>
+                <td scope="row">
+                    <button class="btn btn-default btn-sm" ng-click="stdAppointList(secTutor.tutor.tutor_id)">Students</button>
+                </td>
+                <td scope="row">
+                   <button class="btn btn-default btn-sm" ng-click="courseCodeView(secTutor.tutor.tutor_id)">Appoint</button>
+                </td>
+
+            </tr>
+        </table>
+
+        </div>
+                <div class="col-sm-9">
+                        <input type="button" class="btn btn-default" value="Back" ng-click="cancelForm()"/>
+                </div>
+    </div>

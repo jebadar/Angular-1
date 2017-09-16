@@ -4,16 +4,38 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="544b4561edf8441f8af953dbc6441ab2" Name="Diagram1" ZoomLevel="72">
-        <EntityTypeShape EntityType="test_Applicata_DataBaseModel.items_region" Width="1.5" PointX="5.75" PointY="4" IsExpanded="true" />
-        <EntityTypeShape EntityType="test_Applicata_DataBaseModel.rooms_region" Width="1.5" PointX="8" PointY="4" IsExpanded="true" />
-        <EntityTypeShape EntityType="test_Applicata_DataBaseModel.tutor" Width="1.5" PointX="0.75" PointY="3.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="test_Applicata_DataBaseModel.tutor_experience" Width="1.5" PointX="3" PointY="1.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="test_Applicata_DataBaseModel.tutor_qualification" Width="1.5" PointX="3" PointY="8.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="test_Applicata_DataBaseModel.user_roles" Width="1.5" PointX="5.75" PointY="1.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="test_Applicata_DataBaseModel.user" Width="1.5" PointX="8" PointY="0.875" IsExpanded="true" />
+      <Diagram DiagramId="44a3574a44a143a893f9a82df55a92ee" Name="Diagram1" ZoomLevel="72">
+        <EntityTypeShape EntityType="test_Applicata_DataBaseModel.appoint" Width="1.5" PointX="7.5" PointY="12.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="test_Applicata_DataBaseModel.course_codes" Width="1.5" PointX="3" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="test_Applicata_DataBaseModel.items_region" Width="1.5" PointX="5.75" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="test_Applicata_DataBaseModel.rooms_region" Width="1.5" PointX="8" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="test_Applicata_DataBaseModel.section_region" Width="1.5" PointX="0.75" PointY="12" IsExpanded="true" />
+        <EntityTypeShape EntityType="test_Applicata_DataBaseModel.section_tutors" Width="1.5" PointX="12" PointY="15.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="test_Applicata_DataBaseModel.semester_current" Width="1.5" PointX="2.875" PointY="14.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="test_Applicata_DataBaseModel.semester_previous" Width="1.5" PointX="4.75" PointY="15.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="test_Applicata_DataBaseModel.students_appoint" Width="1.5" PointX="10" PointY="12.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="test_Applicata_DataBaseModel.students_region" Width="1.5" PointX="6" PointY="6.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="test_Applicata_DataBaseModel.tutor" Width="1.5" PointX="3" PointY="2.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="test_Applicata_DataBaseModel.tutor_experience" Width="1.5" PointX="12" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="test_Applicata_DataBaseModel.tutor_qualification" Width="1.5" PointX="10.25" PointY="4.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="test_Applicata_DataBaseModel.user_roles" Width="1.5" PointX="0.75" PointY="9.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="test_Applicata_DataBaseModel.user" Width="1.5" PointX="3.125" PointY="11.5" IsExpanded="true" />
+        <AssociationConnector Association="test_Applicata_DataBaseModel.FK__appoint__tutor_i__3864608B" ManuallyRouted="false" />
+        <AssociationConnector Association="test_Applicata_DataBaseModel.FK_appoint_course_codes" ManuallyRouted="false" />
+        <AssociationConnector Association="test_Applicata_DataBaseModel.FK_appoint_semester_previous" ManuallyRouted="false" />
+        <AssociationConnector Association="test_Applicata_DataBaseModel.FK_appoint_students_appoint" ManuallyRouted="false" />
+        <AssociationConnector Association="test_Applicata_DataBaseModel.FK__course_co__secti__45BE5BA9" ManuallyRouted="false" />
+        <AssociationConnector Association="test_Applicata_DataBaseModel.FK_students_appoint_course_codes" ManuallyRouted="false" />
         <AssociationConnector Association="test_Applicata_DataBaseModel.FK__rooms_reg__item___71D1E811" ManuallyRouted="false" />
-        <AssociationConnector Association="test_Applicata_DataBaseModel.FK_experience_tutor" ManuallyRouted="false" />
+        <AssociationConnector Association="test_Applicata_DataBaseModel.FK__section_t__secti__14270015" ManuallyRouted="false" />
+        <AssociationConnector Association="test_Applicata_DataBaseModel.FK__semester___secti__40F9A68C" ManuallyRouted="false" />
+        <AssociationConnector Association="test_Applicata_DataBaseModel.FK_semester_current_section_region" ManuallyRouted="false" />
+        <AssociationConnector Association="test_Applicata_DataBaseModel.FK_users_section_region" ManuallyRouted="false" />
+        <AssociationConnector Association="test_Applicata_DataBaseModel.FK__section_t__tutor__1332DBDC" ManuallyRouted="false" />
+        <AssociationConnector Association="test_Applicata_DataBaseModel.FK_section_tutors_semester_previous" ManuallyRouted="false" />
+        <AssociationConnector Association="test_Applicata_DataBaseModel.FK_students_appoint_semester_previous" ManuallyRouted="false" />
+        <AssociationConnector Association="test_Applicata_DataBaseModel.FK__matric_ap__stude__3493CFA7" ManuallyRouted="false" />
+        <AssociationConnector Association="test_Applicata_DataBaseModel.FK_experience_tutor" ManuallyRouted="false" ></AssociationConnector>
         <AssociationConnector Association="test_Applicata_DataBaseModel.FK_qualification_tutor" ManuallyRouted="false" />
         <AssociationConnector Association="test_Applicata_DataBaseModel.users_user_role_FK" ManuallyRouted="false" />
       </Diagram>

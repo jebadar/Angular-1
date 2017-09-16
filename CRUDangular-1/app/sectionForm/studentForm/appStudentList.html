@@ -1,0 +1,45 @@
+﻿<div class="col-md-12">
+            <div class="col-md-12">
+                <input type="button" class= "btn btn-primary" value="PDF Import" ng-click="print()" />
+            <br />
+            <br />
+            
+            <br />
+    </div>
+    <form class="form-inline">
+            <div class="form-group">
+                <input type="text" ng-model="search" class="form-control" placeholder="Search">
+            </div>
+        </form>
+    <div class="display-3">Total Students: {{appStudents.length}}</div>
+
+        <table ng-table="vm.tableParams" class="table col-lg-12 table-bordered table-lg table-striped table-condensed export-table" style="font-size:11px;background-color:white" show-filter="true">
+          <thead>
+             
+            <th class="col-lg-1">Roll No</th>
+            <th class="col-lg-1">Reg No</th>
+            <th class="col-lg-1">Name</th>
+            <th class="col-lg-1">Father Name</th>
+            <th class="col-lg-1">Sex</th> 
+            <th class="col-lg-1">Mailing Address</th>
+            <th class="col-lg-2">Tehsil</th>
+            <th class="col-lg-1">District</th>
+            <th class="col-lg-1">Region</th>
+            <th class="col-lg-1">Program</th>
+        </thead>
+            <tr ng-repeat="appStudents in appStudents|filter:search">
+                <th scope="row" >{{appStudents.students_appoint.students_region.roll_no}} </th>
+                <th scope="row">{{appStudents.students_appoint.students_region.reg_no}}</th>
+                <td scope="row">{{appStudents.students_appoint.students_region.name}}</td>
+                <th scope="row">{{appStudents.students_appoint.students_region.father_name}}</th>
+                <th scope="row">{{appStudents.students_appoint.students_region.sex}}</th>
+                <th scope="row">{{appStudents.students_appoint.students_region.mailing}}</th>
+                <th scope="row">{{appStudents.students_appoint.students_region.tehsil}}</th>
+                <th scope="row">{{appStudents.students_appoint.students_region.district}}</th>
+                <th scope="row">{{appStudents.students_appoint.students_region.region}}</th>
+                <th scope="row">{{appStudents.students_appoint.students_region.program}}</th>
+                
+            </tr>
+        </table>
+
+        </div>

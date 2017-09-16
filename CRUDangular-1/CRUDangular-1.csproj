@@ -31,6 +31,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <PlatformTarget>AnyCPU</PlatformTarget>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -208,22 +209,36 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="camelCasePropertyNamesContractResolver.cs" />
+    <Compile Include="Controllers\CourseCodeWebApiController.cs" />
     <Compile Include="Controllers\ExperienceWebApiController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ImportWebApiController.cs" />
     <Compile Include="Controllers\ItemWebApiController.cs" />
+    <Compile Include="Controllers\NewSemesterWebApiController.cs" />
     <Compile Include="Controllers\QualificationWebApiController.cs" />
     <Compile Include="Controllers\RoleWebApiController.cs" />
+    <Compile Include="Controllers\SectionTutorWebApiController.cs" />
+    <Compile Include="Controllers\StudentAppointWebApiController.cs" />
+    <Compile Include="Controllers\StudentWebApiController.cs" />
+    <Compile Include="Controllers\TehsilRegionController.cs" />
     <Compile Include="Controllers\TotalRecordWebApiController.cs" />
     <Compile Include="Controllers\TutorWebApiController.cs" />
     <Compile Include="Controllers\UploadController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\appoint.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\checkUser.cs" />
+    <Compile Include="Models\course_codes.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\items_region.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\item_total.cs" />
+    <Compile Include="Models\matric_Course_std.cs" />
     <Compile Include="Models\Model.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -242,8 +257,30 @@
     <Compile Include="Models\rooms_region.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\sectionTutorRegNo.cs" />
+    <Compile Include="Models\section_region.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\section_tutors.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\semester.cs" />
+    <Compile Include="Models\semester_current.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\semester_previous.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\singleItem.cs" />
+    <Compile Include="Models\std_appoint.cs" />
+    <Compile Include="Models\students_appoint.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\students_region.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\S_Notification.cs" />
+    <Compile Include="Models\S_students.cs" />
     <Compile Include="Models\S_Tutor.cs" />
     <Compile Include="Models\tutor.cs">
       <DependentUpon>Model.tt</DependentUpon>
@@ -260,6 +297,22 @@
     <Compile Include="Models\user_roles.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="obj\Debug\TemporaryGeneratedFile_036C0B5B-1481-4323-8D20-8F5ADCB23D92.cs" />
+    <Compile Include="obj\Debug\TemporaryGeneratedFile_5937a670-0e60-4077-877b-f7221da3dda1.cs" />
+    <Compile Include="obj\Debug\TemporaryGeneratedFile_E7A71F73-0F8D-4B9B-B56E-8E70B10BC5D3.cs" />
+    <Compile Include="obj\Release\Package\PackageTmp\Models\Model.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="obj\Release\Package\PackageTmp\Models\Model.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="obj\Release\TemporaryGeneratedFile_036C0B5B-1481-4323-8D20-8F5ADCB23D92.cs" />
+    <Compile Include="obj\Release\TemporaryGeneratedFile_5937a670-0e60-4077-877b-f7221da3dda1.cs" />
+    <Compile Include="obj\Release\TemporaryGeneratedFile_E7A71F73-0F8D-4B9B-B56E-8E70B10BC5D3.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModel\LayoutModel.cs" />
   </ItemGroup>
@@ -269,9 +322,6 @@
     <Content Include="app\DataService.js" />
     <Content Include="app\deleteDialog.html" />
     <Content Include="app\DirectorView.html" />
-    <Content Include="app\employeeForm\efcontroller.js" />
-    <Content Include="app\employeeForm\efDirective.js" />
-    <Content Include="app\employeeForm\efTemplate.html" />
     <Content Include="app\expeForm\expeController.js" />
     <Content Include="app\expeForm\efExpe.html" />
     <Content Include="app\importSheetView.html" />
@@ -290,6 +340,26 @@
     <Content Include="app\DirectorListView.html" />
     <Content Include="app\searchList.html" />
     <Content Include="app\searchListAdmin.html" />
+    <Content Include="app\sectionForm\appointForm\afController.js" />
+    <Content Include="app\sectionForm\studentForm\appStudentList.html" />
+    <Content Include="app\sectionForm\appointForm\studentList.html" />
+    <Content Include="app\sectionForm\matricForm\appointStdList.html" />
+    <Content Include="app\sectionForm\matricForm\courseCode.html" />
+    <Content Include="app\sectionForm\matricForm\loading.html" />
+    <Content Include="app\sectionForm\matricForm\mfController.js" />
+    <Content Include="app\sectionForm\matricForm\mfDirective.js" />
+    <Content Include="app\sectionForm\matricForm\mfImport.html" />
+    <Content Include="app\sectionForm\matricForm\mfMain.html" />
+    <Content Include="app\sectionForm\matricForm\mfSearch.html" />
+    <Content Include="app\sectionForm\matricForm\mfStudentList.html" />
+    <Content Include="app\sectionForm\matricForm\optionAdd.html" />
+    <Content Include="app\sectionForm\matricForm\response.html" />
+    <Content Include="app\sectionForm\matricForm\semesterNew.html" />
+    <Content Include="app\sectionForm\matricForm\secTutorImport.html" />
+    <Content Include="app\sectionForm\matricForm\tutorList.html" />
+    <Content Include="app\sectionForm\matricForm\tutorToBeAddList.html" />
+    <Content Include="app\sectionForm\studentForm\printStudents.html" />
+    <Content Include="app\sectionForm\studentForm\sfController.js" />
     <Content Include="app\tutorForm\formImage.html" />
     <Content Include="app\tutorForm\tfcontroller.js" />
     <Content Include="app\tutorForm\tfDetail.html" />
@@ -303,6 +373,7 @@
     <Content Include="app\ValidationDirective.js" />
     <Content Include="Content\angular-bootstrap-lightbox.css" />
     <Content Include="Content\angular-bootstrap-lightbox.min.css" />
+    <Content Include="Content\angular-modal-progress-bar.css" />
     <Content Include="Content\ng-table.css" />
     <Content Include="Content\ng-table.min.css" />
     <Content Include="Content\site1.css" />
@@ -367,6 +438,7 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Images\Icon\13226966_901782459930430_9009933657743981873_n.jpg" />
     <Content Include="Images\Icon\item_icon.png" />
     <Content Include="Images\Icon\Picture1.png" />
     <Content Include="Images\Icon\pp.JPG" />
@@ -377,6 +449,217 @@
     <Content Include="Images\Icon\student_icon.png" />
     <Content Include="Images\Icon\tutor_icon.ico" />
     <Content Include="Images\Icon\user_icon.png" />
+    <Content Include="obj\Release\CRUDangular-1.csproj.FileListAbsolute.txt" />
+    <Content Include="obj\Release\CRUDangular-1.dll" />
+    <Content Include="obj\Release\CRUDangular-1.pdb" />
+    <Content Include="obj\Release\Package\PackageTmp\app\adminView.html" />
+    <Content Include="obj\Release\Package\PackageTmp\app\AngularForm.js" />
+    <Content Include="obj\Release\Package\PackageTmp\app\DataService.js" />
+    <Content Include="obj\Release\Package\PackageTmp\app\deleteDialog.html" />
+    <Content Include="obj\Release\Package\PackageTmp\app\DirectorListView.html" />
+    <Content Include="obj\Release\Package\PackageTmp\app\DirectorView.html" />
+    <Content Include="obj\Release\Package\PackageTmp\app\employeeForm\efcontroller.js" />
+    <Content Include="obj\Release\Package\PackageTmp\app\employeeForm\efDirective.js" />
+    <Content Include="obj\Release\Package\PackageTmp\app\employeeForm\efTemplate.html" />
+    <Content Include="obj\Release\Package\PackageTmp\app\expeForm\efExpe.html" />
+    <Content Include="obj\Release\Package\PackageTmp\app\expeForm\expeController.js" />
+    <Content Include="obj\Release\Package\PackageTmp\app\Home.html" />
+    <Content Include="obj\Release\Package\PackageTmp\app\importSheetView.html" />
+    <Content Include="obj\Release\Package\PackageTmp\app\Index.html" />
+    <Content Include="obj\Release\Package\PackageTmp\app\loadPage.html" />
+    <Content Include="obj\Release\Package\PackageTmp\app\qualForm\qfController.js" />
+    <Content Include="obj\Release\Package\PackageTmp\app\qualForm\qfDirective.js" />
+    <Content Include="obj\Release\Package\PackageTmp\app\qualForm\tfNewQual.html" />
+    <Content Include="obj\Release\Package\PackageTmp\app\qualForm\tfQual.html" />
+    <Content Include="obj\Release\Package\PackageTmp\app\searchList.html" />
+    <Content Include="obj\Release\Package\PackageTmp\app\searchListAdmin.html" />
+    <Content Include="obj\Release\Package\PackageTmp\app\tutorForm\formImage.html" />
+    <Content Include="obj\Release\Package\PackageTmp\app\tutorForm\tfcontroller.js" />
+    <Content Include="obj\Release\Package\PackageTmp\app\tutorForm\tfDetail.html" />
+    <Content Include="obj\Release\Package\PackageTmp\app\tutorForm\tfDirective.js" />
+    <Content Include="obj\Release\Package\PackageTmp\app\tutorForm\tfExper.html" />
+    <Content Include="obj\Release\Package\PackageTmp\app\tutorForm\tfNew.html" />
+    <Content Include="obj\Release\Package\PackageTmp\app\tutorForm\tfTemplate.html" />
+    <Content Include="obj\Release\Package\PackageTmp\app\tutorForm\tutorCheck.html" />
+    <Content Include="obj\Release\Package\PackageTmp\app\TutorList.html" />
+    <Content Include="obj\Release\Package\PackageTmp\app\ValidationDirective.js" />
+    <Content Include="obj\Release\Package\PackageTmp\bin\Antlr3.Runtime.dll" />
+    <Content Include="obj\Release\Package\PackageTmp\bin\ClosedXML.dll" />
+    <Content Include="obj\Release\Package\PackageTmp\bin\CRUDangular-1.dll" />
+    <Content Include="obj\Release\Package\PackageTmp\bin\DocumentFormat.OpenXml.dll" />
+    <Content Include="obj\Release\Package\PackageTmp\bin\EntityFramework.dll" />
+    <Content Include="obj\Release\Package\PackageTmp\bin\EntityFramework.SqlServer.dll" />
+    <Content Include="obj\Release\Package\PackageTmp\bin\ImageResizer.dll" />
+    <Content Include="obj\Release\Package\PackageTmp\bin\LinqToExcel.dll" />
+    <Content Include="obj\Release\Package\PackageTmp\bin\log4net.dll" />
+    <Content Include="obj\Release\Package\PackageTmp\bin\Microsoft.AspNet.Identity.Core.dll" />
+    <Content Include="obj\Release\Package\PackageTmp\bin\Microsoft.AspNet.Identity.EntityFramework.dll" />
+    <Content Include="obj\Release\Package\PackageTmp\bin\Microsoft.AspNet.Identity.Owin.dll" />
+    <Content Include="obj\Release\Package\PackageTmp\bin\Microsoft.Owin.dll" />
+    <Content Include="obj\Release\Package\PackageTmp\bin\Microsoft.Owin.Host.SystemWeb.dll" />
+    <Content Include="obj\Release\Package\PackageTmp\bin\Microsoft.Owin.Security.Cookies.dll" />
+    <Content Include="obj\Release\Package\PackageTmp\bin\Microsoft.Owin.Security.dll" />
+    <Content Include="obj\Release\Package\PackageTmp\bin\Microsoft.Owin.Security.OAuth.dll" />
+    <Content Include="obj\Release\Package\PackageTmp\bin\Microsoft.Web.Infrastructure.dll" />
+    <Content Include="obj\Release\Package\PackageTmp\bin\Newtonsoft.Json.dll" />
+    <Content Include="obj\Release\Package\PackageTmp\bin\NinjaNye.SearchExtensions.dll" />
+    <Content Include="obj\Release\Package\PackageTmp\bin\Owin.dll" />
+    <Content Include="obj\Release\Package\PackageTmp\bin\Remotion.Data.Linq.dll" />
+    <Content Include="obj\Release\Package\PackageTmp\bin\Remotion.dll" />
+    <Content Include="obj\Release\Package\PackageTmp\bin\Remotion.Interfaces.dll" />
+    <Content Include="obj\Release\Package\PackageTmp\bin\System.Net.Http.Formatting.dll" />
+    <Content Include="obj\Release\Package\PackageTmp\bin\System.Web.Helpers.dll" />
+    <Content Include="obj\Release\Package\PackageTmp\bin\System.Web.Http.dll" />
+    <Content Include="obj\Release\Package\PackageTmp\bin\System.Web.Http.WebHost.dll" />
+    <Content Include="obj\Release\Package\PackageTmp\bin\System.Web.Mvc.dll" />
+    <Content Include="obj\Release\Package\PackageTmp\bin\System.Web.Optimization.dll" />
+    <Content Include="obj\Release\Package\PackageTmp\bin\System.Web.Razor.dll" />
+    <Content Include="obj\Release\Package\PackageTmp\bin\System.Web.WebPages.Deployment.dll" />
+    <Content Include="obj\Release\Package\PackageTmp\bin\System.Web.WebPages.dll" />
+    <Content Include="obj\Release\Package\PackageTmp\bin\System.Web.WebPages.Razor.dll" />
+    <Content Include="obj\Release\Package\PackageTmp\bin\WebGrease.dll" />
+    <Content Include="obj\Release\Package\PackageTmp\Content\angular-bootstrap-lightbox.css" />
+    <Content Include="obj\Release\Package\PackageTmp\Content\angular-bootstrap-lightbox.min.css" />
+    <Content Include="obj\Release\Package\PackageTmp\Content\angular-material.css" />
+    <Content Include="obj\Release\Package\PackageTmp\Content\angular-material.layouts.css" />
+    <Content Include="obj\Release\Package\PackageTmp\Content\angular-material.layouts.min.css" />
+    <Content Include="obj\Release\Package\PackageTmp\Content\angular-material.min.css" />
+    <Content Include="obj\Release\Package\PackageTmp\Content\angular-material\angular-material.css" />
+    <Content Include="obj\Release\Package\PackageTmp\Content\angular-material\angular-material.min.css" />
+    <Content Include="obj\Release\Package\PackageTmp\Content\app.css" />
+    <Content Include="obj\Release\Package\PackageTmp\Content\bootstrap-theme.css" />
+    <Content Include="obj\Release\Package\PackageTmp\Content\bootstrap-theme.min.css" />
+    <Content Include="obj\Release\Package\PackageTmp\Content\bootstrap.css" />
+    <Content Include="obj\Release\Package\PackageTmp\Content\bootstrap.min.css" />
+    <Content Include="obj\Release\Package\PackageTmp\Content\ng-table.css" />
+    <Content Include="obj\Release\Package\PackageTmp\Content\ng-table.min.css" />
+    <Content Include="obj\Release\Package\PackageTmp\Content\ngDialog-theme-default.css" />
+    <Content Include="obj\Release\Package\PackageTmp\Content\ngDialog.css" />
+    <Content Include="obj\Release\Package\PackageTmp\Content\ngDialog.min.css" />
+    <Content Include="obj\Release\Package\PackageTmp\Content\select.css" />
+    <Content Include="obj\Release\Package\PackageTmp\Content\select.min.css" />
+    <Content Include="obj\Release\Package\PackageTmp\Content\select2.css" />
+    <Content Include="obj\Release\Package\PackageTmp\Content\select2.min.css" />
+    <Content Include="obj\Release\Package\PackageTmp\Content\Site.css" />
+    <Content Include="obj\Release\Package\PackageTmp\Content\site1.css" />
+    <Content Include="obj\Release\Package\PackageTmp\Content\themes\base\accordion.css" />
+    <Content Include="obj\Release\Package\PackageTmp\Content\themes\base\all.css" />
+    <Content Include="obj\Release\Package\PackageTmp\Content\themes\base\autocomplete.css" />
+    <Content Include="obj\Release\Package\PackageTmp\Content\themes\base\base.css" />
+    <Content Include="obj\Release\Package\PackageTmp\Content\themes\base\button.css" />
+    <Content Include="obj\Release\Package\PackageTmp\Content\themes\base\core.css" />
+    <Content Include="obj\Release\Package\PackageTmp\Content\themes\base\datepicker.css" />
+    <Content Include="obj\Release\Package\PackageTmp\Content\themes\base\dialog.css" />
+    <Content Include="obj\Release\Package\PackageTmp\Content\themes\base\draggable.css" />
+    <Content Include="obj\Release\Package\PackageTmp\Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
+    <Content Include="obj\Release\Package\PackageTmp\Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
+    <Content Include="obj\Release\Package\PackageTmp\Content\themes\base\images\ui-bg_glass_55_fbf9ee_1x400.png" />
+    <Content Include="obj\Release\Package\PackageTmp\Content\themes\base\images\ui-bg_glass_65_ffffff_1x400.png" />
+    <Content Include="obj\Release\Package\PackageTmp\Content\themes\base\images\ui-bg_glass_75_dadada_1x400.png" />
+    <Content Include="obj\Release\Package\PackageTmp\Content\themes\base\images\ui-bg_glass_75_e6e6e6_1x400.png" />
+    <Content Include="obj\Release\Package\PackageTmp\Content\themes\base\images\ui-bg_glass_95_fef1ec_1x400.png" />
+    <Content Include="obj\Release\Package\PackageTmp\Content\themes\base\images\ui-bg_highlight-soft_75_cccccc_1x100.png" />
+    <Content Include="obj\Release\Package\PackageTmp\Content\themes\base\images\ui-icons_222222_256x240.png" />
+    <Content Include="obj\Release\Package\PackageTmp\Content\themes\base\images\ui-icons_2e83ff_256x240.png" />
+    <Content Include="obj\Release\Package\PackageTmp\Content\themes\base\images\ui-icons_454545_256x240.png" />
+    <Content Include="obj\Release\Package\PackageTmp\Content\themes\base\images\ui-icons_888888_256x240.png" />
+    <Content Include="obj\Release\Package\PackageTmp\Content\themes\base\images\ui-icons_cd0a0a_256x240.png" />
+    <Content Include="obj\Release\Package\PackageTmp\Content\themes\base\menu.css" />
+    <Content Include="obj\Release\Package\PackageTmp\Content\themes\base\progressbar.css" />
+    <Content Include="obj\Release\Package\PackageTmp\Content\themes\base\resizable.css" />
+    <Content Include="obj\Release\Package\PackageTmp\Content\themes\base\selectable.css" />
+    <Content Include="obj\Release\Package\PackageTmp\Content\themes\base\selectmenu.css" />
+    <Content Include="obj\Release\Package\PackageTmp\Content\themes\base\slider.css" />
+    <Content Include="obj\Release\Package\PackageTmp\Content\themes\base\sortable.css" />
+    <Content Include="obj\Release\Package\PackageTmp\Content\themes\base\spinner.css" />
+    <Content Include="obj\Release\Package\PackageTmp\Content\themes\base\tabs.css" />
+    <Content Include="obj\Release\Package\PackageTmp\Content\themes\base\theme.css" />
+    <Content Include="obj\Release\Package\PackageTmp\Content\themes\base\tooltip.css" />
+    <Content Include="obj\Release\Package\PackageTmp\Content\ui-bootstrap-csp.css" />
+    <Content Include="obj\Release\Package\PackageTmp\Content\ui-grid.css" />
+    <Content Include="obj\Release\Package\PackageTmp\Content\ui-grid.min.css" />
+    <Content Include="obj\Release\Package\PackageTmp\Content\ui-grid.svg" />
+    <Content Include="obj\Release\Package\PackageTmp\Content\ValidationDirective.js" />
+    <Content Include="obj\Release\Package\PackageTmp\favicon.ico" />
+    <Content Include="obj\Release\Package\PackageTmp\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="obj\Release\Package\PackageTmp\Global.asax" />
+    <Content Include="obj\Release\Package\PackageTmp\Images\Icon\IMG_2529.JPG" />
+    <Content Include="obj\Release\Package\PackageTmp\Images\Icon\IMG_2836.JPG" />
+    <Content Include="obj\Release\Package\PackageTmp\Images\Icon\item_icon.png" />
+    <Content Include="obj\Release\Package\PackageTmp\Images\Icon\logo.png" />
+    <Content Include="obj\Release\Package\PackageTmp\Images\Icon\Picture1.png" />
+    <Content Include="obj\Release\Package\PackageTmp\Images\Icon\pp.JPG" />
+    <Content Include="obj\Release\Package\PackageTmp\Images\Icon\rwp_region.jpg" />
+    <Content Include="obj\Release\Package\PackageTmp\Images\Icon\student_icon.png" />
+    <Content Include="obj\Release\Package\PackageTmp\Images\Icon\tutor_icon.ico" />
+    <Content Include="obj\Release\Package\PackageTmp\Images\Icon\user_icon.png" />
+    <Content Include="obj\Release\Package\PackageTmp\Scripts\angular-animate.js" />
+    <Content Include="obj\Release\Package\PackageTmp\Scripts\angular-animate.min.js" />
+    <Content Include="obj\Release\Package\PackageTmp\Scripts\angular-animate\angular-animate.js" />
+    <Content Include="obj\Release\Package\PackageTmp\Scripts\angular-animate\angular-animate.min.js" />
+    <Content Include="obj\Release\Package\PackageTmp\Scripts\angular-aria.js" />
+    <Content Include="obj\Release\Package\PackageTmp\Scripts\angular-aria.min.js" />
+    <Content Include="obj\Release\Package\PackageTmp\Scripts\angular-aria\angular-aria.js" />
+    <Content Include="obj\Release\Package\PackageTmp\Scripts\angular-aria\angular-aria.min.js" />
+    <Content Include="obj\Release\Package\PackageTmp\Scripts\angular-bootstrap-lightbox.js" />
+    <Content Include="obj\Release\Package\PackageTmp\Scripts\angular-bootstrap-lightbox.min.js" />
+    <Content Include="obj\Release\Package\PackageTmp\Scripts\angular-file-upload.js" />
+    <Content Include="obj\Release\Package\PackageTmp\Scripts\angular-file-upload.min.js" />
+    <Content Include="obj\Release\Package\PackageTmp\Scripts\angular-material.js" />
+    <Content Include="obj\Release\Package\PackageTmp\Scripts\angular-material.min.js" />
+    <Content Include="obj\Release\Package\PackageTmp\Scripts\angular-material\angular-material-mocks.js" />
+    <Content Include="obj\Release\Package\PackageTmp\Scripts\angular-material\angular-material.js" />
+    <Content Include="obj\Release\Package\PackageTmp\Scripts\angular-material\angular-material.min.js" />
+    <Content Include="obj\Release\Package\PackageTmp\Scripts\angular-mocks.js" />
+    <Content Include="obj\Release\Package\PackageTmp\Scripts\angular-route.js" />
+    <Content Include="obj\Release\Package\PackageTmp\Scripts\angular-route.min.js" />
+    <Content Include="obj\Release\Package\PackageTmp\Scripts\angular-ui\ui-bootstrap-tpls.js" />
+    <Content Include="obj\Release\Package\PackageTmp\Scripts\angular-ui\ui-bootstrap-tpls.min.js" />
+    <Content Include="obj\Release\Package\PackageTmp\Scripts\angular-ui\ui-bootstrap.js" />
+    <Content Include="obj\Release\Package\PackageTmp\Scripts\angular-ui\ui-bootstrap.min.js" />
+    <Content Include="obj\Release\Package\PackageTmp\Scripts\angular.js" />
+    <Content Include="obj\Release\Package\PackageTmp\Scripts\angular.min.js" />
+    <Content Include="obj\Release\Package\PackageTmp\Scripts\bootstrap.js" />
+    <Content Include="obj\Release\Package\PackageTmp\Scripts\bootstrap.min.js" />
+    <Content Include="obj\Release\Package\PackageTmp\Scripts\dirPagination.js" />
+    <Content Include="obj\Release\Package\PackageTmp\Scripts\dirPagination.tpl.html" />
+    <Content Include="obj\Release\Package\PackageTmp\Scripts\FileAPI.flash.swf" />
+    <Content Include="obj\Release\Package\PackageTmp\Scripts\FileAPI.js" />
+    <Content Include="obj\Release\Package\PackageTmp\Scripts\FileAPI.min.js" />
+    <Content Include="obj\Release\Package\PackageTmp\Scripts\FileSaver.js" />
+    <Content Include="obj\Release\Package\PackageTmp\Scripts\FileSaver.min.js" />
+    <Content Include="obj\Release\Package\PackageTmp\Scripts\jquery-1.10.2.js" />
+    <Content Include="obj\Release\Package\PackageTmp\Scripts\jquery-1.10.2.min.js" />
+    <Content Include="obj\Release\Package\PackageTmp\Scripts\jquery-ui-1.11.4.js" />
+    <Content Include="obj\Release\Package\PackageTmp\Scripts\jquery-ui-1.11.4.min.js" />
+    <Content Include="obj\Release\Package\PackageTmp\Scripts\jquery.select2.js" />
+    <Content Include="obj\Release\Package\PackageTmp\Scripts\jquery.validate.js" />
+    <Content Include="obj\Release\Package\PackageTmp\Scripts\jquery.validate.min.js" />
+    <Content Include="obj\Release\Package\PackageTmp\Scripts\jquery.validate.unobtrusive.js" />
+    <Content Include="obj\Release\Package\PackageTmp\Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="obj\Release\Package\PackageTmp\Scripts\modernizr-2.6.2.js" />
+    <Content Include="obj\Release\Package\PackageTmp\Scripts\ng-file-upload-all.js" />
+    <Content Include="obj\Release\Package\PackageTmp\Scripts\ng-file-upload-all.min.js" />
+    <Content Include="obj\Release\Package\PackageTmp\Scripts\ng-file-upload-shim.js" />
+    <Content Include="obj\Release\Package\PackageTmp\Scripts\ng-file-upload-shim.min.js" />
+    <Content Include="obj\Release\Package\PackageTmp\Scripts\ng-file-upload.js" />
+    <Content Include="obj\Release\Package\PackageTmp\Scripts\ng-file-upload.min.js" />
+    <Content Include="obj\Release\Package\PackageTmp\Scripts\ng-table.js" />
+    <Content Include="obj\Release\Package\PackageTmp\Scripts\ng-table.min.js" />
+    <Content Include="obj\Release\Package\PackageTmp\Scripts\ngDialog.js" />
+    <Content Include="obj\Release\Package\PackageTmp\Scripts\ngDialog.min.js" />
+    <Content Include="obj\Release\Package\PackageTmp\Scripts\respond.js" />
+    <Content Include="obj\Release\Package\PackageTmp\Scripts\respond.min.js" />
+    <Content Include="obj\Release\Package\PackageTmp\Scripts\select.js" />
+    <Content Include="obj\Release\Package\PackageTmp\Scripts\select.min.js" />
+    <Content Include="obj\Release\Package\PackageTmp\Scripts\select2.js" />
+    <Content Include="obj\Release\Package\PackageTmp\Scripts\select2.min.js" />
+    <Content Include="obj\Release\Package\PackageTmp\Scripts\ui-grid.js" />
+    <Content Include="obj\Release\Package\PackageTmp\Scripts\ui-grid.min.js" />
+    <Content Include="obj\Release\Package\PackageTmp\Scripts\_references.js" />
+    <Content Include="obj\Release\TempPE\Models.Model.cs.dll" />
+    <Content Include="obj\Release\TempPE\Models.Model.Designer.cs.dll" />
+    <Content Include="obj\Release\_WPPLastBuildInfo.txt" />
     <Content Include="Scripts\angular-animate.js" />
     <Content Include="Scripts\angular-animate.min.js" />
     <Content Include="Scripts\angular-animate\angular-animate.js" />
@@ -395,6 +678,7 @@
     <Content Include="Scripts\angular-material\angular-material.js" />
     <Content Include="Scripts\angular-material\angular-material.min.js" />
     <Content Include="Scripts\angular-mocks.js" />
+    <Content Include="Scripts\angular-modal-progress-bar.js" />
     <Content Include="Scripts\angular-route.js" />
     <Content Include="Scripts\angular-route.min.js" />
     <Content Include="Scripts\angular-ui\ui-bootstrap-tpls.js" />
@@ -424,6 +708,57 @@
     <Content Include="Scripts\angular-file-upload.js.map" />
     <Content Include="Scripts\angular-file-upload.min.js.map" />
     <Content Include="Doc\sample.xlsx" />
+    <Content Include="obj\Release\CRUDangular-1.csprojResolveAssemblyReference.cache" />
+    <Content Include="obj\Release\DesignTimeResolveAssemblyReferencesInput.cache" />
+    <Content Include="obj\Release\edmxResourcesToEmbed\Models\Model.csdl" />
+    <Content Include="obj\Release\edmxResourcesToEmbed\Models\Model.msl" />
+    <Content Include="obj\Release\edmxResourcesToEmbed\Models\Model.ssdl" />
+    <Content Include="obj\Release\Package\PackageTmp\Content\bootstrap-theme.css.map" />
+    <Content Include="obj\Release\Package\PackageTmp\Content\bootstrap-theme.min.css.map" />
+    <Content Include="obj\Release\Package\PackageTmp\Content\bootstrap.css.map" />
+    <Content Include="obj\Release\Package\PackageTmp\Content\bootstrap.min.css.map" />
+    <Content Include="obj\Release\Package\PackageTmp\Content\ng-table.less" />
+    <Content Include="obj\Release\Package\PackageTmp\Content\ui-grid.eot" />
+    <Content Include="obj\Release\Package\PackageTmp\Content\ui-grid.ttf" />
+    <Content Include="obj\Release\Package\PackageTmp\Content\ui-grid.woff" />
+    <Content Include="obj\Release\Package\PackageTmp\Doc\sample.xlsx" />
+    <Content Include="obj\Release\Package\PackageTmp\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="obj\Release\Package\PackageTmp\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="obj\Release\Package\PackageTmp\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="obj\Release\Package\PackageTmp\fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="obj\Release\Package\PackageTmp\Models\Model.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>Model.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="obj\Release\Package\PackageTmp\Models\Model.edmx.diagram" />
+    <Content Include="obj\Release\Package\PackageTmp\Models\Model.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>Model.cs</LastGenOutput>
+    </Content>
+    <Content Include="obj\Release\Package\PackageTmp\packages.config" />
+    <Content Include="obj\Release\Package\PackageTmp\Scripts\angular-animate.min.js.map" />
+    <Content Include="obj\Release\Package\PackageTmp\Scripts\angular-animate\angular-animate.min.js.map" />
+    <Content Include="obj\Release\Package\PackageTmp\Scripts\angular-aria.min.js.map" />
+    <Content Include="obj\Release\Package\PackageTmp\Scripts\angular-aria\angular-aria.min.js.map" />
+    <Content Include="obj\Release\Package\PackageTmp\Scripts\angular-file-upload.js.map" />
+    <Content Include="obj\Release\Package\PackageTmp\Scripts\angular-file-upload.min.js.map" />
+    <Content Include="obj\Release\Package\PackageTmp\Scripts\angular-route.min.js.map" />
+    <Content Include="obj\Release\Package\PackageTmp\Scripts\angular.min.js.map" />
+    <Content Include="obj\Release\Package\PackageTmp\Scripts\jquery-1.10.2.min.map" />
+    <Content Include="obj\Release\Package\PackageTmp\Scripts\ng-table.min.js.map" />
+    <Content Include="obj\Release\Package\PackageTmp\Views\Home\About.cshtml" />
+    <Content Include="obj\Release\Package\PackageTmp\Views\Home\Contact.cshtml" />
+    <Content Include="obj\Release\Package\PackageTmp\Views\Home\Index.cshtml" />
+    <Content Include="obj\Release\Package\PackageTmp\Views\Home\Login.cshtml" />
+    <Content Include="obj\Release\Package\PackageTmp\Views\Shared\Error.cshtml" />
+    <Content Include="obj\Release\Package\PackageTmp\Views\Shared\_Layout.cshtml" />
+    <Content Include="obj\Release\Package\PackageTmp\Views\Shared\_mainLayout.cshtml" />
+    <Content Include="obj\Release\Package\PackageTmp\Views\Web.config" />
+    <Content Include="obj\Release\Package\PackageTmp\Views\_ViewStart.cshtml" />
+    <Content Include="obj\Release\Package\PackageTmp\Web.config" />
+    <Content Include="obj\Release\TransformWebConfig\assist\Web.config" />
+    <Content Include="obj\Release\TransformWebConfig\original\Web.config" />
+    <Content Include="obj\Release\TransformWebConfig\transformed\Web.config" />
     <EntityDeploy Include="Models\Model.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>Model.Designer.cs</LastGenOutput>
@@ -452,16 +787,25 @@
     <Content Include="Scripts\FileAPI.min.js" />
     <Content Include="Scripts\FileSaver.js" />
     <Content Include="Scripts\FileSaver.min.js" />
+    <Content Include="Scripts\html2canvas.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
     <Content Include="Scripts\jquery-ui-1.11.4.js" />
     <Content Include="Scripts\jquery-ui-1.11.4.min.js" />
+    <Content Include="Scripts\jquery.base64.js" />
     <Content Include="Scripts\jquery.select2.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\libs\jsPDFAutoTable\jspdf.plugin.autotable.js" />
+    <Content Include="Scripts\libs\jsPDFAutoTable\jspdf.plugin.autotable.min.js" />
+    <Content Include="Scripts\libs\jsPDFAutoTable\jspdf.plugin.autotable.src.js" />
+    <Content Include="Scripts\libs\jsPDF\jspdf.min.js" />
+    <Content Include="Scripts\libs\pdfmake\mirza_fonts.js" />
+    <Content Include="Scripts\libs\pdfmake\pdfmake.min.js" />
+    <Content Include="Scripts\libs\pdfmake\vfs_fonts.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\ng-file-upload-all.js" />
     <Content Include="Scripts\ng-file-upload-all.min.js" />
@@ -480,6 +824,8 @@
     <Content Include="Scripts\select2.js" />
     <Content Include="Content\select2.min.css" />
     <Content Include="Scripts\select2.min.js" />
+    <Content Include="Scripts\tableExport.js" />
+    <Content Include="Scripts\tableExport.min.js" />
     <Content Include="Scripts\ui-grid.js" />
     <Content Include="Scripts\ui-grid.min.js" />
     <Content Include="Scripts\_references.js" />
@@ -511,6 +857,8 @@
     <Folder Include="Images\Tutor_Degree\" />
     <Folder Include="Images\Tutor_Profile\" />
     <Folder Include="Images\Tutor_Updation_Form\" />
+    <Folder Include="obj\Release\ProfileTransformWebConfig\transformed\Views\" />
+    <Folder Include="obj\Release\TransformWebConfig\transformed\Views\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

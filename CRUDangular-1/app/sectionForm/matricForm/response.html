@@ -1,0 +1,11 @@
+﻿
+<table ng-table="vm.tableParams" class="table col-lg-12 table-bordered table-lg table-striped table-condensed" style="font-size:11px;background-color:white" show-filter="true">
+
+            <thead>
+                <th class="col-lg-1">Message</th>
+                
+            </thead>
+                <tr ng-repeat="items in items track by $index">
+                    <th scope="row" >{{items}} </th>
+                    </tr>
+            </table>

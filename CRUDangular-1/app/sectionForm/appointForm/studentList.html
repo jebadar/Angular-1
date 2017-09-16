@@ -1,0 +1,41 @@
+﻿<div class="col-md-12">
+        <form class="form-inline">
+            <div class="form-group">
+                <input type="text" ng-model="search" class="form-control" placeholder="Search">
+            </div>
+        </form>
+    <input type="button" class= "btn btn-primary" value="Appoint Students" ng-click="pushStudents()" />
+    <div class="display-3">Selected Students: {{selectedStudents.length}}</div>
+
+        <table ng-table="vm.tableParams" class="table col-lg-12 table-bordered table-lg table-striped table-condensed" style="font-size:11px;background-color:white" show-filter="true">
+          <thead>
+              <th class="col-lg-1">Appoint</th>
+            <th class="col-lg-1">Roll No</th>
+            <th class="col-lg-1">Reg No</th>
+            <th class="col-lg-1">Name</th>
+            <th class="col-lg-1">Father Name</th>
+            <th class="col-lg-1">Sex</th> 
+            <th class="col-lg-1">Mailing Address</th>
+            <th class="col-lg-2">Tehsil</th>
+            <th class="col-lg-1">District</th>
+            <th class="col-lg-1">Region</th>
+            <th class="col-lg-1">Program</th>
+        </thead>
+            <tr ng-repeat="students in students|filter:search">
+                <th scope="row"><input type="checkbox" ng-disabled="checked" ng-click="selectedCheckbox(students.id)" ></input>
+                </th>
+                <th scope="row" >{{students.roll_no}} </th>
+                <th scope="row">{{students.students_region.reg_no}}</th>
+                <td scope="row">{{students.students_region.name}}</td>
+                <th scope="row">{{students.students_region.father_name}}</th>
+                <th scope="row">{{students.sex}}</th>
+                <th scope="row">{{students.students_region.mailing}}</th>
+                <th scope="row">{{students.students_region.tehsil}}</th>
+                <th scope="row">{{students.students_region.district}}</th>
+                <th scope="row">{{students.students_region.region}}</th>
+                <th scope="row">{{students.students_region.program}}</th>
+                
+            </tr>
+        </table>
+
+        </div>

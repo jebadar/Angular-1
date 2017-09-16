@@ -18,7 +18,13 @@ namespace CRUDangular_1.Models
         public string user_name { get; set; }
         public string u_password { get; set; }
         public int user_role { get; set; }
+        public string name { get; set; }
+        public string designation { get; set; }
+        public string profile_pic { get; set; }
+        public Nullable<int> section_id { get; set; }
+        public string program { get; set; }
     
+        public virtual section_region section_region { get; set; }
         public virtual user_roles user_roles { get; set; }
     }
 }

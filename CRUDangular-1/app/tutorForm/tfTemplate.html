@@ -231,42 +231,6 @@
             </div>
             </fieldset>
         </div>
-    <div class="col-md-12">
-        <fieldset>
-                <legend class="text-center"><strong>TUTOR EXPERIENCE</strong></legend>
-            <input type="button" class= "btn btn-primary" value="Add new" ng-click="addNewExper(tutorId)" />
-            <br />
-            <br />
-        <table  class="table table-bordered table-striped table-condensed">
 
-            <tr>
-            <th>Institute Name</th>
-            <th>Class level</th>
-            <th>Subjects</th>
-            <th>Duration</th>
-            <th>If past at Aiou</th>
-            <th>course codes</th>
-            <th>Tutor Id</th>
-    
-   
-            </tr>
-        <tr ng-repeat="experience in experience">
-            <td >{{experience.institute}}</td>
-            <td >{{experience.class_level}}</td>
-            <td>{{experience.subject_taught}}</td>
-            <td >{{experience.duration}}</td>
-            <td >{{experience.if_past_at_aiou}}</td>
-            <td>{{experience.course_codes}}</td>
-            <td>{{experience.tutor_id}}</td>
-        
-            <td>
-               <button class="btn btn-default btn-sm" ng-click="editExpe(experience.e_id)"><span class="glyphicon glyphicon-pencil"></span></button>
-            </td>
-        
-        </tr>
-    </table>
-
-    </fieldset>
-        </div>
 </form>
     </div>

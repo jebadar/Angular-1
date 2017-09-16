@@ -1,6 +1,29 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
   <EntityContainerMapping StorageEntityContainer="test_Applicata_DataBaseModelStoreContainer" CdmEntityContainer="test_Applicata_DataBaseEntities">
+    <EntitySetMapping Name="appoints">
+      <EntityTypeMapping TypeName="test_Applicata_DataBaseModel.appoint">
+        <MappingFragment StoreEntitySet="appoint">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="tutor_id" ColumnName="tutor_id" />
+          <ScalarProperty Name="updated_by" ColumnName="updated_by" />
+          <ScalarProperty Name="updated_date" ColumnName="updated_date" />
+          <ScalarProperty Name="is_deleted" ColumnName="is_deleted" />
+          <ScalarProperty Name="student_appoint_id" ColumnName="student_appoint_id" />
+          <ScalarProperty Name="semester_id" ColumnName="semester_id" />
+          <ScalarProperty Name="course_code_id" ColumnName="course_code_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="course_codes">
+      <EntityTypeMapping TypeName="test_Applicata_DataBaseModel.course_codes">
+        <MappingFragment StoreEntitySet="course_codes">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="courseCode" ColumnName="courseCode" />
+          <ScalarProperty Name="section_id" ColumnName="section_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <EntitySetMapping Name="items_region">
       <EntityTypeMapping TypeName="test_Applicata_DataBaseModel.items_region">
         <MappingFragment StoreEntitySet="items_region">
@@ -25,6 +48,98 @@
           <ScalarProperty Name="updated_by" ColumnName="updated_by" />
           <ScalarProperty Name="updated_date" ColumnName="updated_date" />
           <ScalarProperty Name="dstrict" ColumnName="dstrict" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="section_region">
+      <EntityTypeMapping TypeName="test_Applicata_DataBaseModel.section_region">
+        <MappingFragment StoreEntitySet="section_region">
+          <ScalarProperty Name="section_id" ColumnName="section_id" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="incharge" ColumnName="incharge" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="section_tutors">
+      <EntityTypeMapping TypeName="test_Applicata_DataBaseModel.section_tutors">
+        <MappingFragment StoreEntitySet="section_tutors">
+          <ScalarProperty Name="sec_tutor_id" ColumnName="sec_tutor_id" />
+          <ScalarProperty Name="sr_no" ColumnName="sr_no" />
+          <ScalarProperty Name="tutor_id" ColumnName="tutor_id" />
+          <ScalarProperty Name="section_id" ColumnName="section_id" />
+          <ScalarProperty Name="students" ColumnName="students" />
+          <ScalarProperty Name="appoint_status" ColumnName="appoint_status" />
+          <ScalarProperty Name="semester_id" ColumnName="semester_id" />
+          <ScalarProperty Name="course_code" ColumnName="course_code" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="semester_current">
+      <EntityTypeMapping TypeName="test_Applicata_DataBaseModel.semester_current">
+        <MappingFragment StoreEntitySet="semester_current">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="semester" ColumnName="semester" />
+          <ScalarProperty Name="year_" ColumnName="year_" />
+          <ScalarProperty Name="updated_by" ColumnName="updated_by" />
+          <ScalarProperty Name="updated_date" ColumnName="updated_date" />
+          <ScalarProperty Name="section_id" ColumnName="section_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="semester_previous">
+      <EntityTypeMapping TypeName="test_Applicata_DataBaseModel.semester_previous">
+        <MappingFragment StoreEntitySet="semester_previous">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="semester" ColumnName="semester" />
+          <ScalarProperty Name="year_" ColumnName="year_" />
+          <ScalarProperty Name="updated_by" ColumnName="updated_by" />
+          <ScalarProperty Name="updated_date" ColumnName="updated_date" />
+          <ScalarProperty Name="section_id" ColumnName="section_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="students_appoint">
+      <EntityTypeMapping TypeName="test_Applicata_DataBaseModel.students_appoint">
+        <MappingFragment StoreEntitySet="students_appoint">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="roll_no" ColumnName="roll_no" />
+          <ScalarProperty Name="sex" ColumnName="sex" />
+          <ScalarProperty Name="status_appoint" ColumnName="status_appoint" />
+          <ScalarProperty Name="program" ColumnName="program" />
+          <ScalarProperty Name="student_id" ColumnName="student_id" />
+          <ScalarProperty Name="updated_by" ColumnName="updated_by" />
+          <ScalarProperty Name="updated_date" ColumnName="updated_date" />
+          <ScalarProperty Name="is_deleted" ColumnName="is_deleted" />
+          <ScalarProperty Name="semester_id" ColumnName="semester_id" />
+          <ScalarProperty Name="courseCode_id" ColumnName="courseCode_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="students_region">
+      <EntityTypeMapping TypeName="test_Applicata_DataBaseModel.students_region">
+        <MappingFragment StoreEntitySet="students_region">
+          <ScalarProperty Name="std_id" ColumnName="std_id" />
+          <ScalarProperty Name="roll_no" ColumnName="roll_no" />
+          <ScalarProperty Name="reg_no" ColumnName="reg_no" />
+          <ScalarProperty Name="sex" ColumnName="sex" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="father_name" ColumnName="father_name" />
+          <ScalarProperty Name="mailing" ColumnName="mailing" />
+          <ScalarProperty Name="tehsil" ColumnName="tehsil" />
+          <ScalarProperty Name="district" ColumnName="district" />
+          <ScalarProperty Name="region" ColumnName="region" />
+          <ScalarProperty Name="semester" ColumnName="semester" />
+          <ScalarProperty Name="year_" ColumnName="year_" />
+          <ScalarProperty Name="program" ColumnName="program" />
+          <ScalarProperty Name="cc_1" ColumnName="cc_1" />
+          <ScalarProperty Name="cc_2" ColumnName="cc_2" />
+          <ScalarProperty Name="cc_3" ColumnName="cc_3" />
+          <ScalarProperty Name="cc_4" ColumnName="cc_4" />
+          <ScalarProperty Name="cc_5" ColumnName="cc_5" />
+          <ScalarProperty Name="cc_6" ColumnName="cc_6" />
+          <ScalarProperty Name="updated_date" ColumnName="updated_date" />
+          <ScalarProperty Name="updated_by" ColumnName="updated_by" />
+          <ScalarProperty Name="is_deleted" ColumnName="is_deleted" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -117,6 +232,11 @@
           <ScalarProperty Name="user_name" ColumnName="user_name" />
           <ScalarProperty Name="u_password" ColumnName="u_password" />
           <ScalarProperty Name="user_role" ColumnName="user_role" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="designation" ColumnName="designation" />
+          <ScalarProperty Name="profile_pic" ColumnName="profile_pic" />
+          <ScalarProperty Name="section_id" ColumnName="section_id" />
+          <ScalarProperty Name="program" ColumnName="program" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

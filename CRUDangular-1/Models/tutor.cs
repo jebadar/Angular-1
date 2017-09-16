@@ -16,6 +16,8 @@ namespace CRUDangular_1.Models
     {
         public tutor()
         {
+            this.appoints = new HashSet<appoint>();
+            this.section_tutors = new HashSet<section_tutors>();
             this.tutor_experience = new HashSet<tutor_experience>();
             this.tutor_qualification = new HashSet<tutor_qualification>();
         }
@@ -41,6 +43,8 @@ namespace CRUDangular_1.Models
         public string update_by { get; set; }
         public string update_date { get; set; }
     
+        public virtual ICollection<appoint> appoints { get; set; }
+        public virtual ICollection<section_tutors> section_tutors { get; set; }
         public virtual ICollection<tutor_experience> tutor_experience { get; set; }
         public virtual ICollection<tutor_qualification> tutor_qualification { get; set; }
     }

@@ -1,16 +1,80 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Schema Namespace="test_Applicata_DataBaseModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
   <EntityContainer Name="test_Applicata_DataBaseEntities" p1:LazyLoadingEnabled="true">
+    <EntitySet Name="appoints" EntityType="test_Applicata_DataBaseModel.appoint" />
+    <EntitySet Name="course_codes" EntityType="test_Applicata_DataBaseModel.course_codes" />
     <EntitySet Name="items_region" EntityType="test_Applicata_DataBaseModel.items_region" />
     <EntitySet Name="rooms_region" EntityType="test_Applicata_DataBaseModel.rooms_region" />
+    <EntitySet Name="section_region" EntityType="test_Applicata_DataBaseModel.section_region" />
+    <EntitySet Name="section_tutors" EntityType="test_Applicata_DataBaseModel.section_tutors" />
+    <EntitySet Name="semester_current" EntityType="test_Applicata_DataBaseModel.semester_current" />
+    <EntitySet Name="semester_previous" EntityType="test_Applicata_DataBaseModel.semester_previous" />
+    <EntitySet Name="students_appoint" EntityType="test_Applicata_DataBaseModel.students_appoint" />
+    <EntitySet Name="students_region" EntityType="test_Applicata_DataBaseModel.students_region" />
     <EntitySet Name="tutors" EntityType="test_Applicata_DataBaseModel.tutor" />
     <EntitySet Name="tutor_experience" EntityType="test_Applicata_DataBaseModel.tutor_experience" />
     <EntitySet Name="tutor_qualification" EntityType="test_Applicata_DataBaseModel.tutor_qualification" />
     <EntitySet Name="user_roles" EntityType="test_Applicata_DataBaseModel.user_roles" />
     <EntitySet Name="users" EntityType="test_Applicata_DataBaseModel.user" />
+    <AssociationSet Name="FK__appoint__tutor_i__3864608B" Association="test_Applicata_DataBaseModel.FK__appoint__tutor_i__3864608B">
+      <End Role="tutor" EntitySet="tutors" />
+      <End Role="appoint" EntitySet="appoints" />
+    </AssociationSet>
+    <AssociationSet Name="FK_appoint_course_codes" Association="test_Applicata_DataBaseModel.FK_appoint_course_codes">
+      <End Role="course_codes" EntitySet="course_codes" />
+      <End Role="appoint" EntitySet="appoints" />
+    </AssociationSet>
+    <AssociationSet Name="FK_appoint_semester_previous" Association="test_Applicata_DataBaseModel.FK_appoint_semester_previous">
+      <End Role="semester_previous" EntitySet="semester_previous" />
+      <End Role="appoint" EntitySet="appoints" />
+    </AssociationSet>
+    <AssociationSet Name="FK_appoint_students_appoint" Association="test_Applicata_DataBaseModel.FK_appoint_students_appoint">
+      <End Role="students_appoint" EntitySet="students_appoint" />
+      <End Role="appoint" EntitySet="appoints" />
+    </AssociationSet>
+    <AssociationSet Name="FK__course_co__secti__45BE5BA9" Association="test_Applicata_DataBaseModel.FK__course_co__secti__45BE5BA9">
+      <End Role="section_region" EntitySet="section_region" />
+      <End Role="course_codes" EntitySet="course_codes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_students_appoint_course_codes" Association="test_Applicata_DataBaseModel.FK_students_appoint_course_codes">
+      <End Role="course_codes" EntitySet="course_codes" />
+      <End Role="students_appoint" EntitySet="students_appoint" />
+    </AssociationSet>
     <AssociationSet Name="FK__rooms_reg__item___71D1E811" Association="test_Applicata_DataBaseModel.FK__rooms_reg__item___71D1E811">
       <End Role="items_region" EntitySet="items_region" />
       <End Role="rooms_region" EntitySet="rooms_region" />
+    </AssociationSet>
+    <AssociationSet Name="FK__section_t__secti__14270015" Association="test_Applicata_DataBaseModel.FK__section_t__secti__14270015">
+      <End Role="section_region" EntitySet="section_region" />
+      <End Role="section_tutors" EntitySet="section_tutors" />
+    </AssociationSet>
+    <AssociationSet Name="FK__semester___secti__40F9A68C" Association="test_Applicata_DataBaseModel.FK__semester___secti__40F9A68C">
+      <End Role="section_region" EntitySet="section_region" />
+      <End Role="semester_previous" EntitySet="semester_previous" />
+    </AssociationSet>
+    <AssociationSet Name="FK_semester_current_section_region" Association="test_Applicata_DataBaseModel.FK_semester_current_section_region">
+      <End Role="section_region" EntitySet="section_region" />
+      <End Role="semester_current" EntitySet="semester_current" />
+    </AssociationSet>
+    <AssociationSet Name="FK_users_section_region" Association="test_Applicata_DataBaseModel.FK_users_section_region">
+      <End Role="section_region" EntitySet="section_region" />
+      <End Role="users" EntitySet="users" />
+    </AssociationSet>
+    <AssociationSet Name="FK__section_t__tutor__1332DBDC" Association="test_Applicata_DataBaseModel.FK__section_t__tutor__1332DBDC">
+      <End Role="tutor" EntitySet="tutors" />
+      <End Role="section_tutors" EntitySet="section_tutors" />
+    </AssociationSet>
+    <AssociationSet Name="FK_section_tutors_semester_previous" Association="test_Applicata_DataBaseModel.FK_section_tutors_semester_previous">
+      <End Role="semester_previous" EntitySet="semester_previous" />
+      <End Role="section_tutors" EntitySet="section_tutors" />
+    </AssociationSet>
+    <AssociationSet Name="FK_students_appoint_semester_previous" Association="test_Applicata_DataBaseModel.FK_students_appoint_semester_previous">
+      <End Role="semester_previous" EntitySet="semester_previous" />
+      <End Role="students_appoint" EntitySet="students_appoint" />
+    </AssociationSet>
+    <AssociationSet Name="FK__matric_ap__stude__3493CFA7" Association="test_Applicata_DataBaseModel.FK__matric_ap__stude__3493CFA7">
+      <End Role="students_region" EntitySet="students_region" />
+      <End Role="students_appoint" EntitySet="students_appoint" />
     </AssociationSet>
     <AssociationSet Name="FK_experience_tutor" Association="test_Applicata_DataBaseModel.FK_experience_tutor">
       <End Role="tutor" EntitySet="tutors" />
@@ -25,6 +89,34 @@
       <End Role="users" EntitySet="users" />
     </AssociationSet>
   </EntityContainer>
+  <EntityType Name="appoint">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="tutor_id" Type="Int32" />
+    <Property Name="updated_by" Type="String" MaxLength="100" Unicode="false" FixedLength="false" />
+    <Property Name="updated_date" Type="String" MaxLength="100" Unicode="false" FixedLength="false" />
+    <Property Name="is_deleted" Type="String" MaxLength="100" Unicode="false" FixedLength="false" />
+    <Property Name="student_appoint_id" Type="Int32" />
+    <Property Name="semester_id" Type="Int32" />
+    <Property Name="course_code_id" Type="Int32" />
+    <NavigationProperty Name="tutor" Relationship="test_Applicata_DataBaseModel.FK__appoint__tutor_i__3864608B" FromRole="appoint" ToRole="tutor" />
+    <NavigationProperty Name="course_codes" Relationship="test_Applicata_DataBaseModel.FK_appoint_course_codes" FromRole="appoint" ToRole="course_codes" />
+    <NavigationProperty Name="semester_previous" Relationship="test_Applicata_DataBaseModel.FK_appoint_semester_previous" FromRole="appoint" ToRole="semester_previous" />
+    <NavigationProperty Name="students_appoint" Relationship="test_Applicata_DataBaseModel.FK_appoint_students_appoint" FromRole="appoint" ToRole="students_appoint" />
+  </EntityType>
+  <EntityType Name="course_codes">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="courseCode" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="section_id" Type="Int32" />
+    <NavigationProperty Name="appoints" Relationship="test_Applicata_DataBaseModel.FK_appoint_course_codes" FromRole="course_codes" ToRole="appoint" />
+    <NavigationProperty Name="section_region" Relationship="test_Applicata_DataBaseModel.FK__course_co__secti__45BE5BA9" FromRole="course_codes" ToRole="section_region" />
+    <NavigationProperty Name="students_appoint" Relationship="test_Applicata_DataBaseModel.FK_students_appoint_course_codes" FromRole="course_codes" ToRole="students_appoint" />
+  </EntityType>
   <EntityType Name="items_region">
     <Key>
       <PropertyRef Name="item_ID" />
@@ -52,6 +144,110 @@
     <Property Name="dstrict" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
     <NavigationProperty Name="items_region" Relationship="test_Applicata_DataBaseModel.FK__rooms_reg__item___71D1E811" FromRole="rooms_region" ToRole="items_region" />
   </EntityType>
+  <EntityType Name="section_region">
+    <Key>
+      <PropertyRef Name="section_id" />
+    </Key>
+    <Property Name="section_id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="name" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="incharge" Type="String" MaxLength="100" Unicode="false" FixedLength="false" />
+    <NavigationProperty Name="course_codes" Relationship="test_Applicata_DataBaseModel.FK__course_co__secti__45BE5BA9" FromRole="section_region" ToRole="course_codes" />
+    <NavigationProperty Name="section_tutors" Relationship="test_Applicata_DataBaseModel.FK__section_t__secti__14270015" FromRole="section_region" ToRole="section_tutors" />
+    <NavigationProperty Name="semester_previous" Relationship="test_Applicata_DataBaseModel.FK__semester___secti__40F9A68C" FromRole="section_region" ToRole="semester_previous" />
+    <NavigationProperty Name="semester_current" Relationship="test_Applicata_DataBaseModel.FK_semester_current_section_region" FromRole="section_region" ToRole="semester_current" />
+    <NavigationProperty Name="users" Relationship="test_Applicata_DataBaseModel.FK_users_section_region" FromRole="section_region" ToRole="users" />
+  </EntityType>
+  <EntityType Name="section_tutors">
+    <Key>
+      <PropertyRef Name="sec_tutor_id" />
+    </Key>
+    <Property Name="sec_tutor_id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="sr_no" Type="String" MaxLength="100" Unicode="false" FixedLength="false" />
+    <Property Name="tutor_id" Type="Int32" Nullable="false" />
+    <Property Name="section_id" Type="Int32" Nullable="false" />
+    <Property Name="students" Type="String" MaxLength="100" Unicode="false" FixedLength="false" />
+    <Property Name="appoint_status" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="semester_id" Type="Int32" />
+    <Property Name="course_code" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+    <NavigationProperty Name="section_region" Relationship="test_Applicata_DataBaseModel.FK__section_t__secti__14270015" FromRole="section_tutors" ToRole="section_region" />
+    <NavigationProperty Name="tutor" Relationship="test_Applicata_DataBaseModel.FK__section_t__tutor__1332DBDC" FromRole="section_tutors" ToRole="tutor" />
+    <NavigationProperty Name="semester_previous" Relationship="test_Applicata_DataBaseModel.FK_section_tutors_semester_previous" FromRole="section_tutors" ToRole="semester_previous" />
+  </EntityType>
+  <EntityType Name="semester_current">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="semester" Type="String" Nullable="false" MaxLength="100" Unicode="false" FixedLength="false" />
+    <Property Name="year_" Type="String" Nullable="false" MaxLength="100" Unicode="false" FixedLength="false" />
+    <Property Name="updated_by" Type="String" MaxLength="100" Unicode="false" FixedLength="false" />
+    <Property Name="updated_date" Type="String" MaxLength="100" Unicode="false" FixedLength="false" />
+    <Property Name="section_id" Type="Int32" />
+    <NavigationProperty Name="section_region" Relationship="test_Applicata_DataBaseModel.FK_semester_current_section_region" FromRole="semester_current" ToRole="section_region" />
+  </EntityType>
+  <EntityType Name="semester_previous">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="semester" Type="String" Nullable="false" MaxLength="100" Unicode="false" FixedLength="false" />
+    <Property Name="year_" Type="String" MaxLength="100" Unicode="false" FixedLength="false" />
+    <Property Name="updated_by" Type="String" MaxLength="100" Unicode="false" FixedLength="false" />
+    <Property Name="updated_date" Type="String" MaxLength="100" Unicode="false" FixedLength="false" />
+    <Property Name="section_id" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="appoints" Relationship="test_Applicata_DataBaseModel.FK_appoint_semester_previous" FromRole="semester_previous" ToRole="appoint" />
+    <NavigationProperty Name="section_region" Relationship="test_Applicata_DataBaseModel.FK__semester___secti__40F9A68C" FromRole="semester_previous" ToRole="section_region" />
+    <NavigationProperty Name="section_tutors" Relationship="test_Applicata_DataBaseModel.FK_section_tutors_semester_previous" FromRole="semester_previous" ToRole="section_tutors" />
+    <NavigationProperty Name="students_appoint" Relationship="test_Applicata_DataBaseModel.FK_students_appoint_semester_previous" FromRole="semester_previous" ToRole="students_appoint" />
+  </EntityType>
+  <EntityType Name="students_appoint">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="roll_no" Type="String" Nullable="false" MaxLength="100" Unicode="false" FixedLength="false" />
+    <Property Name="sex" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="status_appoint" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="program" Type="String" MaxLength="100" Unicode="false" FixedLength="false" />
+    <Property Name="student_id" Type="Int32" />
+    <Property Name="updated_by" Type="String" MaxLength="100" Unicode="false" FixedLength="false" />
+    <Property Name="updated_date" Type="String" MaxLength="100" Unicode="false" FixedLength="false" />
+    <Property Name="is_deleted" Type="String" MaxLength="100" Unicode="false" FixedLength="false" />
+    <Property Name="semester_id" Type="Int32" />
+    <Property Name="courseCode_id" Type="Int32" />
+    <NavigationProperty Name="appoints" Relationship="test_Applicata_DataBaseModel.FK_appoint_students_appoint" FromRole="students_appoint" ToRole="appoint" />
+    <NavigationProperty Name="course_codes" Relationship="test_Applicata_DataBaseModel.FK_students_appoint_course_codes" FromRole="students_appoint" ToRole="course_codes" />
+    <NavigationProperty Name="semester_previous" Relationship="test_Applicata_DataBaseModel.FK_students_appoint_semester_previous" FromRole="students_appoint" ToRole="semester_previous" />
+    <NavigationProperty Name="students_region" Relationship="test_Applicata_DataBaseModel.FK__matric_ap__stude__3493CFA7" FromRole="students_appoint" ToRole="students_region" />
+  </EntityType>
+  <EntityType Name="students_region">
+    <Key>
+      <PropertyRef Name="std_id" />
+    </Key>
+    <Property Name="std_id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="roll_no" Type="String" Nullable="false" MaxLength="100" Unicode="false" FixedLength="false" />
+    <Property Name="reg_no" Type="String" Nullable="false" MaxLength="100" Unicode="false" FixedLength="false" />
+    <Property Name="sex" Type="String" Nullable="false" MaxLength="10" Unicode="false" FixedLength="false" />
+    <Property Name="name" Type="String" Nullable="false" MaxLength="200" Unicode="false" FixedLength="false" />
+    <Property Name="father_name" Type="String" MaxLength="200" Unicode="false" FixedLength="false" />
+    <Property Name="mailing" Type="String" MaxLength="500" Unicode="false" FixedLength="false" />
+    <Property Name="tehsil" Type="String" MaxLength="100" Unicode="false" FixedLength="false" />
+    <Property Name="district" Type="String" MaxLength="100" Unicode="false" FixedLength="false" />
+    <Property Name="region" Type="String" MaxLength="100" Unicode="false" FixedLength="false" />
+    <Property Name="semester" Type="String" Nullable="false" MaxLength="100" Unicode="false" FixedLength="false" />
+    <Property Name="year_" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="program" Type="String" Nullable="false" MaxLength="100" Unicode="false" FixedLength="false" />
+    <Property Name="cc_1" Type="String" Nullable="false" MaxLength="100" Unicode="false" FixedLength="false" />
+    <Property Name="cc_2" Type="String" Nullable="false" MaxLength="100" Unicode="false" FixedLength="false" />
+    <Property Name="cc_3" Type="String" Nullable="false" MaxLength="100" Unicode="false" FixedLength="false" />
+    <Property Name="cc_4" Type="String" Nullable="false" MaxLength="100" Unicode="false" FixedLength="false" />
+    <Property Name="cc_5" Type="String" Nullable="false" MaxLength="100" Unicode="false" FixedLength="false" />
+    <Property Name="cc_6" Type="String" Nullable="false" MaxLength="100" Unicode="false" FixedLength="false" />
+    <Property Name="updated_date" Type="String" MaxLength="100" Unicode="false" FixedLength="false" />
+    <Property Name="updated_by" Type="String" MaxLength="100" Unicode="false" FixedLength="false" />
+    <Property Name="is_deleted" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+    <NavigationProperty Name="students_appoint" Relationship="test_Applicata_DataBaseModel.FK__matric_ap__stude__3493CFA7" FromRole="students_region" ToRole="students_appoint" />
+  </EntityType>
   <EntityType Name="tutor">
     <Key>
       <PropertyRef Name="tutor_id" />
@@ -76,6 +272,8 @@
     <Property Name="intelCertificate" Type="String" MaxLength="100" Unicode="false" FixedLength="false" />
     <Property Name="update_by" Type="String" MaxLength="100" Unicode="false" FixedLength="false" />
     <Property Name="update_date" Type="String" MaxLength="100" Unicode="false" FixedLength="false" />
+    <NavigationProperty Name="appoints" Relationship="test_Applicata_DataBaseModel.FK__appoint__tutor_i__3864608B" FromRole="tutor" ToRole="appoint" />
+    <NavigationProperty Name="section_tutors" Relationship="test_Applicata_DataBaseModel.FK__section_t__tutor__1332DBDC" FromRole="tutor" ToRole="section_tutors" />
     <NavigationProperty Name="tutor_experience" Relationship="test_Applicata_DataBaseModel.FK_experience_tutor" FromRole="tutor" ToRole="tutor_experience" />
     <NavigationProperty Name="tutor_qualification" Relationship="test_Applicata_DataBaseModel.FK_qualification_tutor" FromRole="tutor" ToRole="tutor_qualification" />
   </EntityType>
@@ -143,8 +341,86 @@
     <Property Name="user_name" Type="String" MaxLength="100" Unicode="false" FixedLength="false" />
     <Property Name="u_password" Type="String" MaxLength="100" Unicode="false" FixedLength="false" />
     <Property Name="user_role" Type="Int32" Nullable="false" />
+    <Property Name="name" Type="String" MaxLength="100" Unicode="false" FixedLength="false" />
+    <Property Name="designation" Type="String" MaxLength="100" Unicode="false" FixedLength="false" />
+    <Property Name="profile_pic" Type="String" MaxLength="100" Unicode="false" FixedLength="false" />
+    <Property Name="section_id" Type="Int32" />
+    <Property Name="program" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+    <NavigationProperty Name="section_region" Relationship="test_Applicata_DataBaseModel.FK_users_section_region" FromRole="users" ToRole="section_region" />
     <NavigationProperty Name="user_roles" Relationship="test_Applicata_DataBaseModel.users_user_role_FK" FromRole="users" ToRole="user_roles" />
   </EntityType>
+  <Association Name="FK__appoint__tutor_i__3864608B">
+    <End Role="tutor" Type="test_Applicata_DataBaseModel.tutor" Multiplicity="0..1" />
+    <End Role="appoint" Type="test_Applicata_DataBaseModel.appoint" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tutor">
+        <PropertyRef Name="tutor_id" />
+      </Principal>
+      <Dependent Role="appoint">
+        <PropertyRef Name="tutor_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_appoint_course_codes">
+    <End Role="course_codes" Type="test_Applicata_DataBaseModel.course_codes" Multiplicity="0..1" />
+    <End Role="appoint" Type="test_Applicata_DataBaseModel.appoint" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="course_codes">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="appoint">
+        <PropertyRef Name="course_code_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_appoint_semester_previous">
+    <End Role="semester_previous" Type="test_Applicata_DataBaseModel.semester_previous" Multiplicity="0..1" />
+    <End Role="appoint" Type="test_Applicata_DataBaseModel.appoint" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="semester_previous">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="appoint">
+        <PropertyRef Name="semester_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_appoint_students_appoint">
+    <End Role="students_appoint" Type="test_Applicata_DataBaseModel.students_appoint" Multiplicity="0..1" />
+    <End Role="appoint" Type="test_Applicata_DataBaseModel.appoint" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="students_appoint">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="appoint">
+        <PropertyRef Name="student_appoint_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__course_co__secti__45BE5BA9">
+    <End Role="section_region" Type="test_Applicata_DataBaseModel.section_region" Multiplicity="0..1" />
+    <End Role="course_codes" Type="test_Applicata_DataBaseModel.course_codes" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="section_region">
+        <PropertyRef Name="section_id" />
+      </Principal>
+      <Dependent Role="course_codes">
+        <PropertyRef Name="section_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_students_appoint_course_codes">
+    <End Role="course_codes" Type="test_Applicata_DataBaseModel.course_codes" Multiplicity="0..1" />
+    <End Role="students_appoint" Type="test_Applicata_DataBaseModel.students_appoint" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="course_codes">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="students_appoint">
+        <PropertyRef Name="courseCode_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK__rooms_reg__item___71D1E811">
     <End Role="items_region" Type="test_Applicata_DataBaseModel.items_region" Multiplicity="1" />
     <End Role="rooms_region" Type="test_Applicata_DataBaseModel.rooms_region" Multiplicity="*" />
@@ -154,6 +430,102 @@
       </Principal>
       <Dependent Role="rooms_region">
         <PropertyRef Name="item_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__section_t__secti__14270015">
+    <End Role="section_region" Type="test_Applicata_DataBaseModel.section_region" Multiplicity="1" />
+    <End Role="section_tutors" Type="test_Applicata_DataBaseModel.section_tutors" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="section_region">
+        <PropertyRef Name="section_id" />
+      </Principal>
+      <Dependent Role="section_tutors">
+        <PropertyRef Name="section_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__semester___secti__40F9A68C">
+    <End Role="section_region" Type="test_Applicata_DataBaseModel.section_region" Multiplicity="1" />
+    <End Role="semester_previous" Type="test_Applicata_DataBaseModel.semester_previous" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="section_region">
+        <PropertyRef Name="section_id" />
+      </Principal>
+      <Dependent Role="semester_previous">
+        <PropertyRef Name="section_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_semester_current_section_region">
+    <End Role="section_region" Type="test_Applicata_DataBaseModel.section_region" Multiplicity="0..1" />
+    <End Role="semester_current" Type="test_Applicata_DataBaseModel.semester_current" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="section_region">
+        <PropertyRef Name="section_id" />
+      </Principal>
+      <Dependent Role="semester_current">
+        <PropertyRef Name="section_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_users_section_region">
+    <End Role="section_region" Type="test_Applicata_DataBaseModel.section_region" Multiplicity="0..1" />
+    <End Role="users" Type="test_Applicata_DataBaseModel.user" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="section_region">
+        <PropertyRef Name="section_id" />
+      </Principal>
+      <Dependent Role="users">
+        <PropertyRef Name="section_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__section_t__tutor__1332DBDC">
+    <End Role="tutor" Type="test_Applicata_DataBaseModel.tutor" Multiplicity="1" />
+    <End Role="section_tutors" Type="test_Applicata_DataBaseModel.section_tutors" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tutor">
+        <PropertyRef Name="tutor_id" />
+      </Principal>
+      <Dependent Role="section_tutors">
+        <PropertyRef Name="tutor_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_section_tutors_semester_previous">
+    <End Role="semester_previous" Type="test_Applicata_DataBaseModel.semester_previous" Multiplicity="0..1" />
+    <End Role="section_tutors" Type="test_Applicata_DataBaseModel.section_tutors" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="semester_previous">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="section_tutors">
+        <PropertyRef Name="semester_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_students_appoint_semester_previous">
+    <End Role="semester_previous" Type="test_Applicata_DataBaseModel.semester_previous" Multiplicity="0..1" />
+    <End Role="students_appoint" Type="test_Applicata_DataBaseModel.students_appoint" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="semester_previous">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="students_appoint">
+        <PropertyRef Name="semester_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__matric_ap__stude__3493CFA7">
+    <End Role="students_region" Type="test_Applicata_DataBaseModel.students_region" Multiplicity="0..1" />
+    <End Role="students_appoint" Type="test_Applicata_DataBaseModel.students_appoint" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="students_region">
+        <PropertyRef Name="std_id" />
+      </Principal>
+      <Dependent Role="students_appoint">
+        <PropertyRef Name="student_id" />
       </Dependent>
     </ReferentialConstraint>
   </Association>

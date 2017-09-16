@@ -1,0 +1,9 @@
+﻿    <div class="col-md-12">
+            <form class="form-inline" name="searchForm" novalidate role="form">
+                    <div class="form-group">
+                        <input type="text" ng-model="search" class="form-control" placeholder="Search" ng-required="true">
+                        <select class="form-control" type="text" name="keyword" ng-required="true" ng-model="searchKeyword" ng-options="keyword for keyword in keyword"></select>
+                           <button class="btn btn-default btn-md" ng-click="searchField(search)"ng-disabled="searchForm.$invalid || isDisabled"><span class="glyphicon glyphicon-search"></span></button>
+                    </div>
+            </form>
+     </div>

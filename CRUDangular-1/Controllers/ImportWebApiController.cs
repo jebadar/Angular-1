@@ -52,6 +52,8 @@ namespace CRUDangular_1.Controllers
             Dictionary<string, object> dict = new Dictionary<string, object>();
             bool updation_sheet = false;
             bool notification_sheet = false;
+            bool student_sheet = false;
+            bool sectionTutorSheet = false;
             var httpRequest = HttpContext.Current.Request;
             foreach (string file in httpRequest.Files)
             {
@@ -65,12 +67,20 @@ namespace CRUDangular_1.Controllers
                 {
                     notification_sheet = true;
                 }
+                if (postedFile.FileName.Contains("*studentList*"))
+                {
+                    student_sheet = true;
+                }
+                if (postedFile.FileName.Contains("*sectionTutorList*"))
+                {
+                    sectionTutorSheet = true;
+                }
                 if (postedFile != null)
                 {
                     // tdata.ExecuteCommand("truncate table OtherCompanyAssets");  
                     if (postedFile.ContentType == "application/vnd.ms-excel" || postedFile.ContentType == "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet")
                     {
-                        string filename = postedFile.FileName;
+                         string filename = postedFile.FileName;
                         if (notification_sheet)
                         {
 
@@ -91,6 +101,29 @@ namespace CRUDangular_1.Controllers
                             else if (filename.EndsWith(".xls"))
                             {
                                 filename = "tutor_updation.xls";
+                            }
+                        }
+                        else if (student_sheet)
+                        {
+
+                            if (filename.EndsWith(".xlsx"))
+                            {
+                                filename = "student_list.xlsx";
+                            }
+                            else if (filename.EndsWith(".xls"))
+                            {
+                                filename = "student_list.xls";
+                            }
+                        }
+                        else if (sectionTutorSheet)
+                        {
+                            if (filename.EndsWith(".xlsx"))
+                            {
+                                filename = "section_list.xlsx";
+                            }
+                            else if (filename.EndsWith(".xls"))
+                            {
+                                filename = "section_list.xls";
                             }
                         }
                         try
@@ -650,7 +683,7 @@ namespace CRUDangular_1.Controllers
                                                     db.tutor_experience.Add(modelToObjectExp(exp));
                                                     db.SaveChanges();
                                                     CounterEntered++;
-                                                    data.Add("");
+                                                    data.Add("Experience entered of Reg No." + exp.registration_no);
                                                 }
                                                 catch (Exception ex)
                                                 {
@@ -676,8 +709,442 @@ namespace CRUDangular_1.Controllers
                                         return json(stuff);
                                     }
                                 }
-                            }
                                 #endregion
+
+                                #region studentSheet
+                                else if (student_sheet == true)
+                                {
+                                    List<S_students> ST = new List<S_students>();
+                                    #region sheet
+                                    try
+                                    {
+                                        foreach (IXLRow row in workSheet.Rows())
+                                        {
+                                            //Use the first row to add columns to DataTable.
+                                            if (firstRow)
+                                            {
+                                                foreach (IXLCell cell in row.Cells())
+                                                {
+                                                    dt.Columns.Add(cell.Value.ToString());
+                                                }
+                                                #region FirstRowCheck
+                                                if (dt.Columns[0].ToString() == "rollNo")
+                                                {
+                                                    if (dt.Columns[1].ToString() == "regNo")
+                                                    {
+                                                        if (dt.Columns[2].ToString() == "sex")
+                                                        {
+                                                            if (dt.Columns[3].ToString() == "name")
+                                                            {
+                                                                if (dt.Columns[4].ToString() == "fatherName")
+                                                                {
+                                                                    if (dt.Columns[5].ToString() == "mailingAddress")
+                                                                    {
+                                                                        if (dt.Columns[6].ToString() == "tehsil")
+                                                                        {
+                                                                            if (dt.Columns[7].ToString() == "district")
+                                                                            {
+                                                                                if (dt.Columns[8].ToString() == "region")
+                                                                                {
+                                                                                    if (dt.Columns[9].ToString() == "program")
+                                                                                    {
+                                                                                        if (dt.Columns[10].ToString() == "courseCode_1")
+                                                                                        {
+                                                                                            if (dt.Columns[11].ToString() == "courseCode_2")
+                                                                                            {
+                                                                                                if (dt.Columns[12].ToString() == "courseCode_3")
+                                                                                                {
+                                                                                                    if (dt.Columns[13].ToString() == "courseCode_4")
+                                                                                                    {
+                                                                                                        if (dt.Columns[14].ToString() == "courseCode_5")
+                                                                                                        {
+                                                                                                            if (dt.Columns[15].ToString() == "courseCode_6")
+                                                                                                            {
+
+                                                                                                            }
+                                                                                                            else
+                                                                                                            {
+                                                                                                                data.Add("Please choose Excel file with Correct Format of Columns. Column Name 'courseCode_6' Missing!");
+                                                                                                                data.ToArray();
+
+                                                                                                                dynamic stuff = JsonConvert.SerializeObject(data);
+                                                                                                                return json(stuff);
+                                                                                                            }
+                                                                                                        }
+                                                                                                        else
+                                                                                                        {
+                                                                                                            data.Add("Please choose Excel file with Correct Format of Columns. Column Name 'courseCode_5' Missing!");
+                                                                                                            data.ToArray();
+
+                                                                                                            dynamic stuff = JsonConvert.SerializeObject(data);
+                                                                                                            return json(stuff);
+                                                                                                        }
+                                                                                                    }
+                                                                                                    else
+                                                                                                    {
+                                                                                                        data.Add("Please choose Excel file with Correct Format of Columns. Column Name 'courseCode_4' Missing!");
+                                                                                                        data.ToArray();
+
+                                                                                                        dynamic stuff = JsonConvert.SerializeObject(data);
+                                                                                                        return json(stuff);
+                                                                                                    }
+                                                                                                }
+                                                                                                else
+                                                                                                {
+                                                                                                    data.Add("Please choose Excel file with Correct Format of Columns. Column Name 'courseCode_3' Missing!");
+                                                                                                    data.ToArray();
+
+                                                                                                    dynamic stuff = JsonConvert.SerializeObject(data);
+                                                                                                    return json(stuff);
+                                                                                                }
+                                                                                            }
+                                                                                            else
+                                                                                            {
+                                                                                                data.Add("Please choose Excel file with Correct Format of Columns. Column Name 'courseCode_2' Missing!");
+                                                                                                data.ToArray();
+
+                                                                                                dynamic stuff = JsonConvert.SerializeObject(data);
+                                                                                                return json(stuff);
+                                                                                            }
+                                                                                        }
+                                                                                        else
+                                                                                        {
+                                                                                            data.Add("Please choose Excel file with Correct Format of Columns. Column Name 'courseCode_1' Missing!");
+                                                                                            data.ToArray();
+
+                                                                                            dynamic stuff = JsonConvert.SerializeObject(data);
+                                                                                            return json(stuff);
+                                                                                        }
+                                                                                    }
+                                                                                    else
+                                                                                    {
+                                                                                        data.Add("Please choose Excel file with Correct Format of Columns. Column Name 'program' Missing!");
+                                                                                        data.ToArray();
+
+                                                                                        dynamic stuff = JsonConvert.SerializeObject(data);
+                                                                                        return json(stuff);
+                                                                                    }
+                                                                                }
+                                                                                else
+                                                                                {
+                                                                                    data.Add("Please choose Excel file with Correct Format of Columns. Column Name 'region' Missing!");
+                                                                                    data.ToArray();
+
+                                                                                    dynamic stuff = JsonConvert.SerializeObject(data);
+                                                                                    return json(stuff);
+                                                                                }
+                                                                            }
+                                                                            else
+                                                                            {
+                                                                                data.Add("Please choose Excel file with Correct Format of Columns. Column Name 'district' Missing!");
+                                                                                data.ToArray();
+
+                                                                                dynamic stuff = JsonConvert.SerializeObject(data);
+                                                                                return json(stuff);
+                                                                            }
+                                                                        }
+                                                                        else
+                                                                        {
+                                                                            data.Add("Please choose Excel file with Correct Format of Columns. Column Name 'tehsil' Missing!");
+                                                                            data.ToArray();
+
+                                                                            dynamic stuff = JsonConvert.SerializeObject(data);
+                                                                            return json(stuff);
+                                                                        }
+                                                                    }
+                                                                    else
+                                                                    {
+                                                                        data.Add("Please choose Excel file with Correct Format of Columns. Column Name 'mailingAddress' Missing!");
+                                                                        data.ToArray();
+
+                                                                        dynamic stuff = JsonConvert.SerializeObject(data);
+                                                                        return json(stuff);
+                                                                    }
+                                                                }
+                                                                else
+                                                                {
+                                                                    data.Add("Please choose Excel file with Correct Format of Columns. Column Name 'fatherName' Missing!");
+                                                                    data.ToArray();
+
+                                                                    dynamic stuff = JsonConvert.SerializeObject(data);
+                                                                    return json(stuff);
+                                                                }
+                                                            }
+                                                            else
+                                                            {
+                                                                data.Add("Please choose Excel file with Correct Format of Columns. Column Name 'name' Missing!");
+                                                                data.ToArray();
+
+                                                                dynamic stuff = JsonConvert.SerializeObject(data);
+                                                                return json(stuff);
+                                                            }
+                                                        }
+                                                        else
+                                                        {
+                                                            data.Add("Please choose Excel file with Correct Format of Columns. Column Name 'sex' Missing!");
+                                                            data.ToArray();
+
+                                                            dynamic stuff = JsonConvert.SerializeObject(data);
+                                                            return json(stuff);
+                                                        }
+                                                    }
+                                                    else
+                                                    {
+                                                        data.Add("Please choose Excel file with Correct Format of Columns. Column Name 'regNo' Missing!");
+                                                        data.ToArray();
+
+                                                        dynamic stuff = JsonConvert.SerializeObject(data);
+                                                        return json(stuff);
+                                                    }
+                                                }
+                                                else
+                                                {
+                                                    data.Add("Please choose Excel file with Correct Format of Columns. Column Name 'rollNo' Missing!");
+                                                    data.ToArray();
+
+                                                    dynamic stuff = JsonConvert.SerializeObject(data);
+                                                    return json(stuff);
+                                                }
+                                                #endregion
+                                                firstRow = false;
+                                            }
+                                            else
+                                            {
+                                                //Add rows to DataTable.
+                                                dt.Rows.Add();
+                                                int i = 0;
+                                                foreach (IXLCell cell in row.Cells())
+                                                {
+                                                    if (cell.Value.ToString() != null)
+                                                    {
+                                                        dt.Rows[dt.Rows.Count - 1][i] = cell.Value.ToString();
+                                                        i++;
+                                                    }
+                                                    else
+                                                    {
+                                                        data.Add("A cell in row of table contain a null value! Whole Table Must not Contain any Null Value. Please Fill the Cell");
+                                                        data.ToArray();
+
+                                                        dynamic stuff = JsonConvert.SerializeObject(data);
+                                                        return json(stuff);
+                                                    }
+                                                }
+
+                                            }
+
+                                        }
+                                    #endregion
+                                        program_check();
+                                        semester_check(program);
+                                        ST = ConvertDatatableStudent(dt);
+                                        if (ST.Count != 0)
+                                        {
+                                            var counterEnter = 0;
+                                            foreach (var Student in ST)
+                                            {
+                                                try
+                                                {
+                                                    db.students_region.Add(modelObjectToStudent(Student));
+                                                    db.SaveChanges();
+                                                    counterEnter++;
+                                                    #region courseCode
+                                                    if (Student.program == "matric" || Student.program == "Matric")
+                                                    {
+                                                        if (!Student.cc_1.Contains("N/A") && Student.cc_1 != "" && Student.cc_1 != null)
+                                                        {
+                                                            if (enterCourse(Student.roll_no, Student.semester, Student.year, Student.program, Student.cc_1))
+                                                            {
+                                                                data.Add("**Course code entered " + Student.cc_1 + " **");
+                                                            }
+                                                        }
+                                                        if (!Student.cc_2.Contains("N/A") && Student.cc_2 != "" && Student.cc_2 != null)
+                                                        {
+                                                            if (enterCourse(Student.roll_no, Student.semester, Student.year, Student.program, Student.cc_2))
+                                                            {
+                                                                data.Add("**Course code entered " + Student.cc_2 + "**");
+                                                            }
+                                                        }
+                                                        if (!Student.cc_3.Equals("N/A")  && Student.cc_3 != "" && Student.cc_3 != null)
+                                                        {
+                                                            if (enterCourse(Student.roll_no, Student.semester, Student.year, Student.program, Student.cc_3))
+                                                            {
+                                                                data.Add("**Course code entered " + Student.cc_2 + "**");
+                                                            }
+                                                        }
+                                                        if (!Student.cc_4.Contains("N/A") && Student.cc_4 != "" && Student.cc_4 != null)
+                                                        {
+                                                            if (enterCourse(Student.roll_no, Student.semester, Student.year, Student.program, Student.cc_4))
+                                                            {
+                                                                data.Add("**Course code entered " + Student.cc_4 + " **");
+                                                            }
+                                                        }
+                                                        if (!Student.cc_5.Contains("N/A") && Student.cc_5 != "" && Student.cc_5 != null)
+                                                        {
+                                                            if (enterCourse(Student.roll_no, Student.semester, Student.year, Student.program, Student.cc_5))
+                                                            {
+                                                                data.Add("**Course code entered " + Student.cc_5 + "**");
+                                                            }
+                                                        }
+                                                        if (!Student.cc_6.Contains("N/A") && Student.cc_6 != "" && Student.cc_6 != null)
+                                                        {
+                                                            if (enterCourse(Student.roll_no, Student.semester, Student.year, Student.program, Student.cc_6))
+                                                            {
+                                                                data.Add("**Course code entered " + Student.cc_6 + "**");
+                                                            }
+                                                        }
+                                                    }
+                                                    #endregion
+                                                }
+                                                catch (Exception exp)
+                                                {
+                                                    log.Error(exp);
+                                                    data.Add(exp.Message + exp.InnerException);
+                                                    continue;
+                                                }
+                                            }
+                                            data.Add("Total Entered Student: " + counterEnter);
+                                        }
+                                        else
+                                        {
+                                            data.Add("No Record Entered. All Record Already Exist Or there is no record in uploaded sheet!");
+                                        }
+                                    }
+                                    catch (Exception ex)
+                                    {
+
+                                        log.Error(ex);
+                                        data.Add(ex.Message + ex.InnerException);
+                                        data.ToArray();
+                                        dynamic stuff = JsonConvert.SerializeObject(data);
+                                        return json(stuff);
+                                    }
+                                }
+                                #endregion
+
+                                #region sectionTutorSheet
+                                else if (sectionTutorSheet == true)
+                                { 
+                                
+                                    List<sectionTutorRegNo> TL = new List<sectionTutorRegNo>();
+                                    #region sheet
+                                    try
+                                    {
+                                        foreach (IXLRow row in workSheet.Rows())
+                                        {
+                                            //Use the first row to add columns to DataTable.
+                                            if (firstRow)
+                                            {
+                                                foreach (IXLCell cell in row.Cells())
+                                                {
+                                                    dt.Columns.Add(cell.Value.ToString());
+                                                }
+                                                #region FirstRowCheck
+                                                if (dt.Columns[0].ToString() == "registration_no")
+                                                {
+                                                    
+                                                }
+                                                else
+                                                {
+                                                    data.Add("Please choose Excel file with Correct Format of Columns. Column Name 'registration_no' Missing!");
+                                                    data.ToArray();
+                                                    dynamic stuff = JsonConvert.SerializeObject(data);
+                                                    return json(stuff);
+                                                }
+                                                #endregion
+                                                firstRow = false;
+                                            }
+                                            else
+                                            {
+                                                //Add rows to DataTable.
+                                                dt.Rows.Add();
+                                                int i = 0;
+                                                foreach (IXLCell cell in row.Cells())
+                                                {
+                                                    if (cell.Value.ToString() != null)
+                                                    {
+                                                        dt.Rows[dt.Rows.Count - 1][i] = cell.Value.ToString();
+                                                        i++;
+                                                    }
+                                                    else
+                                                    {
+                                                        data.Add("A cell in row of table contain a null value! Whole Table Must not Contain any Null Value. Please Fill the Cell");
+                                                        data.ToArray();
+
+                                                        dynamic stuff = JsonConvert.SerializeObject(data);
+                                                        return json(stuff);
+                                                    }
+                                                }
+
+                                            }
+
+                                        }
+                                    #endregion
+                                        program_check();
+                                        semester_check(program);
+                                        TL = ConvertDataTableSectionTutor(dt);
+                                        if (TL.Count != 0)
+                                        {
+                                            var counterEnter = 0;
+                                            semester_previous Sem_prev = db.semester_previous.Where(a => a.semester == semester && a.year_ == year && a.section_id == section_id).FirstOrDefault();
+                                            foreach (var Tutor in TL)
+                                            {
+                                                try
+                                                {
+                                                    if (Tutor.reg_no != null || Tutor.reg_no != "")
+                                                    {
+                                                        tutor TT = db.tutors.Where(a => a.reg_no == Tutor.reg_no).FirstOrDefault();
+                                                        section_tutors SecT = new section_tutors();
+                                                        if (TT != null)
+                                                        {
+                                                            if (!secTutorCheck(TT.tutor_id))
+                                                            {
+                                                                SecT.tutor_id = TT.tutor_id;
+                                                                SecT.semester_id = Sem_prev.id;
+                                                                SecT.section_id = section_id;
+                                                                SecT.appoint_status = "Not Appointed";
+                                                                SecT.students = "00";
+                                                                db.section_tutors.Add(SecT);
+                                                                data.Add("Registration No. Added:  " + Tutor.reg_no);
+                                                                counterEnter++;
+                                                            }
+                                                        }
+                                                        else
+                                                            data.Add("Registration No. not Exist:  " + Tutor.reg_no);
+                                                    }
+                                                }
+                                                catch (Exception exp)
+                                                {
+                                                    log.Error(exp);
+                                                    data.Add(exp.Message + exp.InnerException);
+                                                    continue;
+                                                }
+                                            }
+                                            try { db.SaveChanges(); }
+                                            catch (Exception exp) {
+                                                log.Error(exp);
+                                                data.Add(exp.Message);
+                                            }
+                                            data.Add("Total Entered Tutors:  " + counterEnter);
+                                        }
+                                        else
+                                        {
+                                            data.Add("No Record Entered. All Record Already Exist Or there is no record in uploaded sheet!");
+                                        }
+                                    }
+                                    catch (Exception ex)
+                                    {
+
+                                        log.Error(ex);
+                                        data.Add(ex.Message + ex.InnerException);
+                                        data.ToArray();
+                                        dynamic stuff = JsonConvert.SerializeObject(data);
+                                        return json(stuff);
+                                    }
+
+                                }
+                                #endregion
+
+                            }
 
                         }
                         catch (Exception ex)
@@ -693,13 +1160,11 @@ namespace CRUDangular_1.Controllers
                         if (postedFile == null) 
                         data.Add("Please choose Excel file");
                         data.ToArray();
-
                         dynamic stuff = JsonConvert.SerializeObject(data);
                         return json(stuff);
                     }
                 }
             }
-            //ResponseDTO abc = "result"
             data.ToArray();
             dynamic lastStuff = JsonConvert.SerializeObject(data);
             return json(lastStuff);
@@ -778,6 +1243,34 @@ namespace CRUDangular_1.Controllers
             TE.contigency = a.contigency;
 
             return TE;
+        }
+
+        private students_region modelObjectToStudent(S_students SS)
+        {
+
+            students_region SR = new students_region();
+            SR.roll_no = SS.roll_no;
+            SR.reg_no = SS.reg_no;
+            SR.sex = SS.sex;
+            SR.name = SS.name;
+            SR.father_name = SS.father_name;
+            SR.mailing = SS.mailing;
+            SR.tehsil = SS.tehsil;
+            SR.district = SS.district;
+            SR.region = SS.region;
+            SR.semester = SS.semester;
+            SR.year_ = SS.year;
+            SR.program = SS.program;
+            SR.cc_1 = SS.cc_1;
+            SR.cc_2 = SS.cc_2;
+            SR.cc_3 = SS.cc_3;
+            SR.cc_4 = SS.cc_4;
+            SR.cc_5 = SS.cc_5;
+            SR.cc_6 = SS.cc_6;
+            SR.updated_by = User.Identity.Name.ToString();
+            SR.updated_date = DateTime.Now.ToString();
+            SR.is_deleted = "false";
+            return SR;
         }
 
         static bool experienceCheck(int tutor_id,string course_code,string semester,string year)
@@ -973,5 +1466,188 @@ namespace CRUDangular_1.Controllers
             return result;
         }
 
+        private List<S_students> ConvertDatatableStudent(DataTable Std_tbl)
+        {
+            List<S_students> results = new List<S_students>();
+            foreach (DataRow row in Std_tbl.Rows)
+            {
+                S_students std = ConvertRowToStudent(row);
+                if (std.roll_no != "" || std.roll_no != null)
+                {
+                    if (!std.roll_no.Contains("N/A"))
+                    {
+                        if (!studentCheck(std.roll_no, semester, year, program))
+                        {
+                            results.Add(std);
+                        }
+                        else
+                        {
+                            data.Add("Record of Roll No." + std.roll_no + "already exist!");
+                        }
+                    }
+                    else
+                    {
+                        data.Add("Record of name" + std.name + "Roll No. is not Valid");
+                    }
+                }
+                else
+                {
+                    data.Add("Record of name" + std.name + "Roll No. is Required");
+                }
+            }
+            return results;
+        }
+        private List<sectionTutorRegNo> ConvertDataTableSectionTutor(DataTable Tbl)
+        {
+            List<sectionTutorRegNo> STRN = new List<sectionTutorRegNo>();
+            foreach (DataRow ST in Tbl.Rows)
+            {
+                sectionTutorRegNo SR = ConvertRowToSectionTutor(ST);
+                if (SR.reg_no != null || SR.reg_no != "")
+                {
+                    if (!SR.reg_no.Contains("N/A"))
+                    {
+                        STRN.Add(SR);
+                    }
+                    else
+                        data.Add("Registration no is incorect");
+                }
+                else
+                    data.Add("Registration no is incorect");
+            }
+            return STRN;
+        }
+        private S_students ConvertRowToStudent(DataRow row)
+        {
+            S_students std = new S_students();
+            try
+            {
+                std.roll_no = row[0].ToString();
+                std.reg_no = row[1].ToString();
+                std.sex = row[2].ToString();
+                std.name = row[3].ToString();
+                std.father_name = row[4].ToString();
+                std.mailing = row[5].ToString();
+                std.tehsil = row[6].ToString();
+                std.district = row[7].ToString();
+                std.region = row[8].ToString();
+                std.program = program;
+                std.cc_1 = row[10].ToString();
+                std.cc_2 = row[11].ToString();
+                std.cc_3 = row[12].ToString();
+                std.cc_4 = row[13].ToString();
+                std.cc_5 = row[14].ToString();
+                std.cc_6 = row[15].ToString();
+                std.semester = semester;
+                std.year = year;
+            }
+            catch (Exception ex)
+            {
+                log.Error(ex);
+                data.Add(ex.Message + ex.InnerException);
+            
+            }
+            return std;
+        }
+        private sectionTutorRegNo ConvertRowToSectionTutor(DataRow row) 
+        {
+            sectionTutorRegNo SCTR = new sectionTutorRegNo();
+            SCTR.reg_no = row[0].ToString();
+            return SCTR;
+        
+        }
+        private bool studentCheck(string rollNo,string semester,string year,string program) 
+        {
+            test_Applicata_DataBaseEntities db = new test_Applicata_DataBaseEntities();
+            List<students_region> std = db.students_region.Where(a => a.roll_no == rollNo).ToList();
+            foreach(var s in std)
+            {
+                if (s.semester.Contains(semester))
+                {
+                    if (s.year_.Contains(year))
+                    {
+                        if (s.program.Contains(program))
+                        {
+                            return true;
+                        }
+                    }
+                }
+            }
+            return false;
+        }
+
+        private bool secTutorCheck(int tutor_id) {
+            test_Applicata_DataBaseEntities db = new test_Applicata_DataBaseEntities();
+            semester_previous Sem_Pev = new semester_previous();
+            Sem_Pev = db.semester_previous.Where(a => a.semester == semester && a.year_ == year && a.section_id == section_id).FirstOrDefault();
+            section_tutors ST = db.section_tutors.Where(a => a.tutor_id == tutor_id && a.semester_id == Sem_Pev.id && a.section_id == section_id).FirstOrDefault();
+            if (ST != null)
+            {
+                return true;
+            }
+            else
+               return false;
+        }
+        private bool enterCourse(string rollNo,string semester,string year,string program,string courseCode)
+        {
+            test_Applicata_DataBaseEntities db = new test_Applicata_DataBaseEntities();
+            List<students_region> Students = db.students_region.Where(a => a.roll_no == rollNo).ToList();
+            semester_previous SP = db.semester_previous.Where(a => a.section_id == section_id && a.semester == semester && a.year_ == year).FirstOrDefault();
+            course_codes CC = db.course_codes.Where(a => a.courseCode == courseCode).FirstOrDefault();
+            students_appoint MCS = new students_appoint();
+            foreach (var std in Students)
+            {
+                if (std.program.Contains(program))
+                {
+                    if (std.semester.Contains(semester))
+                    {
+                        if (std.year_.Contains(year))
+                        {
+                            MCS.roll_no = std.roll_no;
+                            MCS.courseCode_id = CC.id;
+                            MCS.sex = std.sex;
+                            MCS.semester_id = SP.id;
+                            MCS.program = std.program;
+                            MCS.student_id = std.std_id;
+                            MCS.status_appoint = "Not Appointed";
+                            MCS.updated_by = User.Identity.Name;
+                            MCS.updated_date = DateTime.Now.ToString();
+                        }
+                    }
+                }
+            
+            }
+            if (MCS != null)
+            {
+                db.students_appoint.Add(MCS);
+                db.SaveChanges();
+                return true;
+            }
+            else 
+            {
+                return false;
+            }
+        }
+
+        private string semester { get; set; }
+        private string year { get; set; }
+        private string program { get; set; }
+        private int section_id { get; set; }
+        private void semester_check(string section)
+        {
+            test_Applicata_DataBaseEntities db = new test_Applicata_DataBaseEntities();
+            semester_current SC = db.semester_current.Where(a => a.section_region.name == section).FirstOrDefault();
+            semester = SC.semester;
+            year = SC.year_;
+        }
+
+        private void program_check() {
+            test_Applicata_DataBaseEntities db = new test_Applicata_DataBaseEntities();
+            user UU = db.users.Where(a => a.user_name == User.Identity.Name).FirstOrDefault();
+            program = UU.program;
+            section_id = Convert.ToInt32(UU.section_id);
+        }
+
+        
     }
 }

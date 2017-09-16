@@ -1,0 +1,84 @@
+﻿<div class="container col-lg-3">
+        <div class="jumbotron jumbotron-fluid"style="background-color:white">
+           <div class="row">
+                <div class="col-md-12">
+                    <div class="text-inline">
+                        <img src="../Images/Icon/13226966_901782459930430_9009933657743981873_n.jpg" class="avatar img-responsive" style="border-radius:50%"/>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                <h4><u>{{user.name}}</u></h4>
+                </div>
+            </div>
+           <div class="row"> 
+               <div class="col-md-12">
+                    {{user.designation}}
+                </div>
+            </div>
+       
+    </div>
+
+</div>
+
+<div class="container col-lg-9">
+    <div class="col-sm-12 text-center">
+        <h3 class="display-4">Activities</h3>
+        <div class="col-md-12">
+            <blockquote class="blockquote blockquote-reverse"><em>Current Semester:{{user.semester_current.semester}}-{{user.semester_current.year_}}</em></blockquote>
+        </div>
+    </div>
+    
+    <div class="col-md-4">
+        <div class="jumbotron" style="background-color:white" ng-click="listView()">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="text-inline">
+                        <img src="../Images/Icon/tutor_icon.ico" class="avatar img-responsive" style="border-radius:50%"/>
+                    </div>
+                </div>
+            </div>   
+            <div class="row">
+               <div class="col-md-12 text-inline">
+                    <h3 class="center-block badge">{{totalTutors}}</h3>
+               </div>
+           </div>
+        </div>
+    </div>
+   
+
+    <div class="col-md-4">
+        <div class="jumbotron jumbotron-fluid"style="background-color:white"ng-click="studentView()">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="text-inline">
+                        <img src="../Images/Icon/student_icon.png" class="avatar img-responsive" style="border-radius:50%"/>
+                    </div>
+                </div>
+            </div>  
+               <div class="row"> 
+                   <div class="col-md-12">
+                    <h3 class="center-block badge">00</h3>
+                    </div>
+                </div>
+       
+        </div>
+    </div>
+        <div class="col-md-4">
+        <div class="jumbotron jumbotron-fluid" style="background-color:white" ng-click="mainItem()">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="text-inline">
+                        <img src="../Images/Icon/item_icon.png" class="avatar img-responsive"/>
+                    </div>
+                </div>
+            </div> 
+                    <div class="row">
+                        <div class="col-md-12">
+                    <h3 class="center-block badge">{{totalItems}}</h3>
+                        </div>
+                    </div>
+         </div>
+    </div>
+</div>

@@ -18,6 +18,7 @@ namespace CRUDangular_1.Models
         public test_Applicata_DataBaseEntities()
             : base("name=test_Applicata_DataBaseEntities")
         {
+            this.Configuration.LazyLoadingEnabled = false;
         }
     
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
@@ -25,8 +26,16 @@ namespace CRUDangular_1.Models
             throw new UnintentionalCodeFirstException();
         }
     
+        public DbSet<appoint> appoints { get; set; }
+        public DbSet<course_codes> course_codes { get; set; }
         public DbSet<items_region> items_region { get; set; }
         public DbSet<rooms_region> rooms_region { get; set; }
+        public DbSet<section_region> section_region { get; set; }
+        public DbSet<section_tutors> section_tutors { get; set; }
+        public DbSet<semester_current> semester_current { get; set; }
+        public DbSet<semester_previous> semester_previous { get; set; }
+        public DbSet<students_appoint> students_appoint { get; set; }
+        public DbSet<students_region> students_region { get; set; }
         public DbSet<tutor> tutors { get; set; }
         public DbSet<tutor_experience> tutor_experience { get; set; }
         public DbSet<tutor_qualification> tutor_qualification { get; set; }

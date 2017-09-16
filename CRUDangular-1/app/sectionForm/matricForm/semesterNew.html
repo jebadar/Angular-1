@@ -1,0 +1,9 @@
+﻿    <div class="col-md-12">
+            <form class="form-inline" name="semesterForm" novalidate role="form">
+                    <div class="form-group">
+                        <select class="form-control" type="text" name="semester" ng-required="true" ng-model="newSemester.semester_" ng-options="semester for semester in semester"></select>
+                        <select class="form-control" type="text" name="year" ng-required="true" ng-model="newSemester.year" ng-options="year for year in year"></select>
+                           <button class="btn btn-default btn-md" ng-click="startSemester(newSemester)"ng-disabled="semesterForm.$invalid || isDisabled">Start New Semester</button>
+                    </div>
+            </form>
+     </div>

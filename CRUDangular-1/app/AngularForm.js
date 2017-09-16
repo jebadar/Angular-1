@@ -1,4 +1,4 @@
-﻿var formApp = angular.module('formApp', ["ngRoute", "ngDialog", "ngMaterial", "ui.bootstrap", "ui.select", "angularUtils.directives.dirPagination", "ngTable", "angularFileUpload", "bootstrapLightbox"]);
+﻿var formApp = angular.module('formApp', ["ngRoute", "ngDialog", "ngMaterial", "ui.bootstrap", "ui.select", "angularUtils.directives.dirPagination", "ngTable", "angularFileUpload", "bootstrapLightbox","500tech.modal-progress-bar"]);
 formApp.config(["$routeProvider", "$locationProvider", "LightboxProvider", function ($routeProvider, $locationProvider, LightboxProvider) {
     $routeProvider
     .when("/home", {
@@ -90,6 +90,59 @@ formApp.config(["$routeProvider", "$locationProvider", "LightboxProvider", funct
             templateUrl: "/app/itemForm/editRoom.html",
             controller: "ifController"
         })
+        .when("/matricMain", {
+            templateUrl: "/app/sectionForm/matricForm/mfMain.html",
+            controller: "mfController"
+        })
+        .when("/secTutor", {
+            templateUrl: "/app/sectionForm/matricForm/tutorList.html",
+            controller: "mfController"
+        })
+        .when("/option", {
+            templateUrl: "/app/sectionForm/matricForm/optionAdd.html",
+            controller: "mfController"
+        })
+        .when("/tutorAdd", {
+            templateUrl: "/app/sectionForm/matricForm/tutorToBeAddList.html",
+            controller: "mfController"
+        })
+        .when("/mfSearch", {
+            templateUrl: "/app/sectionForm/matricForm/mfSearch.html",
+            controller: "mfController"
+        })
+        .when("/mfImport", {
+            templateUrl: "/app/sectionForm/matricForm/mfImport.html",
+            controller: "mfController"
+        })
+        .when("/mfStudentList", {
+            templateUrl: "/app/sectionForm/matricForm/mfStudentList.html",
+            controller: "mfController"
+        })
+        .when("/semesterNew", {
+            templateUrl: "/app/sectionForm/matricForm/semesterNew.html",
+            controller: "mfController"
+        })
+        .when("/secTutorImport", {
+            templateUrl: "/app/sectionForm/matricForm/secTutorImport.html",
+            controller: "mfController"
+        })
+        .when("/courseCodeSelect", {
+            templateUrl: "/app/sectionForm/matricForm/courseCode.html",
+            controller: "mfController"
+        })
+        .when("/specStudentList", {
+            templateUrl: "/app/sectionForm/appointForm/studentList.html",
+            controller: "afController"
+        })
+        .when("/appStudentList", {
+            templateUrl: "/app/sectionForm/studentForm/appStudentList.html",
+            controller: "sfController"
+        })
+        .when("/printStudents", {
+            templateUrl: "/app/sectionForm/studentForm/printStudents.html",
+            controller: "sfController"
+        })
+        
     .otherwise({
         redirectTo:"/load"
     });
@@ -102,7 +155,6 @@ formApp.config(["$routeProvider", "$locationProvider", "LightboxProvider", funct
     LightboxProvider.fullScreenMode = true;
 
 }]);
-
 
 formApp.service("imageCheck", function () {
     var profileImage = false;
@@ -167,7 +219,6 @@ formApp.service("imageAdd", function imageAdd() {
                     id: type,
                     value: value
                 }];
-                
                 counter++;
             }
         }
@@ -219,6 +270,19 @@ formApp.service("userCheck", function () {
         }
     }
 })
+
+formApp.service("userInfo", function userInfo() {
+    var info;
+    return {
+        getInfo: function () {
+            return info;
+        },
+        setInfo: function (value) {
+            info = value;
+        }
+    }
+})
+
 formApp.service("itemId_service", function () {
     var itemId = this;
     return {
@@ -227,6 +291,18 @@ formApp.service("itemId_service", function () {
         },
         setId:function(value){
             itemId = value;
+        }
+    }
+})
+
+formApp.service("course_code", function () {
+    var courseCode = this;
+    return {
+        getCode: function () {
+            return courseCode;
+        },
+        setCode: function (value) {
+            courseCode = value;
         }
     }
 })
@@ -525,21 +601,35 @@ formApp.controller("HomeController", ["$scope", "$location", "DataService", "$ht
 
 }]);
 
-formApp.controller("MainController", ["$scope", "$location", "DataService", "$http", "ngDialog", "$mdDialog", "NgTableParams", function ($scope, $location, DataService, $http, ngDialog, $mdDialog, NgTableParams) {
-    $http.get("api/RoleWebApi").then(
+formApp.controller("MainController", ["$scope", "$location", "DataService", "$http", "ngDialog", "$mdDialog", "NgTableParams","userInfo", function ($scope, $location, DataService, $http, ngDialog, $mdDialog, NgTableParams,userInfo) {
+    DataService.roleGet().then(
         //on success
         function (result) {
             $scope.username = result.data;
-            if ($scope.username == 'director') {
+            if ($scope.username.user_roles.role == 'director') {
                 $location.path("/RdMain");
             }
-            else if ($scope.username == 'admin')
+            else if ($scope.username.user_roles.role == 'admin')
             {
                 $location.path("/#adminMain");
             }
+            else if ($scope.username.user_roles.role == 'section')
+            {
+                userInfo.setInfo(result.data);
+                $location.path("/matricMain");
+            }
         },
         //on error
-        function (result) { }
+        function (result) {
+            $mdDialog.show(
+              $mdDialog.alert()
+                .parent(angular.element(document.querySelector('#popupContainer')))
+                .clickOutsideToClose(true)
+                .title(result.alert)
+                .ariaLabel('Alert Dialog Demo')
+                .ok('Got it!')
+            );
+        }
             
         )
 }]);

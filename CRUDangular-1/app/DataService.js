@@ -1,24 +1,5 @@
 ﻿formApp.factory('DataService',["$http",
     function ($http) {
-
-        var getEmployee = function (id) {
-            return $http.get('/api/EmployeeWebApi/' + id);
-        };
-        var insertEmployee = function(newEmployee) {
-            return $http.post("/api/EmployeeWebApi/Post",newEmployee);
-        };
-        var updateEmployee = function (employee) {
-            return true;
-        }
-        var fetchEmployee = function (id) {
-           return ;
-        };
-        var putEmployee = function (employee) {
-            return $http.put("/api/EmployeeWebApi/Put", employee);
-        }
-        var deleteEmployee = function (id) {
-            return $http.delete("/api/EmployeeWebApi/Delete/"+ id);
-        }
         var getTutor = function (id) {
             return $http.get("/api/TutorWebApi/" + id);
         }
@@ -68,12 +49,33 @@
         var roleGet = function(){
             return $http.get("api/RoleWebApi");
         }
+        var sectionTutorGet = function () {
+            return $http.get("api/SectionTutorWebApi");
+        }
+        var sectionTutorPost = function (value) {
+            return $http.post("/api/SectionTutorWebApi/Post", value);
+        }
+        var newSemester = function (value)
+        {
+            return $http.put("/api/NewSemesterWebApi/Put", value);
+        }
+        var courseCode = function () {
+            return $http.get("api/CourseCodeWebApi");
+        }
+        var roleGet = function () {
+          return  $http.get("api/RoleWebApi");
+        }
+        var specStudents = function (id) {
+            return $http.get("/api/StudentWebApi/" + id);
+        }
+        var stdAppoint = function (value)
+        {
+            return $http.post("/api/StudentWebApi/Post", value);
+        }
+        var stdAppointGet = function (id) {
+            return $http.get("/api/StudentAppointWebApi/" + id);
+        }
         return {
-            getEmployee: getEmployee,
-            updateEmployee: updateEmployee,
-            insertEmployee: insertEmployee,
-            putEmployee: putEmployee,
-            deleteEmployee: deleteEmployee,
             getTutor: getTutor,
             insertTutor: insertTutor,
             putTutor: putTutor,
@@ -89,8 +91,16 @@
             getItemsById: getItemsById,
             postItem:postItem,
             putRoom: putRoom,
-            roleGet: roleGet
+            roleGet: roleGet,
+            sectionTutorGet: sectionTutorGet,
+            sectionTutorPost: sectionTutorPost,
+            newSemester:newSemester,
+            courseCode: courseCode,
+            roleGet: roleGet,
+            specStudents: specStudents,
+            stdAppoint: stdAppoint,
+            stdAppointGet: stdAppointGet
 
-         };
+        };
     }]);
  

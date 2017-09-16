@@ -42,16 +42,28 @@ namespace CRUDangular_1
                 "~/Scripts/angular-bootstrap-lightbox.min.js",
                 "~/Scripts/ng-table.min.js",
                 "~/Scripts/FileSaver.min.js",
+                "~/Scripts/angular-modal-progress-bar.js",
+                    "~/Scripts/libs/pdfmake/pdfmake.min.js",
+                    "~/Scripts/libs/pdfmake/mirza_fonts.js",
+                    "~/Scripts/libs/pdfmake/vfs_fonts.js",
+                    "~/Scripts/libs/jsPDF/jspdf.min.js",
+                    "~/Scripts/libs/jsPDFAutoTable/jspdf.plugin.autotable.js",
+                    "~/Scripts/tableExport.min.js",
+
                 "~/app/AngularForm.js",
                 "~/app/DataService.js",
-                 "~/app/ValidationDirective.js", 
+                 "~/app/ValidationDirective.js",
                 "~/app/TutorForm/tfcontroller.js",
                 "~/app/TutorForm/tfDirective.js",
                 "~/app/QualForm/qfcontroller.js",
                 "~/app/QualForm/qfDirective.js",
                 "~/app/ExpeForm/expeController.js",
                 "~/app/itemForm/ifController.js",
-                "~/app/itemForm/ifDirective.js"));
+                "~/app/itemForm/ifDirective.js",
+                "~/app/sectionForm/matricForm/mfController.js",
+                "~/app/sectionForm/matricForm/mfDirective.js",
+                "~/app/sectionForm/appointForm/afController.js",
+                "~/app/sectionForm/studentForm/sfController.js"));
 
             bundles.Add(new StyleBundle("~/bundles/mini-spa/style").Include("~/Content/bootstrap.min.css",
                       "~/Content/app.css",
@@ -64,7 +76,8 @@ namespace CRUDangular_1
                     //  "~/Content/angular-material.layouts.css"
                      "~/Content/angular-material.layouts.min.css",
                      "~/Content/angular-bootstrap-lightbox.min.css",
-                      "~/Content/angular-material.min.css"
+                      "~/Content/angular-material.min.css",
+                      "~/Content/angular-modal-progress-bar.css"
 
 
                 ));

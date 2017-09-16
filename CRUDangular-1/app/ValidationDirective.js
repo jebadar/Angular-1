@@ -73,3 +73,43 @@ formApp.directive('rotate', function () {
         }
     }
 });
+formApp.directive('exportTable', [function () {
+    //export html table to pdf, excel and doc format directive
+        
+        return {
+            restrict: 'C',
+            link: function ($scope, elm, attr) {
+            $scope.$on('export-pdf', function (e, d) {
+                elm.tableExport({
+                    type: 'pdf', jspdf: {
+                        orientation: 'l',
+                        format: 'a3',
+                        margins: { left: 10, right: 10, top: 20, bottom: 20 },
+                        autotable: {
+                            styles: {
+                                fillColor: 'inherit',
+                                textColor: 'inherit'
+                            },
+                            tableWidth: 'auto',
+                             margin: { top: 80 },
+                            beforePageContent: function (data) {
+                                var doc = data.doc; // Internal jspdf instance
+                                doc.setFontSize(1);
+                                doc.setTextColor(40);
+                                doc.setFontStyle('normal');
+                                doc.text(" ", data.settings.margin.left, 60);
+                            }
+                        }
+                    }
+                });
+            });
+            $scope.$on('export-excel', function (e, d) {
+                elm.tableExport({ type: 'excel', escape: false });
+            });
+            $scope.$on('export-doc', function (e, d) {
+                elm.tableExport({ type: 'doc', escape: false });
+            });
+        }
+    }
+
+}]);

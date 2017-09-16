@@ -1,0 +1,60 @@
+﻿<div class="col-md-12">
+    <input type="button" class= "btn btn-primary" value="Add Selected Tutor" ng-click="postTutorList()" />
+    <div class="label">Selected Tutor: {{selectedTutors.length}}</div>
+
+    <div class="col-md-12">
+        <table ng-table="vm.tableParams" class="table table-bordered table-lg table-striped table-condensed" style="font-size:11px;background-color:white" show-filter="true">
+
+        <thead>
+            <th class="col-lg-1">Add</th>
+            <th class="col-lg-1">Registration No</th>
+            <th class="col-lg-1">Name</th>
+            <th class="col-lg-1">Father Name</th>
+            <th class="col-lg-1">Designation</th>
+            <th class="col-lg-1">BPS</th>
+            <th class="col-lg-1">Official Address</th>
+            <th class="col-lg-2">Mailing Address</th>
+            <th class="col-lg-1">Qualification</th>
+            <th class="col-lg-1">Phone</th>
+            <th class="col-lg-1">Gender</th>
+            <th class="col-lg-1">Tehsil</th>
+            <th class="col-lg-1">Status</th>
+            <th class="col-lg-1">Detail</th>
+        </thead>
+            <tbody>
+            <tr dir-paginate="searchTutors in searchTutors|itemsPerPage: searchTutorsPerPage" total-items="totalsearchTutors" current-page="pagination.current" | orderBy:sortKey:reverse |filter:search">
+                <td>
+                   <input type="checkbox" ng-disabled="checked" ng-click="selectedCheckbox(searchTutors.tutor_id)" ></input>
+                </td>
+                <th scope="row" >{{searchTutors.reg_no}} </th>
+                <td>{{searchTutors.name}}</td>
+                <td>{{searchTutors.f_name}}</td>
+                <td>{{searchTutors.designation}}</td>
+                <td>{{searchTutors.basic_pay_scale}}</td>
+                <td>{{searchTutors.official_add}}</td>
+                <td>{{searchTutors.mail_add}}</td>
+                <td>{{searchTutors.qulification}}</td>
+                <td>{{searchTutors.phone}}</td>
+                <td scope="row" ng-show="searchTutors.gender === '1'">Male</td>
+                <td scope="row" ng-show="searchTutors.gender === '2'">Female</td>
+                <td scope="row" ng-show="searchTutors.gender === 'FEMALE' || searchTutors.gender === 'MALE' || searchTutors.gender === 'N/A' || searchTutors.gender === 'Male' || searchTutors.gender === 'Female'">{{searchTutors.gender}}</td>
+                <td>{{searchTutors.tehsil}}</td>
+                <th scope="row" ng-show="searchTutors.t_status === 'verified'"  class="text-success">
+                  Verified
+                </th>
+                <th scope="row" ng-show="searchTutors.t_status === 'unverified'" class="text-danger">
+                  Unverified
+                </th>
+                <th scope="row">
+                   <button class="btn btn-default btn-sm" ng-click="DetailTutor(searchTutors.tutor_id)">Detail</button>
+                </th>
+                
+            </tr>
+
+            </tbody>
+        </table>
+    </div>
+                <div class="col-sm-9"
+                        <input type="button" class="btn btn-default" value="Back" ng-click="cancelForm()"/>
+                </div>
+    </div>
